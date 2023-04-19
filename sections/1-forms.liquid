@@ -1,0 +1,141 @@
+
+
+
+{% comment %} /////////// Contact ////////// {% endcomment %}
+
+{% form 'contact', id:"Contact-Form" %}
+  {% if form.posted_successfully? %}
+    <div class="jc-form-done">
+      <div>Thank you! Your submission has been received!</div>
+    </div>
+  {% else %}
+  <input type="hidden" name="contact[form-name]" value="General Contact Form">
+
+  <div class="form-group-contact">
+    <label for="name" class="form-label-contact">Your Name<span class="required">*</span></label>
+    <input type="text" class="form-input-contact w-input" maxlength="256" name="contact[Your-Name]" id="Your-Name" required="">
+    <input type="email" class="form-input-contact w-input" maxlength="256" name="contact[email]" id="Email" required="">
+  </div>
+  
+  <select id="Question-About" name="contact[Question-About]" class="form-input-contact form-input-area-contact w-select">
+    <option value="blank">(Choose An Option)</option>
+    <option value="Imani-Products ">Imani Products</option>
+  </select>
+  {% endif %}
+{% endform %}
+
+
+{% comment %} /////////// Newsletter ////////// {% endcomment %}
+
+{% form 'customer' %}
+	{% if form.posted_successfully? %}
+	  <div class="jc-form-done">
+	    <div>Thank you! Your subscription has been confirmed!</div>
+	  </div>
+	{% else %}
+		<input type="hidden" name="contact[accepts_marketing]" value="true">
+		<input type="email" class="cta-modal-input w-input" maxlength="256" name="contact[email]" placeholder="Your Email Address*" id="email" required=""><input type="submit" value="Subscribe" data-wait="Please wait..." class="cta-modal-btn w-button">
+	{% endif %}
+{% endform %}
+
+{% comment %} /////////// Login ////////// {% endcomment %}
+
+<div id="login-box">
+	{% form 'customer_login' %}
+	  <h1 class="form-heading-login">Login</h1>
+	  {{ form.errors | default_errors }}
+	  <input type="email" class="form-input-login w-input" maxlength="256" name="customer[email]" placeholder="Email Address" id="CustomerEmail" required=""><input type="password" class="form-input-login w-input" maxlength="256" name="customer[password]" placeholder="Password" id="CustomerPassword" required="">
+	  <div class="form-btn-wrapper-login"><input type="submit" value="Sign In" data-wait="Please wait..." class="btn-main w-button"></div>
+	  <div class="form-bottom-wrapper-login">
+	    <a id="show-pw-form" href="#" class="form-bottom-link-login w-inline-block" >
+	      <div>Forgot your password?</div>
+	    </a>
+	    <a href="/account/register" class="form-bottom-link-login w-inline-block">
+	      <div>Create Account</div>
+	    </a>
+	  </div>
+	{% endform %}
+</div>
+
+
+<div id="forgot-pw-box">
+	{% form 'recover_customer_password' %}
+	  <h2 class="form-heading-login-alt">Reset your password</h2>
+	  <p class="form-sub-heading-login">We will send you an email to reset your password.</p><input type="email" class="form-input-login w-input" maxlength="256" name="email" placeholder="Email Address" id="RecoverEmail" required="">
+	  <div class="form-btn-wrapper-login"><input type="submit" value="Submit" data-wait="Please wait..." class="btn-main w-button"></div>
+	  <div class="form-bottom-wrapper-login">
+	    <a id="hide-pw-form" href="#" class="form-bottom-link-login w-inline-block" >
+	      <div>Cancel</div>
+	    </a>
+	  </div>
+	{% endform %}
+</div>
+
+
+<script type="text/javascript">
+  $(document).ready(function() { 
+
+      $('#show-pw-form').click(function(e){
+        e.preventDefault();
+        $('#forgot-pw-box').css('display','block');
+        $('#login-box').css('display','none');
+
+      });
+
+      $('#hide-pw-form').click(function(e){
+        e.preventDefault();
+        $('#forgot-pw-box').css('display','none');
+        $('#login-box').css('display','block');
+
+      });
+
+   });
+</script>
+
+
+{% comment %} /////////// Register ////////// {% endcomment %}
+
+
+{% form 'create_customer', id: 'RegisterForm' %}
+  <h1 class="form-heading-login">Create Account</h1>
+  {{ form.errors | default_errors }}
+  <input type="text" class="form-input-login w-input" maxlength="256" name="customer[first_name]" placeholder="First Name" id="RegisterForm-FirstName" required="">
+  <input type="text" class="form-input-login w-input" maxlength="256" name="customer[last_name]" placeholder="Last Name" id="RegisterForm-LastName" required="">
+  <input type="email" class="form-input-login w-input" maxlength="256" name="customer[email]" placeholder="Email Address" id="RegisterForm-email" required="">
+  <input type="password" class="form-input-login w-input" maxlength="256" name="customer[password]" placeholder="Password" id="RegisterForm-password" required="">
+  <div class="form-btn-wrapper-login">
+    <input type="submit" value="Create" data-wait="Please wait..." class="btn-main w-button"></div>
+  <div class="form-bottom-wrapper-login">
+    <a href="/account/login" class="form-bottom-link-login w-inline-block">
+      <div>Already have an account? Log in here.</div>
+    </a>
+  </div>
+{% endform %}
+
+
+{% comment %} /////////// Reset Password ////////// {% endcomment %}
+
+
+{% form 'reset_customer_password' %}
+  <h1 class="form-heading-login">Reset Account Password</h1>
+  <p class="form-sub-heading-login">Enter a new password</p>
+  {{ form.errors | default_errors }}
+  <input type="password" class="form-input-login w-input" maxlength="256" name="customer[password]" placeholder="Password" id="ResetPassword" required="" placeholder="password" value="">
+  <input type="password" class="form-input-login w-input" maxlength="256" name="customer[password_confirmation]" placeholder="Confirm Password" id="PasswordConfirmation" required="" placeholder="password" value="">
+  <div class="form-btn-wrapper-login">
+    <input type="submit" value="Submit" data-wait="Please wait..." class="btn-main w-button"></div>
+  <div class="form-bottom-wrapper-login">
+{% endform %}
+
+
+{% comment %} /////////// Activate Account ////////// {% endcomment %}
+
+ {% form 'activate_customer_password' %}
+   <h1 class="heading-login heading-forgot-pw">Activate Account</h1>
+   {{ form.errors | default_errors }}
+   <div class="form-input-wrapper-login"> <input type="password" class="form-input-login w-input" maxlength="256" name="customer[password]" placeholder="Password" id="CustomerPassword" required="" placeholder="password" value=""></div>
+   <div class="form-input-wrapper-login"><input type="password" class="form-input-login w-input" maxlength="256" name="customer[password_confirmation]" placeholder="Confirm Password" id="CustomerPasswordConfirmation" required="" placeholder="password" value=""></div>
+   <div class="form-btn-wrapper-login"><input type="submit" value="Create Account" data-wait="Please wait..." class="btn-main w-button"></div>
+{% endform %}
+
+

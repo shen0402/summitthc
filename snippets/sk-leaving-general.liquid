@@ -1,0 +1,44 @@
+<div id="rr-modal" class="leaving-site-background">
+    <div class="leaving-wrapper">
+      <a href="#" class="leaving-close w-inline-block"><img src="https://cdn.shopify.com/s/files/1/0636/9355/3922/files/RR_close_icon.svg?v=1663622150" loading="lazy" alt="" class="close-img"></a>
+      <div class="leaving-left"></div>
+      <div class="leaving-right"><img src="https://cdn.shopify.com/s/files/1/0636/9355/3922/files/RR_logo.svg?v=1663622040" loading="lazy" alt="" class="leaving-logo">
+        <h1 class="rr-header">You&#x27;re about to leave Summit to visit our sister brand, R&amp;R.</h1>
+        <p class="rr-body">Explore and shop CBD Gummies, Tinctures, Pet Products, and more!</p>
+        <div class="leaving-button-wrapper">
+          <a href="http://rrmeds.com" target="_blank" class="arrow-gif-wrapper"><img src="https://cdn.shopify.com/s/files/1/0636/9355/3922/files/RR-Arrow.gif?v=1663622041" loading="lazy" alt=""></a>
+          <a href="#" id="continue-shoping" class="jc-small-btn product-row w-button leaving-button w-button">I want to keep shopping for Summit products</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <script>
+
+    $(document).ready(function() {
+
+      $('.rr-btn').click(function(e) {
+        $("#rr-modal").addClass("show");
+        $("body").addClass("no-scroll");
+      });
+
+      $('.leaving-close').click(function(e) {
+        $("#rr-modal").removeClass("show");
+        $("body").removeClass("no-scroll");
+      });
+
+      $('.leaving-site-background').click(function(e) {
+        $("#rr-modal").removeClass("show");
+        $("body").removeClass("no-scroll");
+      });
+
+      $('#continue-shoping').click(function(e) {
+        $("#rr-modal").removeClass("show");
+        $("body").removeClass("no-scroll");
+      });
+
+
+    });
+
+  </script>

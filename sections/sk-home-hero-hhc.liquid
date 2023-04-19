@@ -1,0 +1,472 @@
+
+{%- comment -%}
+  {%include 'sk-home-page-slider-touch'%}
+  {%include 'sk-home-page-slider'%}
+{%- endcomment -%}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{%- comment -%}
+
+  
+<div id="slide-window">
+  
+  <ol id="slides" start="1">
+  
+    <li class="slide color-0 alive" >
+    
+
+      <div class="home-hero-slide w-slide">
+        <div class="hero-wrapper">
+          <div class="hero-content-wrapper">
+            <div class="hero-content-inner" data-ix="fadeinright">
+              <div class="hero-subheader-wrapper">
+                <p class="subheader purple-text">GET HIGH ON OUR SUPPLY</p>
+              </div>
+              <h1 class="hero-main-heading-home">How Do You Want to Feel?</h1>
+              <div class="hero-heading-wrapper">
+                <p class="hero-heading-text">Our handy product guide will help you get where you want to go.</p>
+              </div>
+              <div class="hero-btn-wrapper">
+                <a href="#" class="btn-main-purple w-button">EXPLORE OUR STASH</a>
+              </div>
+              <div class="hero-reviews-row"><img loading="lazy" src="https://cdn.shopify.com/s/files/1/0636/9355/3922/files/stars-white.svg" alt="Five White Stars" class="hero-reviews-img">
+                <a href="#" class="hero-reviews-link w-inline-block">
+                  <div>103 Reviews</div>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="hero-overlay-mobile"></div>
+        </div>
+      </div>
+
+
+    </li>
+    
+    <li class="slide color-1" >
+    
+
+      <div class="home-hero-slide w-slide">
+        <div class="hero-wrapper hero-wrapper-slide-2">
+          <div class="hero-content-wrapper">
+            <div class="hero-content-inner" data-ix="fadeinright">
+              <div class="hero-subheader-wrapper">
+                <p class="subheader purple-text">MELLOW &amp; FOCUSED</p>
+              </div>
+              <h1 class="hero-main-heading-home">Introducing: New HHC Gummies</h1>
+              <div class="hero-heading-wrapper">
+                <p class="hero-heading-text">A softer, uplifting high designed to give you maximum relief.</p>
+              </div>
+              <div class="hero-btn-wrapper">
+                <a href="#" class="btn-main-dark-pink w-button">GIVE HHC A TRY</a>
+              </div>
+              <div class="hero-reviews-row"><img loading="lazy" src="https://cdn.shopify.com/s/files/1/0636/9355/3922/files/stars-white.svg" alt="Five White Stars" class="hero-reviews-img">
+                <a href="#" class="hero-reviews-link w-inline-block">
+                  <div>103 Reviews</div>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="hero-overlay-mobile"></div>
+        </div>
+      </div>
+    
+    </li>
+    
+    <li class="slide color-2" >
+    
+
+      <div class="home-hero-slide w-slide">
+        <div class="hero-wrapper hero-wrapper-slide-3">
+          <div class="hero-content-wrapper">
+            <div class="hero-content-inner" data-ix="fadeinright">
+              <div class="hero-subheader-wrapper">
+                <p class="subheader purple-text">WE&#x27;RE POPULAR! OVER 350 REVIEWS</p>
+              </div>
+              <h1 class="hero-main-heading-home">Let Us Help You Reach Your Peak</h1>
+              <div class="hero-heading-wrapper">
+                <p class="hero-heading-text">The Best in Delta-8, Delta-9, and HHC–delivered right to your door.</p>
+              </div>
+              <div class="hero-btn-wrapper">
+                <a href="#" class="btn-main-purple w-button">SHOP PSYCHOACTIVE RELIEF</a>
+              </div>
+              <div class="hero-reviews-row"><img loading="lazy" src="https://cdn.shopify.com/s/files/1/0636/9355/3922/files/stars-white.svg" alt="Five White Stars" class="hero-reviews-img">
+              <a href="#" class="hero-reviews-link w-inline-block">
+                <div>{{section.settings.review_count}}</div>
+              </a>
+              </div>
+            </div>
+          </div>
+          <div class="hero-overlay-mobile"></div>
+        </div>
+      </div>
+    
+    </li>
+    
+  
+  </ol>
+
+  <div class="slide-nav-wrapper">
+    <span class="slide-nav fa fa-chevron-left fa-3x" id="left"></span>
+    <span class="slide-nav fa fa-chevron-right fa-3x" id="right"></span>
+  </div>
+  
+  
+  
+</div>
+
+
+
+
+<style>
+  body::-webkit-scrollbar { display: none; }
+
+#slide-window
+  {
+  position:static;
+  width:100%;
+  height:100%;
+  overflow:hidden;
+  top:0px;
+  left:0px;
+  }
+
+#slides
+  {
+  height:100%;  
+  position: relative;
+  margin:0px;
+  padding:0px;
+  
+  -webkit-transform: translate3d(0px,0px,0px);
+  transform: translate3d(0px,0px,0px);
+    
+  transition: all 0.66s ease; -webkit-transition: all 0.66s ease; 
+  
+  }
+.slide-nav-wrapper{
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+.fa-3x {
+  font-size: 1em;
+}
+.slide-nav.fa-chevron-left.fa-3x{
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+.slide 
+  {
+  list-style:none;
+  position: relative;
+  float: left;
+  margin: 0;
+  padding: 0;
+  width: 500px;
+  height: 100%;
+  background: #ccc;
+  text-align: center;
+  line-height: 300px; 
+  background-size: cover; 
+  background-position:50% 50%;
+  color:#fff;
+  -webkit-transform: translate3d(0px,0px,0px);
+  visibility:hidden;
+  -webkit-transform-style: preserve-3d;
+  }
+
+.alive { visibility:visible; }
+
+.slide-nav 
+  { 
+  position: block; 
+  z-index:9; 
+  bottom:0%; 
+  cursor:pointer; 
+  color:#fff; 
+  opacity:0.7; 
+  transition: all 0.66s ease; -webkit-transition: all 0.66s ease; 
+  }
+
+.nav:hover { opacity:1.0; }
+#left { left:3%; }
+#right { right:3%; }
+
+
+#credit 
+  { 
+  position:fixed; 
+  top:25px; 
+  left:25px; 
+  color:#eaeaea; 
+  }
+</style>
+
+<script>
+  $.global = new Object();
+
+$.global.item = 1;
+$.global.total = 0;
+
+$(document).ready(function() 
+	{
+	
+	var WindowWidth = $(window).width();
+	var SlideCount = $('#slides li').length;
+	var SlidesWidth = SlideCount * WindowWidth;
+	
+   $.global.item = 0;
+    $.global.total = SlideCount; 
+    
+	$('.slide').css('width',WindowWidth+'px');
+	$('#slides').css('width',SlidesWidth+'px');
+
+   $("#slides li:nth-child(1)").addClass('alive');
+    
+  $('#left').click(function() { Slide('back'); }); 
+  $('#right').click(function() { Slide('forward'); }); 
+        
+  });
+
+function Slide(direction)
+	{
+   
+    if (direction == 'back') { var $target = $.global.item - 1; }
+    if (direction == 'forward') { var $target = $.global.item + 1; }  
+    
+    if ($target == -1) { DoIt($.global.total-1); } 
+    else if ($target == $.global.total) { DoIt(0); }  
+    else { DoIt($target); }
+    
+    
+	}
+
+function DoIt(target)
+  {
+   
+    var $windowwidth = $(window).width();
+	var $margin = $windowwidth * target; 
+    var $actualtarget = target+1;
+    
+    $("#slides li:nth-child("+$actualtarget+")").addClass('alive');
+    
+    $('#slides').css('transform','translate3d(-'+$margin+'px,0px,0px)');	
+    
+    $.global.item = target; 
+    
+  $('#count').html($.global.item+1);
+    
+  }
+
+</script>
+
+
+{%- endcomment -%}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div data-delay="5000" data-animation="slide" class="home-hero-slider w-slider" data-autoplay="true" data-easing="ease" data-hide-arrows="false" data-disable-swipe="false" data-autoplay-limit="0" data-nav-spacing="3" data-duration="500" data-infinite="true">
+  <div class="w-slider-mask">
+
+
+    <div class="home-hero-slide w-slide">
+      <div class="hero-wrapper">
+        <div class="hero-content-wrapper">
+          <div class="hero-content-inner" data-ix="fadeinright">
+            <div class="hero-subheader-wrapper">
+              <p class="subheader purple-text">ELEVATED RELIEF</p>
+            </div>
+            <h1 class="hero-main-heading-home">How Do You Want to Feel?</h1>
+            <div class="hero-heading-wrapper">
+              <p class="hero-heading-text">Our handy product guide will help you get where you want to go.</p>
+            </div>
+            <div class="hero-btn-wrapper">
+              <a href="https://summitthc.com/pages/product-guide" class="btn-main-purple w-button">EXPLORE OUR STASH</a>
+            </div>
+            <div class="hero-reviews-row"><img loading="lazy" src="https://cdn.shopify.com/s/files/1/0636/9355/3922/files/stars-white.svg" alt="Five White Stars" class="hero-reviews-img">
+              <a href="#stamped-reviews-widget" class="hero-reviews-link w-inline-block">
+                <div>450+ Reviews</div>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="hero-overlay-mobile"></div>
+      </div>
+    </div>
+
+
+    <div class="home-hero-slide w-slide">
+      <div class="hero-wrapper hero-wrapper-slide-2">
+        <div class="hero-content-wrapper">
+          <div class="hero-content-inner" data-ix="fadeinright">
+            <div class="hero-subheader-wrapper">
+              <p class="subheader purple-text">MELLOW &amp; FOCUSED</p>
+            </div>
+            <h1 class="hero-main-heading-home">Introducing: New HHC Gummies</h1>
+            <div class="hero-heading-wrapper">
+              <p class="hero-heading-text">A softer, uplifting experience designed to give you maximum relief.</p>
+            </div>
+            <div class="hero-btn-wrapper">
+              <a href="https://summitthc.com/products/25mg-20ct-hhc-vegan-infused-gummies" class="btn-main-dark-pink w-button">GIVE HHC A TRY</a>
+            </div>
+            <div class="hero-reviews-row"><img loading="lazy" src="https://cdn.shopify.com/s/files/1/0636/9355/3922/files/stars-white.svg" alt="Five White Stars" class="hero-reviews-img">
+              <a href="#stamped-reviews-widget" class="hero-reviews-link w-inline-block">
+                <div>450+ Reviews</div>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="hero-overlay-mobile"></div>
+      </div>
+    </div>
+
+
+    <div class="home-hero-slide w-slide">
+      <div class="hero-wrapper hero-wrapper-slide-3">
+        <div class="hero-content-wrapper">
+          <div class="hero-content-inner" data-ix="fadeinright">
+            <div class="hero-subheader-wrapper">
+              <p class="subheader purple-text">WE&#x27;RE POPULAR! OVER 450 REVIEWS</p>
+            </div>
+            <h1 class="hero-main-heading-home">Let Us Help You Reach Your Peak</h1>
+            <div class="hero-heading-wrapper">
+              <p class="hero-heading-text">The Best in Delta-9, HHC, and Delta-8 delivered right to your door.</p>
+            </div>
+            <div class="hero-btn-wrapper">
+              <a href="https://summitthc.com/pages/product-guide" class="btn-main-purple w-button">GET EFFECTIVE RELIEF</a>
+            </div>
+            <div class="hero-reviews-row"><img loading="lazy" src="https://cdn.shopify.com/s/files/1/0636/9355/3922/files/stars-white.svg" alt="Five White Stars" class="hero-reviews-img">
+            <a href="#stamped-reviews-widget" class="hero-reviews-link w-inline-block">
+              <div>450+ Reviews</div>
+            </a>
+            </div>
+          </div>
+        </div>
+        <div class="hero-overlay-mobile"></div>
+      </div>
+    </div>
+
+
+  </div>
+  <div class="hide-arrow w-slider-arrow-left">
+    <div class="w-icon-slider-left"></div>
+  </div>
+  <div class="hide-arrow w-slider-arrow-right">
+    <div class="w-icon-slider-right"></div>
+  </div>
+  <div class="slide-nav-home w-slider-nav w-round"></div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+{%- comment -%}
+  <div class="hero-wrapper">
+    <div class="hero-content-wrapper">
+      <div class="hero-content-inner" data-ix="fadeinright">
+        <div class="hero-main-heading-wrapper">
+          <h1 class="hero-main-heading-home">Reach Your Peak</h1>
+        </div>
+        <p class="hero-heading-text">Premium, potent Delta 8 and Delta 9 THC edibles delivered to your door - legally.</p>
+        <div class="hero-btn-wrapper">
+          <a href="/products/15mg-20ct-delta-9-vegan-infused-gummies" class="btn-banner-home w-button">Shop Summit</a>
+        </div>
+        <div class="hero-reviews-row"><img src="//cdn.shopify.com/s/files/1/0636/9355/3922/files/Stars-Blue-min.png" loading="lazy" alt="5 Stars" class="hero-reviews-img">
+        <a href="#" class="hero-reviews-link w-inline-block">
+          <div>{{section.settings.review_count}}</div>
+        </a>
+      </div>
+      
+    </div>
+  </div><img src="//cdn.shopify.com/s/files/1/0636/9355/3922/files/home-mobile_hero.jpg?v=1670346511" loading="eager" alt="Summit" class="hero-mobile-bg-img-home">
+  <div class="hero-overlay-mobile"></div>
+</div>
+
+{%- endcomment -%}
+
+
+{% schema %}
+{
+  "name": "Hero Section",
+  "settings": [
+      {
+       "type": "product",
+       "id": "featured_product",
+       "label": "Featured Product"
+      },
+      {
+        "type": "text",
+        "id": "review_count",
+        "label": "Review Count"
+       }
+  ]
+}
+{% endschema %}
+
+

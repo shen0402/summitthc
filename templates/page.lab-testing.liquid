@@ -1,0 +1,55 @@
+
+{%- comment -%}
+
+
+
+{% section 'sk-lab-testing-hero' %}
+{% section 'sk-lab-testing-sub-hero' %}
+{% section 'sk-lab-testing-main-content' %}
+{% section 'sk-lab-testing-contact-section' %}
+{% section 'sk-lab-testing-banner' %}
+{% section 'sk-product-row' %}
+{%- endcomment -%}
+{% section 'sk-lab-testing-page' %}
+{% section 'sk-lab-testing-modal-1' %}
+{% section 'sk-lab-testing-modal-2' %}
+{% section 'sk-lab-testing-modal-3' %}
+
+
+
+
+<script>
+$(document).ready(function() { 
+  $('.mid-flex-col-inner-testing[data-ix="modal-testing-open"').click(function(e) {
+    e.preventDefault();
+	$('body').css('overflow', 'hidden');
+  });
+
+  $('.mid-flex-col-inner-testing[data-ix="modal-testing-open-2"').click(function(e) {
+    e.preventDefault();
+  $('body').css('overflow', 'hidden');
+  });
+  $('.mid-flex-col-inner-testing[data-ix="modal-testing-open-3"').click(function(e) {
+    e.preventDefault();
+  $('body').css('overflow', 'hidden');
+  });
+
+  $('div[data-ix="modal-testing-close"]').click(function(e) {
+    e.preventDefault();
+	$('body').css('overflow', 'auto');
+  });
+
+  $('div[data-ix="modal-testing-close-2"]').click(function(e) {
+    e.preventDefault();
+  $('body').css('overflow', 'auto');
+  });
+  
+  $('div[data-ix="modal-testing-close-3"]').click(function(e) {
+    e.preventDefault();
+  $('body').css('overflow', 'auto');
+  });
+
+ });
+</script>
+
+

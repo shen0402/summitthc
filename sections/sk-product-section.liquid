@@ -1,0 +1,998 @@
+{%- assign current_variant = product.selected_or_first_available_variant -%}
+{%- assign compare_at_price = current_variant.compare_at_price -%}
+{%- assign price = current_variant.price -%}
+
+{% assign is_available = current_variant.available %}
+{% if is_available == true %}
+  {% assign cart_btn_text = 'Add to Cart' %}
+  {% assign cart_disabled = '' %}
+{% else %}
+  {% assign cart_btn_text = 'Sold Out' %}
+  {% assign cart_disabled = 'disabled="disabled"' %}
+{% endif %}
+
+{% assign delta_9 = 7650180661506 %}
+{% assign delta_8 = 7650180137218 %}
+{% assign HCC = 7934597071106 %}
+
+{% assign sub_heading = product.metafields.product_info.sub_heading %}
+{% assign badge_image = product.metafields.product_info.badge_image %}
+{% assign short_description = product.metafields.product_info.short_description %}
+{% assign effects_meter_9 = product.metafields.product_info.effects_meter_9 %}
+{% assign product_directions = product.metafields.product_info.directions %}
+{% assign product_ingredients = product.metafields.product_info.ingredients %}
+{% assign product_safety = product.metafields.product_info.safety %}
+{% assign product_lab_testing = product.metafields.product_info.lab_testing %}
+
+{% assign activation_icon = product.metafields.product_info.activation_icon %}
+{% assign duration_icon = product.metafields.product_info.duration_icon %}
+{% assign dose_icon = product.metafields.product_info.dose_icon %}
+
+{% assign subscription_product_meta = product.metafields.product_info.subscription_product %}
+{% assign subscription_product = all_products[subscription_product_meta] %}
+
+{% assign two_pack_discount = product.price | times: 2 | times: 0.10 %}
+{% assign three_pack_discount = product.price | times: 3 | times: 0.15 %}
+
+<div class="hero-wrapper-product">
+  <div class="hero-container-product">
+    <div class="flex-row-outer-product">
+      <div class="heading-flex-col-product mobile">
+        {% unless sub_heading == blank %}
+          <div class="sub-heading-wrapper-product">
+            <h2 class="section-heading-sm">{{ sub_heading }}</h2>
+          </div>
+        {% endunless %}
+        <div class="heading-wrapper-product mobile">
+          <h1 class="section-heading-alt">{{product.metafields.product_info.custom_title}}</h1>
+        </div>
+
+        <div class="stars-mobile">
+          <a href="#reviews-link" class="reviews-wrapper">
+            <img class="review-stars" src="https://cdn.shopify.com/s/files/1/0636/9355/3922/files/ratings-stars-2-min.png?v=1649977924" alt="">
+            <div>{{product.metafields.stamped.reviews_count}} Reviews</div>
+          </a>
+        </div>
+        
+
+
+          <style type="text/css">
+            .flex-col-outer-product-2 .stamped-badge-starrating {
+              margin-right: 6px !important;
+              margin-top: 3px !important;
+              display: inline-block;
+            }
+          </style>
+
+
+
+      </div>
+
+      <div class="flex-col-outer-product-1">
+        <div class="tabs-wrapper-product">
+          <div
+            data-current="Tab 1"
+            data-easing="ease"
+            data-duration-in="300"
+            data-duration-out="100"
+            class="tabs-product w-tabs"
+          >
+            <div class="tabs-menu-product w-tab-menu">
+              {% for image in product.images %}
+                <a
+                  data-w-tab="Tab {{ forloop.index }}"
+                  class="tab-menu-link-product w-inline-block w-tab-link {% if forloop.first == true %}w--current{% endif %}"
+                  style="background-image: url({{ image | img_url: '512x' }});"
+                ></a>
+              {% endfor %}
+            </div>
+            <div class="tabs-content-product w-tab-content">
+              {% for image in product.images %}
+                <div
+                  data-w-tab="Tab {{ forloop.index }}"
+                  class="w-tab-pane {% if forloop.first == true %}w--tab-active{% endif %}"
+                >
+                  <div class="tab-inner-product">
+                    <div class="tab-img-wrapper-product">
+                      <div class="tab-img-inner-product">
+                        <img
+                          src="{{ image | img_url: '1500x' }}"
+                          loading="eager"
+                          alt="{{product.title}}"
+                          class="tab-img-product"
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="flex-col-outer-product-2">
+        <div class="flex-col-inner-product">
+          <div class="flex-content-holder-product">
+            <div class="heading-flex-row-product">
+              <div class="heading-flex-col-product">
+                {% unless sub_heading == blank %}
+                  <div class="sub-heading-wrapper-product">
+                    <h2 class="section-heading-sm">{{ sub_heading }}</h2>
+                  </div>
+                {% endunless %}
+                <div class="heading-wrapper-product">
+                  <h1 class="section-heading-alt">{{product.metafields.product_info.custom_title}}</h1>
+                </div>
+              </div>
+
+              {% if product.id == delta_8 %}
+                <img
+                  src="https://cdn.shopify.com/s/files/1/0636/9355/3922/files/icon-max_effects-D8_fb67c33f-6ffd-4926-a6b5-a88374d8d39b.svg?v=1676409983"
+                  loading="lazy"
+                  alt="For maximum effects, take on an empty stomach"
+                  class="heading-badge-img-product"
+                >
+              {% elsif product.id == delta_9 %}
+                <img
+                  src="https://cdn.shopify.com/s/files/1/0636/9355/3922/files/icon-max_effects-D9_aa7696b3-3235-485a-b3f5-00d452a54494.svg?v=1676409983"
+                  loading="lazy"
+                  alt="For maximum effects, take on an empty stomach"
+                  class="heading-badge-img-product"
+                >
+              {% else %}
+                <img
+                  src="https://cdn.shopify.com/s/files/1/0636/9355/3922/files/icon-max_effects-HHC_cdc83d1e-7113-486a-83fb-c37e1b2a6b9c.svg?v=1676409984"
+                  loading="lazy"
+                  alt="For maximum effects, take on an empty stomach"
+                  class="heading-badge-img-product"
+                >
+              {% endif %}
+            </div>
+
+            {%- comment -%}
+              <!-- Stamped - Begin Star Rating Badge -->
+              <div
+                class="stars-desktop"
+                id="stamped-reviews-widget"
+                data-widget-type="site-badge"
+                data-badge-type="minimal"
+                data-color-text="#0b022b"
+                data-color-stars="#331c94"
+              ></div>
+            {%- endcomment -%}
+
+
+
+            <div class="stars-desktop">
+              <a href="#reviews-link" class="reviews-wrapper">
+                <img class="review-stars" src="https://cdn.shopify.com/s/files/1/0636/9355/3922/files/ratings-stars-2-min.png?v=1649977924" alt="">
+                <div>{{product.metafields.stamped.reviews_count}} Reviews</div>
+              </a>
+            </div>
+
+
+
+            {%- comment -%}
+              <span
+                class="stamped-product-reviews-badge stamped-main-badge"
+                data-id="{{ product.id }}"
+                data-product-sku="{{ product.handle }}"
+                data-product-title="{{product.title}}"
+                data-product-type="{{product.type}}"
+                style="display: block;">
+
+              </span>
+            {%- endcomment -%}
+            <style type="text/css">
+              .stamped-badge-stars.stamped-style-color-star.stamped-style-size-star {
+                margin-bottom: -5px !important;
+              }
+              .flex-col-outer-product-2 .stamped-badge-starrating {
+                margin-right: 6px !important;
+                margin-top: 3px !important;
+                display: inline-block;
+              }
+            </style>
+            <!-- Stamped - End Star Rating Badge -->
+            <br>
+
+            {% comment %}
+              <div class="product-col-reviews-row-page">
+                <img src="//cdn.shopify.com/s/files/1/0636/9355/3922/files/ratings-stars-1-min.png" loading="lazy" alt="5 Stars" class="featured-star-img">
+                <a href="#" class="featured-col-reviews-heading-link w-inline-block">
+                  <div>103 Reviews</div>
+                </a>
+              </div>
+            {% endcomment %}
+            {% unless short_description == blank %}
+              <div class="description-wrapper-product desktop">
+                <div class="body-rte-dark w-richtext">
+                  {{ short_description }}
+                </div>
+              </div>
+            {% endunless %}
+
+            <script>
+              $(window).on('load', function () {
+                console.log('function 1 ran');
+
+                $('#tab-link-1').click(function () {
+                  $('#radio-2').removeClass('btn-active');
+                  $('#radio-1').addClass('btn-active');
+                  console.log('tab1 clicked');
+                  return false;
+                });
+              });
+              $(window).on('load', function () {
+                console.log('function 2 ran');
+
+                $('#tab-link-2').click(function () {
+                  $('#radio-1').removeClass('btn-active');
+                  $('#radio-2').addClass('btn-active');
+                  console.log('tab2 clicked');
+                });
+                jQuery('#radio-2').click();
+                console.log('Force clicked 2');
+              });
+            </script>
+
+            <div
+              data-current="Tab 1"
+              data-easing="ease"
+              data-duration-in="1"
+              data-duration-out="1"
+              class="tabs-subscription w-tabs"
+            >
+              <div class="tabs-menu-subscription w-tab-menu {% if subscription_product == blank %}tabs-menu-subscription-hide{% endif %}">
+                <a
+                  data-w-tab="Tab 1"
+                  id="tab-link-1"
+                  class="tab-menu-link-subscription w-inline-block w-tab-link  {% if subscription_product == blank %}w--current{% endif %}"
+                >
+                  <div class="subscription-text-wrapper">
+                    <div id="radio-1" class="radio-btn-custom-img {%if product.id == delta_8 %} blue {%elsif product.id == delta_9 %} orange {%else%} yellow {%endif%}"></div>
+                    <div class="subscrition-tab-text">One-Time Purchase</div>
+                  </div>
+                </a>
+
+                <a
+                  data-w-tab="Tab 2"
+                  id="tab-link-2"
+                  class="tab-menu-link-subscription w-inline-block w-tab-link {% unless subscription_product == blank %}w--current{% endunless %}"
+                >
+                  <div class="subscription-text-wrapper">
+                    <div id="radio-2" class="radio-btn-custom-img {%if product.id == delta_8 %} blue {%elsif product.id == delta_9 %} orange {%else%} yellow {%endif%}"></div>
+                    <div class="subscrition-tab-text">Subscribe & <span style="text-decoration: underline;">Save 15%</span></div>
+                  </div>
+                </a>
+              </div>
+
+              {%- comment -%}
+              {%- endcomment -%}
+              {% assign regular_price = price %}
+              {% assign discount_amount = 0.15 %}
+              {% assign dollars_off = regular_price | times: discount_amount %}
+              {% assign discount_price = regular_price | minus: dollars_off %}
+              
+
+              <div class="w-tab-content">
+                <div
+                  data-w-tab="Tab 1"
+                  class="w-tab-pane {% if subscription_product == blank %}w--tab-active{% endif %}"
+                >
+                  <div class="form-block-product ">
+                    {% form 'product', product, data-productid: product.id %}
+                      <div class="product-options-row">
+                        <div class="product-options-col">
+                          <div class="product-options-col-inner">
+                            <div class="product-option-block" quantity-amount="1" sk-type="standard">
+                              <div class="product-option-text">1-Pack</div>
+                              <div class="product-option-price-text">
+                                <span style="text-decoration: line-through; margin-right:5px;">
+                                  {%- comment -%}
+                                    {{ discount_price | money -}}
+                                  {%- endcomment -%}
+                                  
+                                </span>
+                                {{ price | money }}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="product-options-col">
+                          <div class="product-options-col-inner">
+                            <div
+                              class="product-option-block product-option-block-active"
+                              quantity-amount="2"
+                              sk-type="standard"
+                            >
+                              <div class="product-option-text">2-Pack</div>
+                              <div class="product-option-price-text">
+                                <span style="text-decoration: line-through; margin-right:5px;">
+                                  {{ compare_at_price | times: 2 | money -}}
+                                </span>
+                                {{ price | times: 2 | minus: two_pack_discount | money }}
+                                <br>
+                                <span class="product-option-price-text-alt {%if product.id == delta_8 %} blue {%elsif product.id == delta_9 %} orange {%else%} yellow {%endif%}">
+                                  (Save 10%)</span
+                                >
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="product-options-col">
+                          <div class="product-options-col-inner">
+                            <div class="product-option-block" quantity-amount="3" sk-type="standard">
+                              <div class="product-option-text">3-Pack</div>
+                              <div class="product-option-price-text">
+                                <span style="text-decoration: line-through; margin-right:5px;">
+                                  {{ compare_at_price | times: 3 | money }}
+                                </span>
+                                {{ price | times: 3 | minus: three_pack_discount | money }}
+                                <br>
+                                <span class=" product-option-price-text-alt {%if product.id == delta_8%} blue {%elsif product.id == delta_9%} orange {%else%} yellow {%endif%}"> (Save 15%)</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <select
+                        name="id"
+                        data-productid="{{ product.id }}"
+                        id="product-select"
+                        class="jc-product-select product-form__variants no-js"
+                        style="display: none;"
+                      >
+                        {% for variant in product.variants %}
+                          {% if variant.available %}
+                            <option
+                              jc-price="{{variant.price | money}}"
+                              {% if variant == product.selected_or_first_available_variant %}
+                                selected="selected"
+                              {% endif %}
+                              value="{{ variant.id }}"
+                            >
+                              {{ variant.title }}
+                            </option>
+                          {% else %}
+                            <option jc-price="Sold Out" disabled="disabled">
+                              {{ variant.title }} - {{ 'products.product.sold_out' | t }}
+                            </option>
+                          {% endif %}
+                        {% endfor %}
+                      </select>
+
+                      <input
+                        type="number"
+                        class="form-text-field services-ind-quantity w-input"
+                        maxlength="256"
+                        name="quantity"
+                        value="2"
+                        min="1"
+                        pattern="[0-9]*"
+                        id="Quantity"
+                        required=""
+                        style="display:none;"
+                      >
+
+                      <div class="form-btn-wrapper-product">
+                        <div class="form-bottom-text-product">
+                          Do we ship to your state?
+                          <a href="#shipping" class="form-bottom-text-product-link {%if product.id == delta_8%} blue {%elsif product.id == delta_9%} orange {%else%} yellow {%endif%}">Find out</a>
+                        </div>
+                        <input
+                          type="submit"
+                          value="{{cart_btn_text}}"
+                          data-wait="Please wait..."
+                          class="form-btn-product w-button"
+                          {{ cart_disabled }}
+                        >
+                      </div>
+                    {% endform %}
+                  </div>
+                  <div class="aiod-volume-discount-wrap"></div>
+                  <div class="aiod-bogo-discount-wrap"></div>
+                  <div class="aiod-wholesale-discount-topbar"></div>
+                </div>
+
+                {% unless subscription_product == blank %}
+                  <div
+                    data-w-tab="Tab 2"
+                    class="w-tab-pane {% unless subscription_product == blank %}w--tab-active{% endunless %}"
+                  >
+                    <div class="form-block-product">
+                      {%- assign current_variant_subscription = subscription_product.selected_or_first_available_variant -%}
+                      {% assign is_available_subscription = current_variant_subscription.available %}
+                      {% if is_available_subscription == true %}
+                        {% assign cart_btn_text_subscription = 'Add to Cart' %}
+                        {% assign cart_disabled_subscription = '' %}
+                      {% else %}
+                        {% assign cart_btn_text_subscription = 'Sold Out' %}
+                        {% assign cart_disabled_subscription = 'disabled="disabled"' %}
+                      {% endif %}
+
+                      {% form 'product', subscription_product, data-productid: subscription_product.id %}
+                        <div class="product-options-row">
+                          <div class="product-options-col">
+                            <div class="product-options-col-inner">
+                              <div class="product-option-block" quantity-amount="1" sk-type="subscription">
+                                <div class="product-option-text">1-Pack</div>
+                                <div class="product-option-price-text">
+                                  <span style="text-decoration: line-through; margin-right:5px;">
+                                    {{ compare_at_price | money -}}
+                                  </span>
+                                  {{ current_variant_subscription.price | money }} 
+                                  <br>
+                                  <span class="product-option-price-text-alt {%if product.id == delta_8%} blue {%elsif product.id == delta_9%} orange {%else%} yellow {%endif%}">(Save 15%)</span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="product-options-col">
+                            <div class="product-options-col-inner">
+                              <div
+                                class="product-option-block product-option-block-active"
+                                quantity-amount="2"
+                                sk-type="subscription"
+                              >
+                                <div class="product-option-text">2-Pack</div>
+                                <div class="product-option-price-text">
+                                  <span style="text-decoration: line-through; margin-right:5px;">
+                                    {{ compare_at_price | times: 2 | money -}}
+                                  </span>
+                                  {{ current_variant_subscription.price | times: 2 | money }} 
+                                  <br>
+                                  <span class="product-option-price-text-alt {%if product.id == delta_8%} blue {%elsif product.id == delta_9%} orange {%else%} yellow {%endif%}">(Save 15%)</span>
+                                </div>
+                                {% comment %}
+                                  <div class="product-option-price-text">$84.98 - <span class="product-option-price-text-alt">Save 15%</span></div>
+                                {% endcomment %}
+                              </div>
+                            </div>
+                          </div>
+                          <div class="product-options-col">
+                            <div class="product-options-col-inner">
+                              <div class="product-option-block" quantity-amount="3" sk-type="subscription">
+                                <div class="product-option-text">3-Pack</div>
+                                <div class="product-option-price-text">
+                                  <span style="text-decoration: line-through; margin-right:5px;">
+                                    {{ compare_at_price | times: 3 | money -}}
+                                  </span>
+                                  {{ current_variant_subscription.price | times: 3 | money }} 
+                                  <br>
+                                  <span class="product-option-price-text-alt {%if product.id == delta_8 %} blue {%elsif product.id == delta_9%} orange {%else%} yellow {%endif%}">(Save 15%)</span>
+                                </div>
+                                {% comment %}
+                                  <div class="product-option-price-text">$127.47 - <span class="product-option-price-text-alt">Save 15%</span></div>
+                                {% endcomment %}
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="form-top-label-subscription">Deliver Every 30 Days</div>
+                        </div>
+
+                        <select
+                          name="id"
+                          data-productid="{{ subscription_product.id }}"
+                          id="product-select"
+                          class="jc-product-select product-form__variants no-js"
+                          style="display: none;"
+                        >
+                          {% for variant in subscription_product.variants %}
+                            {% if variant.available %}
+                              <option
+                                jc-price="{{variant.price | money}}"
+                                {% if variant == subscription_product.selected_or_first_available_variant %}
+                                  selected="selected"
+                                {% endif %}
+                                value="{{ variant.id }}"
+                              >
+                                {{ variant.title }}
+                              </option>
+                            {% else %}
+                              <option jc-price="Sold Out" disabled="disabled">
+                                {{ variant.title }} - {{ 'products.product.sold_out' | t }}
+                              </option>
+                            {% endif %}
+                          {% endfor %}
+                        </select>
+
+                        <input
+                          type="number"
+                          class="form-text-field services-ind-quantity w-input"
+                          maxlength="256"
+                          name="quantity"
+                          value="2"
+                          min="1"
+                          pattern="[0-9]*"
+                          id="Quantity-subscription"
+                          required=""
+                          style="display:none;"
+                        >
+
+                        <div class="rc-widget-injection-parent"></div>
+
+                        <div class="form-btn-wrapper-product">
+                          <div class="form-bottom-text-product">
+                            Do we ship to your state?
+                            <a href="#shipping" class="form-bottom-text-product-link {%if product.id == delta_8%} blue {%elsif product.id == delta_9%} orange {%else%} yellow {%endif%}">Find out</a>
+                          </div>
+                          <input
+                            type="submit"
+                            value="Add Subscription to Cart"
+                            data-wait="Please wait..."
+                            class="form-btn-product w-button"
+                            {{ cart_disabled_subscription }}
+
+                            {%comment%}
+                            onClick="addItemToCart(7683539566850, 1, {{subscription_product.selling_plan_groups[0].selling_plans[0].id}})"
+                            {%endcomment%}
+                          >
+                          {% comment %}
+                            <input type="submit" value="{{cart_btn_text_subscription}}" data-wait="Please wait..." class="form-btn-product w-button" {{cart_disabled_subscription}}>
+                          {% endcomment %}
+                        </div>
+                      {% endform %}
+                    </div>
+                  </div>
+                  <!-- w-tab-pane -->
+                {% endunless %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {% unless short_description == blank %}
+      <div class="mobile-description-wrap">
+        <div class="little-heading-wrap">
+          <h4
+            class="section-heading-sm"
+            data-ix="fadeindown"
+            style="opacity: 1; transform: translateX(0px) translateY(0px) translateZ(0px); transition: opacity 1000ms ease 0s, transform 1000ms ease 0s;"
+          >
+            {% if product.id == delta_8 %}
+              About Delta-8
+            {% elsif product.id == delta_9 %}
+              About Delta-9
+            {% else %}
+              About HHC
+            {% endif %}
+          </h4>
+        </div>
+        <div class="description-wrapper-product mobile">
+          <div class="body-rte-dark w-richtext">
+            {{ short_description }}
+          </div>
+        </div>
+      </div>
+    {% endunless %}
+
+    <div class="icon-section-product">
+      <div class="icon-flex-row-product">
+        <div class="flex-container-product">
+          <div class="flex-container-product-top">
+            <div class="icon-flex-col-product">
+              <div class="icon-flex-col-inner-product">
+                {% if activation_icon %}
+                  <img
+                    src="{{activation_icon | img_url: '256x' }}"
+                    loading="lazy"
+                    alt="Activation"
+                    class="mid-info-img"
+                  >
+                {% else %}
+                  <img
+                    src="https://cdn.shopify.com/s/files/1/0636/9355/3922/files/icon-info-activation_time_7f82b0ab-fda0-4ffe-82de-da7d703271f7.svg?v=1676409983"
+                    loading="lazy"
+                    alt="Activation"
+                    class="mid-info-img"
+                  >
+                {% endif %}
+                <div class="mid-info-content-wrapper">
+                  <h5 class="mid-info-heading">ACTIVATION TIME</h5>
+                  <h6 class="mid-info-sub-heading">20-45 mins</h6>
+                </div>
+              </div>
+            </div>
+            <div class="icon-flex-col-product">
+              <div class="icon-flex-col-inner-product">
+                {% if duration_icon %}
+                  <img src="{{duration_icon | img_url: '256x' }}" loading="lazy" alt="Duration" class="mid-info-img">
+                {% else %}
+                  <img
+                    src="https://cdn.shopify.com/s/files/1/0636/9355/3922/files/icon-info-duration_90d6d0b8-3f90-4409-b6c9-2bbc2a54259b.svg?v=1676409983"
+                    loading="lazy"
+                    alt="Duration"
+                    class="mid-info-img"
+                  >
+                {% endif %}
+                <div class="mid-info-content-wrapper">
+                  <h5 class="mid-info-heading">DURATION</h5>
+                  <h6 class="mid-info-sub-heading">4-6 hrs</h6>
+                </div>
+              </div>
+            </div>
+            <div class="icon-flex-col-product">
+              <div class="icon-flex-col-inner-product">
+                {% if dose_icon %}
+                  <img src="{{dose_icon | img_url: '256x' }}" loading="lazy" alt="Cannabis" class="mid-info-img">
+                {% else %}
+                  <img
+                    src="https://cdn.shopify.com/s/files/1/0636/9355/3922/files/icon-info-suggested_dose_d17c9192-0422-4ffd-879e-d550308eac26.svg?v=1676409983"
+                    loading="lazy"
+                    alt="Cannabis"
+                    class="mid-info-img"
+                  >
+                {% endif %}
+                <div class="mid-info-content-wrapper">
+                  <h5 class="mid-info-heading">Suggested Dose</h5>
+                  <h6 class="mid-info-sub-heading">1/2 Gummy</h6>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex-container-product-bottom">
+            {% if product.id == delta_8 %}
+              <img
+                src="https://cdn.shopify.com/s/files/1/0636/9355/3922/files/effects_meter-D8-desktop.svg?v=1676409972"
+                loading="lazy"
+                alt="Duration"
+                class="mid-info-img-product desktop"
+              >
+            {% elsif product.id == delta_9 %}
+              <img
+                src="https://cdn.shopify.com/s/files/1/0636/9355/3922/files/effects_meter-D9-desktop_ea732418-386e-425e-af90-1f294d76fdbb.svg?v=1676409983"
+                loading="lazy"
+                alt="Duration"
+                class="mid-info-img-product desktop"
+              >
+            {% else %}
+              <img
+                src="https://cdn.shopify.com/s/files/1/0636/9355/3922/files/effects_meter-HHC-desktop_0db8981e-d225-4cbe-a711-01b3a7f1247b.svg?v=1676409983"
+                loading="lazy"
+                alt="Duration"
+                class="mid-info-img-product desktop"
+              >
+            {% endif %}
+          </div>
+        </div>
+
+        <div class="flex-container-product-right">
+          <div class="icon-flex-col-product icon-flex-col-product-last">
+            <div class="meter-wrapper-product">
+              <img
+                src="https://cdn.shopify.com/s/files/1/0636/9355/3922/files/icon-gen-sleep_1fcecb58-76cc-454d-b1ba-cd3c8884f6a2.svg?v=1676409983"
+                loading="lazy"
+                alt="Cannabis"
+                class="mid-info-img benifits"
+              >
+              <h5 class="mid-info-heading product">Sleep*</h5>
+            </div>
+
+            <div class="meter-wrapper-product">
+              <img
+                src="https://cdn.shopify.com/s/files/1/0636/9355/3922/files/icon-good_vibes_cfa014a5-b26c-448d-aec2-8379a7c4029b.svg?v=1676409983"
+                loading="lazy"
+                alt="Cannabis"
+                class="mid-info-img benifits"
+              >
+              <h5 class="mid-info-heading product">Good Vibes*</h5>
+            </div>
+
+            <div class="meter-wrapper-product">
+              <img
+                src="https://cdn.shopify.com/s/files/1/0636/9355/3922/files/icon-gen-mood_support_5642ca3a-e2a3-4f87-942e-dcee2e73cc3f.svg?v=1676409983"
+                loading="lazy"
+                alt="Cannabis"
+                class="mid-info-img benifits"
+              >
+              <h5 class="mid-info-heading product">Mood Support*</h5>
+            </div>
+
+            <div class="meter-wrapper-product">
+              <img
+                src="https://cdn.shopify.com/s/files/1/0636/9355/3922/files/icon-gen-pain_relief_cdaebe18-aa5f-4ebc-ad63-80ef3c7ffcfb.svg?v=1676409983"
+                loading="lazy"
+                alt="Cannabis"
+                class="mid-info-img benifits"
+              >
+              <h5 class="mid-info-heading product">Pain Relief*</h5>
+            </div>
+          </div>
+          <div class="flex-container-product-bottom">
+            {% if product.id == delta_8 %}
+              <img
+                src="https://cdn.shopify.com/s/files/1/0636/9355/3922/files/effects_meter-D8-mobile_18361a5b-822f-478d-98f7-dd7342cdb100.svg?v=1676409983"
+                loading="lazy"
+                alt="Duration"
+                class="mid-info-img-product mobile"
+              >
+            {% elsif product.id == delta_9 %}
+              <img
+                src="https://cdn.shopify.com/s/files/1/0636/9355/3922/files/effects_meter-D9-mobile_0240bdc2-b8a5-4190-8b8b-4c009beb8ad5.svg?v=1676409983"
+                loading="lazy"
+                alt="Duration"
+                class="mid-info-img-product mobile"
+              >
+            {% else %}
+              <img
+                src="https://cdn.shopify.com/s/files/1/0636/9355/3922/files/effects_meter-HHC-mobile_05f2d89c-2aa9-4c1e-a530-85bd96b58327.svg?v=1676409983"
+                loading="lazy"
+                alt="Duration"
+                class="mid-info-img-product mobile"
+              >
+            {% endif %}
+          </div>
+
+          <div class="testimonial-disclaimer-text product">*The effects of cannabinoids vary from person to person</div>
+        </div>
+      </div>
+    </div>
+    <div class="top-info-section-product">
+      <div
+        data-current="Tab 4"
+        data-easing="ease"
+        data-duration-in="300"
+        data-duration-out="100"
+        class="info-tabs-product w-tabs"
+      >
+        <div class="info-tabs-menu-product w-tab-menu">
+          <a data-w-tab="Tab 1" class="info-tab-menu-link-product w-inline-block w-tab-link w--current">
+            <div class="info-tab-menu-text-product">DIRECTIONS &amp; INGREDIENTS</div>
+            <div class="info-tab-menu-img-wrapper-product">
+              <img
+                loading="lazy"
+                src="
+                                {% if product.id == delta_8 %}
+                                https://cdn.shopify.com/s/files/1/0636/9355/3922/files/arrow-D8-up.svg?v=1676409972
+                                {%elsif product.id == delta_9 %}
+                  https://cdn.shopify.com/s/files/1/0636/9355/3922/files/arrow-D9-up_dd86f28d-c2a0-42a5-8fdc-28c9adcf1485.svg?v=1676409983
+                                {%else%}
+                  https://cdn.shopify.com/s/files/1/0636/9355/3922/files/arrow-HHC-up_5131fae3-57d1-4bf3-ab27-411b48af21c0.svg?v=1676409983
+                                {%endif%}
+                "
+                alt="Arrow Img"
+                class="tab-menu-img-product"
+              >
+            </div>
+          </a>
+          <a data-w-tab="Tab 2" class="info-tab-menu-link-product w-inline-block w-tab-link">
+            <div class="info-tab-menu-text-product tab-menu-text-product-border">PRODUCT INFORMATION</div>
+            <div class="info-tab-menu-img-wrapper-product">
+              <img
+                loading="lazy"
+                src="
+                                {% if product.id == delta_8 %}
+                                https://cdn.shopify.com/s/files/1/0636/9355/3922/files/arrow-D8-up.svg?v=1676409972
+                                {%elsif product.id == delta_9 %}
+                  https://cdn.shopify.com/s/files/1/0636/9355/3922/files/arrow-D9-up_dd86f28d-c2a0-42a5-8fdc-28c9adcf1485.svg?v=1676409983
+                                {%else%}
+                  https://cdn.shopify.com/s/files/1/0636/9355/3922/files/arrow-HHC-up_5131fae3-57d1-4bf3-ab27-411b48af21c0.svg?v=1676409983
+                                {%endif%}
+                "
+                alt="Arrow Img"
+                class="tab-menu-img-product"
+              >
+            </div>
+          </a>
+          <a data-w-tab="Tab 3" class="info-tab-menu-link-product w-inline-block w-tab-link">
+            <div class="info-tab-menu-text-product tab-menu-text-product-border-2">SAFETY</div>
+            <div class="info-tab-menu-img-wrapper-product">
+              <img
+                loading="lazy"
+                src="
+                                {% if product.id == delta_8 %}
+                                https://cdn.shopify.com/s/files/1/0636/9355/3922/files/arrow-D8-up.svg?v=1676409972
+                                {%elsif product.id == delta_9 %}
+                  https://cdn.shopify.com/s/files/1/0636/9355/3922/files/arrow-D9-up_dd86f28d-c2a0-42a5-8fdc-28c9adcf1485.svg?v=1676409983
+                                {%else%}
+                  https://cdn.shopify.com/s/files/1/0636/9355/3922/files/arrow-HHC-up_5131fae3-57d1-4bf3-ab27-411b48af21c0.svg?v=1676409983
+                                {%endif%}
+                "
+                alt="Arrow Img"
+                class="tab-menu-img-product"
+              >
+            </div>
+          </a>
+          <a data-w-tab="Tab 4" class="info-tab-menu-link-product w-inline-block w-tab-link">
+            <div class="info-tab-menu-text-product">LAB TESTING</div>
+            <div class="info-tab-menu-img-wrapper-product">
+              <img
+                loading="lazy"
+                src="
+                                {% if product.id == delta_8 %}
+                                https://cdn.shopify.com/s/files/1/0636/9355/3922/files/arrow-D8-up.svg?v=1676409972
+                                {%elsif product.id == delta_9 %}
+                  https://cdn.shopify.com/s/files/1/0636/9355/3922/files/arrow-D9-up_dd86f28d-c2a0-42a5-8fdc-28c9adcf1485.svg?v=1676409983
+                                {%else%}
+                  https://cdn.shopify.com/s/files/1/0636/9355/3922/files/arrow-HHC-up_5131fae3-57d1-4bf3-ab27-411b48af21c0.svg?v=1676409983
+                                {%endif%}
+                "
+                alt="Arrow Img"
+                class="tab-menu-img-product"
+              >
+            </div>
+          </a>
+        </div>
+        <div class="w-tab-content">
+          <div data-w-tab="Tab 1" class="w-tab-pane w--tab-active">
+            <div class="info-tab-inner-product">
+              <div class="body-rte w-richtext">
+                <p><strong>Directions:</strong></p>
+                {{ product_directions }}
+                <br>
+                <p><strong>Ingredients:</strong></p>
+                {{ product_ingredients }}
+              </div>
+            </div>
+          </div>
+          <div data-w-tab="Tab 2" class="w-tab-pane">
+            <div class="info-tab-inner-product">
+              <div class="body-rte-dark w-richtext">
+                {{ product.description }}
+              </div>
+            </div>
+          </div>
+          <div data-w-tab="Tab 3" class="w-tab-pane">
+            <div class="info-tab-inner-product">
+              <div class="body-rte-dark w-richtext">
+                {{ product_safety }}
+              </div>
+              <div class="info-tab-btn-product">
+                <a href="/pages/lab-testing" class="btn-main w-button">View Lab Results</a>
+              </div>
+            </div>
+          </div>
+          <div data-w-tab="Tab 4" class="w-tab-pane ">
+            <div class="info-tab-inner-product">
+              <div class="body-rte-dark w-richtext">
+                {{ product_lab_testing }}
+              </div>
+              <div class="info-tab-btn-product">
+                <a href="/pages/lab-testing" class="btn-main w-button">View Lab Results</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="info-dropdown-section-product">
+        <div class="dropdown-content-block-product">
+          <div class="dropdown-heading-wrapper-product" data-ix="product-info-expand">
+            <div class="dropdown-heading-product">DIRECTIONS &amp; INGREDIENTS</div>
+            <img
+              src="
+              {% if product.id == delta_8 %}
+                https://cdn.shopify.com/s/files/1/0636/9355/3922/files/arrow-D8-down_e8bd7b15-7b8e-4ee8-b0b4-5fd87b7e712c.svg?v=1676409983
+                {%elsif product.id == delta_9 %}
+                https://cdn.shopify.com/s/files/1/0636/9355/3922/files/arrow-D9-down_5070258f-4c20-4b16-8bc7-9d2940d6d89c.svg?v=1676409983
+                {%else%}
+                https://cdn.shopify.com/s/files/1/0636/9355/3922/files/arrow-HHC-down_31bee640-d385-4c27-9f36-3948b7d79618.svg?v=1676409983
+                {%endif%}
+              "
+              loading="lazy"
+              alt="Arrow Down"
+              class="dropdown-heading-img-product"
+            >
+          </div>
+          <div class="expand-wrapper-product">
+            <div class="expand-inner-product">
+              <div class="body-rte w-richtext">
+                <p><strong>Directions:</strong></p>
+                {{ product_directions }}
+                <p><strong>Ingredients:</strong></p>
+                {{ product_ingredients }}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="dropdown-content-block-product">
+          <div class="dropdown-heading-wrapper-product" data-ix="product-info-expand">
+            <div class="dropdown-heading-product">PRODUCT INFORMATION</div>
+            <img
+              src="              {% if product.id == delta_8 %}
+                https://cdn.shopify.com/s/files/1/0636/9355/3922/files/arrow-D8-down_e8bd7b15-7b8e-4ee8-b0b4-5fd87b7e712c.svg?v=1676409983
+                {%elsif product.id == delta_9 %}
+                https://cdn.shopify.com/s/files/1/0636/9355/3922/files/arrow-D9-down_5070258f-4c20-4b16-8bc7-9d2940d6d89c.svg?v=1676409983
+                {%else%}
+                https://cdn.shopify.com/s/files/1/0636/9355/3922/files/arrow-HHC-down_31bee640-d385-4c27-9f36-3948b7d79618.svg?v=1676409983
+                {%endif%}"
+              loading="lazy"
+              alt="Arrow Down"
+              class="dropdown-heading-img-product"
+            >
+          </div>
+          <div class="expand-wrapper-product">
+            <div class="expand-inner-product">
+              <div class="body-rte-dark w-richtext">
+                {{ product.description }}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="dropdown-content-block-product">
+          <div class="dropdown-heading-wrapper-product" data-ix="product-info-expand">
+            <div class="dropdown-heading-product">SAFETY</div>
+            <img
+              src="              {% if product.id == delta_8 %}
+                https://cdn.shopify.com/s/files/1/0636/9355/3922/files/arrow-D8-down_e8bd7b15-7b8e-4ee8-b0b4-5fd87b7e712c.svg?v=1676409983
+                {%elsif product.id == delta_9 %}
+                https://cdn.shopify.com/s/files/1/0636/9355/3922/files/arrow-D9-down_5070258f-4c20-4b16-8bc7-9d2940d6d89c.svg?v=1676409983
+                {%else%}
+                https://cdn.shopify.com/s/files/1/0636/9355/3922/files/arrow-HHC-down_31bee640-d385-4c27-9f36-3948b7d79618.svg?v=1676409983
+                {%endif%}"
+              loading="lazy"
+              alt="Arrow Down"
+              class="dropdown-heading-img-product"
+            >
+          </div>
+          <div class="expand-wrapper-product">
+            <div class="expand-inner-product">
+              <div class="body-rte-dark w-richtext">
+                {{ product_safety }}
+              </div>
+              <div class="info-tab-btn-product">
+                <a href="/pages/lab-testing" class="btn-main w-button">View Lab Results</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="dropdown-content-block-product">
+          <div
+            class="dropdown-heading-wrapper-product dropdown-heading-wrapper-product-last"
+            data-ix="product-info-expand"
+          >
+            <div class="dropdown-heading-product">LAB TESTING</div>
+            <img
+              src="              {% if product.id == delta_8 %}
+                https://cdn.shopify.com/s/files/1/0636/9355/3922/files/arrow-D8-down_e8bd7b15-7b8e-4ee8-b0b4-5fd87b7e712c.svg?v=1676409983
+                {%elsif product.id == delta_9 %}
+                https://cdn.shopify.com/s/files/1/0636/9355/3922/files/arrow-D9-down_5070258f-4c20-4b16-8bc7-9d2940d6d89c.svg?v=1676409983
+                {%else%}
+                https://cdn.shopify.com/s/files/1/0636/9355/3922/files/arrow-HHC-down_31bee640-d385-4c27-9f36-3948b7d79618.svg?v=1676409983
+                {%endif%}"
+              loading="lazy"
+              alt="Arrow Down"
+              class="dropdown-heading-img-product"
+            >
+          </div>
+          <div class="expand-wrapper-product">
+            <div class="expand-inner-product">
+              <div class="body-rte-dark w-richtext">
+                {{ product_lab_testing }}
+              </div>
+              <div class="info-tab-btn-product">
+                <a href="/pages/lab-testing" class="btn-main w-button">View Lab Results</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div id="reviews-link"></div>
+
+    
+  </div>
+</div>
+
+
+
+
+
+<script type="text/javascript">
+  $(document).ready(function () {
+    document.getElementById('tab-link-1').click();
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Product Page"
+}
+{% endschema %}

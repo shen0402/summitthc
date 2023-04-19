@@ -1,0 +1,29 @@
+
+
+
+<div class="hero-wrapper-login">
+  <div class="hero-container-login">
+    <div class="form-block-login">
+
+      {% form 'create_customer', id: 'RegisterForm' %}
+        <div class="hero-heading-wrapper-login">
+          <h1>Create Account</h1>
+        </div><input type="text" class="form-input-login w-input" maxlength="256" name="customer[first_name]" placeholder="First Name" id="RegisterForm-FirstName" required=""><input type="text" class="form-input-login w-input" maxlength="256" name="customer[last_name]"  placeholder="Last Name" id="RegisterForm-LastName" required=""><input type="email" class="form-input-login w-input" maxlength="256" name="customer[email]"  placeholder="Email" id="RegisterForm-email" required=""><input type="password" class="form-input-login w-input" maxlength="256" name="customer[password]" placeholder="Password" id="RegisterForm-password" required="">
+        <div class="form-btn-wrapper-login"><input type="submit" value="Submit" data-wait="Please wait..." class="form-btn-login w-button"></div>
+        <div class="form-bottom-wrapper-login">
+          <div class="form-bottom-text-login">Already have an account? <a href="/account/login" class="form-bottom-link-login w-inline-block">Login Here</a>
+          </div>
+        </div>
+      {% endform %}
+
+    </div>
+  </div>
+</div>
+
+
+{% schema %}
+{
+  "name": "Register Page"
+}
+{% endschema %}
+

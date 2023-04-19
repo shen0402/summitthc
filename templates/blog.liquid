@@ -1,0 +1,47 @@
+{% comment %}
+  The contents of the blog.liquid template can be found in /sections/blog-template.liquid
+
+
+{% section 'blog-template' %}
+{% endcomment %}
+
+{% comment %} //////////////// Tag Example ///////////////////////////////
+<a href="{{ blog.url }}/tagged/news-articles#main-content" class="sub-hero-link-blog w-inline-block">
+  <div>News Articles</div>
+</a>
+{% endcomment %}
+
+
+{% comment %} ///////////////// blog object examples ///////////////////////////
+<div class="flex-col-img-holder-blog" {% if article.image %}style="background-image: url({{ article.image | img_url: '800x' }});"{% endif %}></div>
+
+{{ article.published_at | time_tag: format: 'date' }}
+{{ article.title | escape }}
+{% endcomment %}
+
+{% section 'sk-blog-page' %}
+{% comment %}
+<select id="blog-category-filter" name="blog-category-filter" class="filter-input-category filter-input-category-blog w-select">
+    <option value="none">Choose a Category</option>
+    <option value="{{ blog.url }}">All</option>
+  {%- for tag in blog.tags -%}
+    <option value="{{ blog.url }}/tagged/{{ tag | handleize }}">{{tag}}</option>
+  {% endfor %}
+</select>
+
+
+
+    
+{% paginate blog.articles by 12 %}
+
+	{% for article in blog.articles %}
+		{{ article.published_at | time_tag: format: 'date' }}
+		{{ article.title | escape }}
+	{% endfor %}
+
+
+	{% if paginate.pages > 1 %}
+		{% include 'pagination' %}
+	{% endif %}
+{% endpaginate %}
+{% endcomment %}

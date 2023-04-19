@@ -1,0 +1,770 @@
+
+{%assign main_product = product.id %}
+{%assign is_delta_9 = 7650180661506 %}
+{%assign is_hhc = 7934597071106 %}
+{%assign is_delta_8 = 7650180137218 %}
+
+
+<div class="product-section">
+  <div class="products-content-wrapper">
+    <div class="experience-subheader-wrapper">
+      <p class="subheader">MORE TO LOVE</p>
+    </div>
+    <h1>Have you tried our other products?</h1>
+  </div>
+  <div class="other-products">
+
+
+{%unless main_product == is_delta_9 %}
+
+    {% for product in collections['all-products'].products %}
+      {% if product.id == 7650180661506 %}
+        <div id="w-node-_64c9fb5d-fc88-4ad9-cec7-8aeeb13ea5d5-b13ea5d4" class="products-grid-inner">
+          <div id="w-node-_64c9fb5d-fc88-4ad9-cec7-8aeeb13ea5d6-b13ea5d4" class="home-product-img-wrapper">
+            <a href="https://summitthc.com/products/15mg-20ct-delta-9-vegan-infused-gummies">
+            <img class="other-product-image" src="https://cdn.shopify.com/s/files/1/0636/9355/3922/files/thumb-D9_1.png?v=1679946630" loading="lazy" sizes="(max-width: 729px) 92vw, 671px" srcset="https://cdn.shopify.com/s/files/1/0636/9355/3922/files/thumb-D9-p-500.png 500w, https://cdn.shopify.com/s/files/1/0636/9355/3922/files/thumb-D9_1.png?v=1679946630 671w" alt="Summit Delta 9 Product Image with text above it that says Energizing and Creative">
+          </a>
+          </div>
+          <div class="product-name-wrapper">
+            <p class="general-p normal-text">Delta-9 Gummies</p>
+          </div>
+
+          {% assign subscription_product_meta = product.metafields.product_info.subscription_product %}
+          {% assign subscription_product = all_products[subscription_product_meta] %}
+         
+            {% assign sale_price = product.price | times: 1 %}
+          
+            {% if product.compare_at_price %}
+              {% assign regular_price = product.compare_at_price | times: 1 %}
+              {% assign sale_price = product.price | times: 1 %}
+          
+              {% assign percentage_discount_1 = regular_price | minus: sale_price %}
+              {% assign percentage_discount_2 = percentage_discount_1 | times: 100 %}
+          
+              {% assign percentage_discount = percentage_discount_2 | divided_by: regular_price %}
+            {% endif %}
+
+
+
+            {% assign subscription_sale_price = subscription_product.price | times: 1 %}
+          
+            {% if subscription_product.compare_at_price %}
+              {% assign subscription_regular_price = subscription_product.compare_at_price | times: 1 %}
+              {% assign subscription_sale_price = subscription_product.price | times: 1 %}
+          
+              {% assign subscription_percentage_discount_1 = subscription_regular_price | minus: subscription_sale_price %}
+              {% assign subscription_percentage_discount_2 = subscription_percentage_discount_1 | times: 100 %}
+          
+              {% assign subscription_percentage_discount = subscription_percentage_discount_2 | divided_by: subscription_regular_price %}
+            {% endif %}
+
+
+            <div class="one-time-price hidden">
+             
+                <p id="single-compare-price" class="original-price">{{ regular_price | money}}</p>
+                <p id="single-sale-price" class="price-text">{{ sale_price | money}}</p>
+                {%- comment -%}
+                  <p id="single-discount-percentage" class="price-text"> ({{percentage_discount}}% OFF)</p>
+                {%- endcomment -%}
+
+                <p id="single-solo-price" class="price-text">{{ sale_price | money}}</p>
+             
+                <p id="hidden" class="price-text"></p>
+            </div>
+
+            <div class="subscription-price hidden">
+
+                <p id="subscription-compare-price" class="original-price">{{ subscription_regular_price | money}}</p>
+                <p id="subscription-sale-price" class="price-text">{{ subscription_sale_price | money}}</p>
+                <p id="subscription-discount-percentage" class="price-text"> ({{subscription_percentage_discount}}% OFF)</p>
+
+                <p id="subscription-solo-price" class="price-text">{{ subscription_sale_price | money}}</p>
+            
+            </div>
+             
+             
+
+
+
+          
+          
+            
+        
+          <div class="price-flex-row">
+            <p id="compare-price" class="original-price">{{ subscription_regular_price | money}}</p>
+            <p id="sale-price" class="price-text">{{ subscription_sale_price | money}}</p>
+            {%if subscription_percentage_discount%}
+              <p id="discount-percentage" class="price-text"> ({{subscription_percentage_discount}}% OFF)</p>
+            {%endif%}
+          </div>
+
+
+
+
+
+          <div data-current="Tab 1" data-easing="ease" data-duration-in="1" data-duration-out="1" class="tabs-subscription w-tabs">
+
+            <div class="tabs-menu-subscription tabs-home w-tab-menu {% if subscription_product == blank %}tabs-menu-subscription-hide{% endif %}">
+              
+              <a data-w-tab="Tab 1" id="tab-link-1-d9" class="tab-menu-link-subscription d-9 tabs-home w-inline-block w-tab-link  w--current">
+              
+                <div  class="btn-main products right w-button">SUBSCRIBE</div>
+              
+              </a>
+
+              <a data-w-tab="Tab 2" id="tab-link-2-d9" class="tab-menu-link-subscription d-9 tabs-home w-inline-block w-tab-link ">
+               
+                  <div  class="btn-main-border left w-button">ONE TIME</div>
+               
+              </a>
+            </div>
+
+
+            
+
+
+            <div class="w-tab-content">
+
+              <div data-w-tab="Tab 1" id="tab-1" class="w-tab-pane tabs-home w--tab-active">
+
+
+                <div class="form-block-product">
+
+                  {%- assign current_variant_subscription = subscription_product.selected_or_first_available_variant -%}
+                  {% assign is_available_subscription = current_variant_subscription.available %}
+                  {% if is_available_subscription == true %}
+                      {% assign cart_btn_text_subscription = 'Add to Cart' %}
+                      {% assign cart_disabled_subscription = '' %}
+                    {% else %}
+                      {% assign cart_btn_text_subscription = 'Sold Out' %}
+                      {% assign cart_disabled_subscription = 'disabled="disabled"' %}
+                  {% endif %}
+
+
+                      {% form "product", subscription_product, data-productid: subscription_product.id %}
+                        <select name="id" data-productid="{{ subscription_product.id }}" id="product-select" class="jc-product-select product-form__variants no-js" style="display: none;">
+                          {% for variant in subscription_product.variants %}
+                            {% if variant.available %}
+                              <option jc-price="{{variant.price | money}}" {% if variant == subscription_product.selected_or_first_available_variant %} selected="selected" {% endif %} value="{{ variant.id }}">
+                                {{ variant.title }}
+                              </option>
+                            {% else %}
+                              <option jc-price="Sold Out" disabled="disabled">{{ variant.title }} - {{ 'products.product.sold_out' | t }}</option>
+                            {% endif %}
+                          {% endfor %}
+                        </select>
+
+
+                        
+                        <input type="number" class="form-text-field services-ind-quantity w-input" maxlength="256" name="quantity" value="1" min="1" pattern="[0-9]*" id="Quantity-subscription" required="" style="display:none;">
+                        <div class="rc-widget-injection-parent"></div>
+                        <div class="form-btn-wrapper-product">
+
+                          <input type="submit" id="add-to-cart-button-2" value="ADD SUBSCRIPTION TO BAG" data-wait="Please wait..." class="btn-main-border product w-button" {{cart_disabled_subscription}}>
+
+                        </div>
+                      {% endform %}
+
+                </div>
+
+
+
+             
+        
+              </div>
+
+              {% unless subscription_product == blank %}
+              
+              <div data-w-tab="Tab 2" id="tab-2" class="w-tab-pane tabs-home">
+
+                 
+                <div class="form-block-product ">
+
+                  {% form "product", product, data-productid: product.id %}
+                    
+
+                    
+                   
+                    <select name="id" data-productid="{{ product.id }}" id="product-select" class="jc-product-select product-form__variants no-js" style="display: none;">
+                      {% for variant in product.variants %}
+                        {% if variant.available %}
+                          <option jc-price="{{variant.price | money}}" {% if variant == product.selected_or_first_available_variant %} selected="selected" {% endif %} value="{{ variant.id }}">
+                            {{ variant.title }}
+                          </option>
+                        {% else %}
+                          <option jc-price="Sold Out" disabled="disabled">{{ variant.title }} - {{ 'products.product.sold_out' | t }}</option>
+                        {% endif %}
+                      {% endfor %}
+                    </select>
+
+                    <input type="number" class="form-text-field services-ind-quantity w-input" maxlength="256" name="quantity" value="1" min="1" pattern="[0-9]*" id="Quantity" required="" style="display:none;">
+
+
+                    <div class="form-btn-wrapper-product">
+                     
+                      <input type="submit" value="ADD TO BAG" data-wait="Please wait..." class="btn-main-border product w-button" {{cart_disabled}}>
+                    </div>
+
+                  {% endform %}
+                </div>
+                <div class="aiod-volume-discount-wrap"></div>
+                <div class="aiod-bogo-discount-wrap"></div>
+                <div class="aiod-wholesale-discount-topbar"></div>
+              </div> <!-- w-tab-pane -->
+              {% endunless %}
+            </div>
+
+          </div>
+          
+
+            
+        </div>
+      {% endif %}
+    {% endfor %}
+
+
+
+    
+<script>
+
+  $("#compare-price").text($("#subscription-compare-price").text());
+  $("#sale-price").text($("#subscription-sale-price").text());
+  $("#discount-percentage").text($("#subscription-discount-percentage").text());
+  $("#solo-price").text($("#subscription-solo-price").text());
+
+  $(".tab-menu-link-subscription.d-9").click(function() {
+    if ($("#tab-link-1-d9").hasClass("w--current")) {
+      $("#compare-price").text($("#hidden").text());
+      $("#sale-price").text($("#single-sale-price").text());
+      $("#discount-percentage").text($("#hidden").text());
+      $("#solo-price").text($("#single-solo-price").text());
+    } else if ($("#tab-link-2-d9").hasClass("w--current")) {
+      $("#compare-price").text($("#subscription-compare-price").text());
+      $("#sale-price").text($("#subscription-sale-price").text());
+      $("#discount-percentage").text($("#subscription-discount-percentage").text());
+      $("#solo-price").text($("#subscription-solo-price").text());
+    }
+  });
+
+</script>
+   
+{%endunless%}
+
+
+
+
+
+{%unless main_product == is_hhc %}
+
+    {% for product in collections['all-products'].products %}
+      {% if product.id ==  7934597071106 %}
+        <div id="w-node-_64c9fb5d-fc88-4ad9-cec7-8aeeb13ea5d5-b13ea5d4" class="products-grid-inner">
+          <div id="w-node-_64c9fb5d-fc88-4ad9-cec7-8aeeb13ea5d6-b13ea5d4" class="home-product-img-wrapper">
+            <a href="https://summitthc.com/products/25mg-20ct-hhc-vegan-infused-gummies">
+              <img class="other-product-image" src="https://cdn.shopify.com/s/files/1/0636/9355/3922/files/thumb-HHC_1.png?v=1679946630" loading="lazy" alt="Summit Delta 9 Product Image with text above it that says Energizing and Creative">
+            </a>
+            </div>
+          <div class="product-name-wrapper">
+            <p class="general-p normal-text">HHC Gummies</p>
+          </div>
+
+          {% assign subscription_product_meta = product.metafields.product_info.subscription_product %}
+          {% assign subscription_product = all_products[subscription_product_meta] %}
+         
+            {% assign sale_price = product.price | times: 1 %}
+          
+            {% if product.compare_at_price %}
+              {% assign regular_price = product.compare_at_price | times: 1 %}
+              {% assign sale_price = product.price | times: 1 %}
+          
+              {% assign percentage_discount_1 = regular_price | minus: sale_price %}
+              {% assign percentage_discount_2 = percentage_discount_1 | times: 100 %}
+          
+              {% assign percentage_discount = percentage_discount_2 | divided_by: regular_price %}
+            {% endif %}
+
+
+
+            {% assign subscription_sale_price = subscription_product.price | times: 1 %}
+          
+            {% if subscription_product.compare_at_price %}
+              {% assign subscription_regular_price = subscription_product.compare_at_price | times: 1 %}
+              {% assign subscription_sale_price = subscription_product.price | times: 1 %}
+          
+              {% assign subscription_percentage_discount_1 = subscription_regular_price | minus: subscription_sale_price %}
+              {% assign subscription_percentage_discount_2 = subscription_percentage_discount_1 | times: 100 %}
+          
+              {% assign subscription_percentage_discount = subscription_percentage_discount_2 | divided_by: subscription_regular_price %}
+            {% endif %}
+
+
+            <div class="one-time-price hidden">
+             
+                <p id="single-compare-price-hhc" class="original-price">{{ regular_price | money}}</p>
+                <p id="single-sale-price-hhc" class="price-text">{{ sale_price | money}}</p>
+                {%- comment -%}
+                  <p id="single-discount-percentage" class="price-text"> ({{percentage_discount}}% OFF)</p>
+                {%- endcomment -%}
+
+                <p id="single-solo-price-hhc" class="price-text">{{ sale_price | money}}</p>
+             
+                <p id="hidden" class="price-text"></p>
+            </div>
+
+            <div class="subscription-price hidden">
+
+                <p id="subscription-compare-price-hhc" class="original-price">{{ subscription_regular_price | money}}</p>
+                <p id="subscription-sale-price-hhc" class="price-text">{{ subscription_sale_price | money}}</p>
+                <p id="subscription-discount-percentage-hhc" class="price-text"> ({{subscription_percentage_discount}}% OFF)</p>
+
+                <p id="subscription-solo-price-hhc" class="price-text">{{ subscription_sale_price | money}}</p>
+            
+            </div>
+             
+             
+
+
+
+          
+          
+            
+        
+          <div class="price-flex-row">
+            <p id="compare-price-hhc" class="original-price">{{ subscription_regular_price | money}}</p>
+            <p id="sale-price-hhc" class="price-text">{{ subscription_sale_price | money}}</p>
+            {%if subscription_percentage_discount%}
+              <p id="discount-percentage-hhc" class="price-text"> ({{subscription_percentage_discount}}% OFF)</p>
+            {%endif%}
+          </div>
+
+
+
+
+
+          <div data-current="Tab 1" data-easing="ease" data-duration-in="1" data-duration-out="1" class="tabs-subscription w-tabs">
+
+            <div class="tabs-menu-subscription tabs-home w-tab-menu {% if subscription_product == blank %}tabs-menu-subscription-hide{% endif %}">
+              
+              <a data-w-tab="Tab 1" id="tab-link-1-hhc" class="tab-menu-link-subscription hhc tabs-home w-inline-block w-tab-link  w--current">
+              
+                <div  class="btn-main products right w-button">SUBSCRIBE</div>
+              
+              </a>
+
+              <a data-w-tab="Tab 2" id="tab-link-2-hhc" class="tab-menu-link-subscription hhc tabs-home w-inline-block w-tab-link ">
+               
+                  <div  class="btn-main-border left w-button">ONE TIME</div>
+               
+              </a>
+            </div>
+
+
+            
+
+
+            <div class="w-tab-content">
+
+              <div data-w-tab="Tab 1" id="tab-1" class="w-tab-pane tabs-home w--tab-active">
+
+
+                <div class="form-block-product">
+
+                  {%- assign current_variant_subscription = subscription_product.selected_or_first_available_variant -%}
+                  {% assign is_available_subscription = current_variant_subscription.available %}
+                  {% if is_available_subscription == true %}
+                      {% assign cart_btn_text_subscription = 'Add to Cart' %}
+                      {% assign cart_disabled_subscription = '' %}
+                    {% else %}
+                      {% assign cart_btn_text_subscription = 'Sold Out' %}
+                      {% assign cart_disabled_subscription = 'disabled="disabled"' %}
+                  {% endif %}
+
+
+                      {% form "product", subscription_product, data-productid: subscription_product.id %}
+                        <select name="id" data-productid="{{ subscription_product.id }}" id="product-select" class="jc-product-select product-form__variants no-js" style="display: none;">
+                          {% for variant in subscription_product.variants %}
+                            {% if variant.available %}
+                              <option jc-price="{{variant.price | money}}" {% if variant == subscription_product.selected_or_first_available_variant %} selected="selected" {% endif %} value="{{ variant.id }}">
+                                {{ variant.title }}
+                              </option>
+                            {% else %}
+                              <option jc-price="Sold Out" disabled="disabled">{{ variant.title }} - {{ 'products.product.sold_out' | t }}</option>
+                            {% endif %}
+                          {% endfor %}
+                        </select>
+
+
+                        
+                        <input type="number" class="form-text-field services-ind-quantity w-input" maxlength="256" name="quantity" value="1" min="1" pattern="[0-9]*" id="Quantity-subscription" required="" style="display:none;">
+                        <div class="rc-widget-injection-parent"></div>
+                        <div class="form-btn-wrapper-product">
+
+                          <input type="submit" id="add-to-cart-button-2" value="ADD SUBSCRIPTION TO BAG" data-wait="Please wait..." class="btn-main-border product w-button" {{cart_disabled_subscription}}>
+
+                        </div>
+                      {% endform %}
+
+                </div>
+
+
+
+             
+        
+              </div>
+
+              {% unless subscription_product == blank %}
+              
+              <div data-w-tab="Tab 2" id="tab-2" class="w-tab-pane tabs-home">
+
+                 
+                <div class="form-block-product ">
+
+                  {% form "product", product, data-productid: product.id %}
+                    
+
+                    
+                   
+                    <select name="id" data-productid="{{ product.id }}" id="product-select" class="jc-product-select product-form__variants no-js" style="display: none;">
+                      {% for variant in product.variants %}
+                        {% if variant.available %}
+                          <option jc-price="{{variant.price | money}}" {% if variant == product.selected_or_first_available_variant %} selected="selected" {% endif %} value="{{ variant.id }}">
+                            {{ variant.title }}
+                          </option>
+                        {% else %}
+                          <option jc-price="Sold Out" disabled="disabled">{{ variant.title }} - {{ 'products.product.sold_out' | t }}</option>
+                        {% endif %}
+                      {% endfor %}
+                    </select>
+
+                    <input type="number" class="form-text-field services-ind-quantity w-input" maxlength="256" name="quantity" value="1" min="1" pattern="[0-9]*" id="Quantity" required="" style="display:none;">
+
+
+                    <div class="form-btn-wrapper-product">
+                     
+                      <input type="submit" value="ADD TO BAG" data-wait="Please wait..." class="btn-main-border product w-button" {{cart_disabled}}>
+                    </div>
+
+                  {% endform %}
+                </div>
+                <div class="aiod-volume-discount-wrap"></div>
+                <div class="aiod-bogo-discount-wrap"></div>
+                <div class="aiod-wholesale-discount-topbar"></div>
+              </div> <!-- w-tab-pane -->
+              {% endunless %}
+            </div>
+
+          </div>
+          
+
+            
+        </div>
+      {% endif %}
+    {% endfor %}
+
+
+
+    
+<script>
+  $("#compare-price-hhc").text($("#subscription-compare-price-hhc").text());
+  $("#sale-price-hhc").text($("#subscription-sale-price-hhc").text());
+  $("#discount-percentage_hhc").text($("#subscription-discount-percentage-hhc").text());
+  $("#solo-price-hhc").text($("#subscription-solo-price-hhc").text());
+
+  $(".tab-menu-link-subscription.hhc").click(function() {
+    if ($("#tab-link-1-hhc").hasClass("w--current")) {
+      $("#compare-price-hhc").text($("#hidden").text());
+      $("#sale-price-hhc").text($("#single-sale-price-hhc").text());
+      $("#discount-percentage-hhc").text($("#hidden").text());
+      $("#solo-price-hhc").text($("#single-solo-price-hhc").text());
+    } else if ($("#tab-link-2-hhc").hasClass("w--current")) {
+      $("#compare-price-hhc").text($("#subscription-compare-price-hhc").text());
+      $("#sale-price-hhc").text($("#subscription-sale-price-hhc").text());
+      $("#discount-percentage-hhc").text($("#subscription-discount-percentage-hhc").text());
+      $("#solo-price-hhc").text($("#subscription-solo-price-hhc").text());
+    }
+  });
+
+</script>
+
+
+
+{%endunless%}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{%unless main_product == is_delta_8 %}
+
+    {% for product in collections['all-products'].products %}
+      {% if product.id ==  7650180137218 %}
+        <div id="w-node-_64c9fb5d-fc88-4ad9-cec7-8aeeb13ea5d5-b13ea5d4" class="products-grid-inner">
+          <div id="w-node-_64c9fb5d-fc88-4ad9-cec7-8aeeb13ea5d6-b13ea5d4" class="home-product-img-wrapper">
+            <a href="https://summitthc.com/products/25mg-30ct-delta-8-vegan-infused-gummies">
+            <img class="other-product-image" src="https://cdn.shopify.com/s/files/1/0636/9355/3922/files/thumb-D8_1.png?v=1679946630" loading="lazy" alt="Summit Delta 9 Product Image with text above it that says Energizing and Creative">
+            </a>
+          </div>
+          <div class="product-name-wrapper">
+            <p class="general-p normal-text">Delta 8 Gummies</p>
+          </div>
+
+          {% assign subscription_product_meta = product.metafields.product_info.subscription_product %}
+          {% assign subscription_product = all_products[subscription_product_meta] %}
+         
+            {% assign sale_price = product.price | times: 1 %}
+          
+            {% if product.compare_at_price %}
+              {% assign regular_price = product.compare_at_price | times: 1 %}
+              {% assign sale_price = product.price | times: 1 %}
+          
+              {% assign percentage_discount_1 = regular_price | minus: sale_price %}
+              {% assign percentage_discount_2 = percentage_discount_1 | times: 100 %}
+          
+              {% assign percentage_discount = percentage_discount_2 | divided_by: regular_price %}
+            {% endif %}
+
+
+
+            {% assign subscription_sale_price = subscription_product.price | times: 1 %}
+          
+            {% if subscription_product.compare_at_price %}
+              {% assign subscription_regular_price = subscription_product.compare_at_price | times: 1 %}
+              {% assign subscription_sale_price = subscription_product.price | times: 1 %}
+          
+              {% assign subscription_percentage_discount_1 = subscription_regular_price | minus: subscription_sale_price %}
+              {% assign subscription_percentage_discount_2 = subscription_percentage_discount_1 | times: 100 %}
+          
+              {% assign subscription_percentage_discount = subscription_percentage_discount_2 | divided_by: subscription_regular_price %}
+            {% endif %}
+
+
+            <div class="one-time-price hidden">
+             
+                <p id="single-compare-price-d8" class="original-price">{{ regular_price | money}}</p>
+                <p id="single-sale-price-d8" class="price-text">{{ sale_price | money}}</p>
+                {%- comment -%}
+                  <p id="single-discount-percentage" class="price-text"> ({{percentage_discount}}% OFF)</p>
+                {%- endcomment -%}
+
+                <p id="single-solo-price-d8" class="price-text">{{ sale_price | money}}</p>
+             
+                <p id="hidden" class="price-text"></p>
+            </div>
+
+            <div class="subscription-price hidden">
+
+                <p id="subscription-compare-price-d8" class="original-price">{{ subscription_regular_price | money}}</p>
+                <p id="subscription-sale-price-d8" class="price-text">{{ subscription_sale_price | money}}</p>
+                <p id="subscription-discount-percentage-d8" class="price-text"> ({{subscription_percentage_discount}}% OFF)</p>
+
+                <p id="subscription-solo-price-d8" class="price-text">{{ subscription_sale_price | money}}</p>
+            
+            </div>
+             
+             
+
+
+
+          
+          
+            
+        
+          <div class="price-flex-row">
+            <p id="compare-price-d8" class="original-price">{{ subscription_regular_price | money}}</p>
+            <p id="sale-price-d8" class="price-text">{{ subscription_sale_price | money}}</p>
+            {%if subscription_percentage_discount%}
+              <p id="discount-percentage-d8" class="price-text"> ({{subscription_percentage_discount}}% OFF)</p>
+            {%endif%}
+          </div>
+
+
+
+
+
+          <div data-current="Tab 1" data-easing="ease" data-duration-in="1" data-duration-out="1" class="tabs-subscription w-tabs">
+
+            <div class="tabs-menu-subscription tabs-home w-tab-menu {% if subscription_product == blank %}tabs-menu-subscription-hide{% endif %}">
+              
+              <a data-w-tab="Tab 1" id="tab-link-1-d8" class="tab-menu-link-subscription d8 tabs-home w-inline-block w-tab-link  w--current">
+              
+                <div  class="btn-main products right w-button">SUBSCRIBE</div>
+              
+              </a>
+
+              <a data-w-tab="Tab 2" id="tab-link-2-d8" class="tab-menu-link-subscription d8 tabs-home w-inline-block w-tab-link ">
+               
+                  <div  class="btn-main-border left w-button">ONE TIME</div>
+               
+              </a>
+            </div>
+
+
+            
+
+
+            <div class="w-tab-content">
+
+              <div data-w-tab="Tab 1" id="tab-1" class="w-tab-pane tabs-home w--tab-active">
+
+
+                <div class="form-block-product">
+
+                  {%- assign current_variant_subscription = subscription_product.selected_or_first_available_variant -%}
+                  {% assign is_available_subscription = current_variant_subscription.available %}
+                  {% if is_available_subscription == true %}
+                      {% assign cart_btn_text_subscription = 'Add to Cart' %}
+                      {% assign cart_disabled_subscription = '' %}
+                    {% else %}
+                      {% assign cart_btn_text_subscription = 'Sold Out' %}
+                      {% assign cart_disabled_subscription = 'disabled="disabled"' %}
+                  {% endif %}
+
+
+                      {% form "product", subscription_product, data-productid: subscription_product.id %}
+                        <select name="id" data-productid="{{ subscription_product.id }}" id="product-select" class="jc-product-select product-form__variants no-js" style="display: none;">
+                          {% for variant in subscription_product.variants %}
+                            {% if variant.available %}
+                              <option jc-price="{{variant.price | money}}" {% if variant == subscription_product.selected_or_first_available_variant %} selected="selected" {% endif %} value="{{ variant.id }}">
+                                {{ variant.title }}
+                              </option>
+                            {% else %}
+                              <option jc-price="Sold Out" disabled="disabled">{{ variant.title }} - {{ 'products.product.sold_out' | t }}</option>
+                            {% endif %}
+                          {% endfor %}
+                        </select>
+
+
+                        
+                        <input type="number" class="form-text-field services-ind-quantity w-input" maxlength="256" name="quantity" value="1" min="1" pattern="[0-9]*" id="Quantity-subscription" required="" style="display:none;">
+                        <div class="rc-widget-injection-parent"></div>
+                        <div class="form-btn-wrapper-product">
+
+                          <input type="submit" id="add-to-cart-button-2" value="ADD SUBSCRIPTION TO BAG" data-wait="Please wait..." class="btn-main-border product w-button" {{cart_disabled_subscription}}>
+
+                        </div>
+                      {% endform %}
+
+                </div>
+
+
+
+             
+        
+              </div>
+
+              {% unless subscription_product == blank %}
+              
+              <div data-w-tab="Tab 2" id="tab-2" class="w-tab-pane tabs-home">
+
+                 
+                <div class="form-block-product ">
+
+                  {% form "product", product, data-productid: product.id %}
+                    
+
+                    
+                   
+                    <select name="id" data-productid="{{ product.id }}" id="product-select" class="jc-product-select product-form__variants no-js" style="display: none;">
+                      {% for variant in product.variants %}
+                        {% if variant.available %}
+                          <option jc-price="{{variant.price | money}}" {% if variant == product.selected_or_first_available_variant %} selected="selected" {% endif %} value="{{ variant.id }}">
+                            {{ variant.title }}
+                          </option>
+                        {% else %}
+                          <option jc-price="Sold Out" disabled="disabled">{{ variant.title }} - {{ 'products.product.sold_out' | t }}</option>
+                        {% endif %}
+                      {% endfor %}
+                    </select>
+
+                    <input type="number" class="form-text-field services-ind-quantity w-input" maxlength="256" name="quantity" value="1" min="1" pattern="[0-9]*" id="Quantity" required="" style="display:none;">
+
+
+                    <div class="form-btn-wrapper-product">
+                     
+                      <input type="submit" value="ADD TO BAG" data-wait="Please wait..." class="btn-main-border product w-button" {{cart_disabled}}>
+                    </div>
+
+                  {% endform %}
+                </div>
+                <div class="aiod-volume-discount-wrap"></div>
+                <div class="aiod-bogo-discount-wrap"></div>
+                <div class="aiod-wholesale-discount-topbar"></div>
+              </div> <!-- w-tab-pane -->
+              {% endunless %}
+            </div>
+           
+          </div>
+          
+
+            
+        </div>
+      {% endif %}
+    {% endfor %}
+
+
+
+    <script>
+      $("#compare-price-d8").text($("#subscription-compare-price-d8").text());
+      $("#sale-price-d8").text($("#subscription-sale-price-d8").text());
+      $("#discount-percentage_hhc").text($("#subscription-discount-percentage-d8").text());
+      $("#solo-price-d8").text($("#subscription-solo-price-d8").text());
+    
+      $(".tab-menu-link-subscription.d8").click(function() {
+        if ($("#tab-link-1-d8").hasClass("w--current")) {
+          $("#compare-price-d8").text($("#hidden").text());
+          $("#sale-price-d8").text($("#single-sale-price-d8").text());
+          $("#discount-percentage-d8").text($("#hidden").text());
+          $("#solo-price-d8").text($("#single-solo-price-d8").text());
+        } else if ($("#tab-link-2-d8").hasClass("w--current")) {
+          $("#compare-price-d8").text($("#subscription-compare-price-d8").text());
+          $("#sale-price-d8").text($("#subscription-sale-price-d8").text());
+          $("#discount-percentage-d8").text($("#subscription-discount-percentage-d8").text());
+          $("#solo-price-d8").text($("#subscription-solo-price-d8").text());
+        }
+      });
+    </script>
+
+
+{%endunless%}
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+{% schema %}
+{
+  "name": "Product Info"
+}
+{% endschema %}
+

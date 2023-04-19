@@ -1,0 +1,422 @@
+{% assign sk_product_1 = all_products[section.settings.featured_product_1] %}
+{% assign sk_product_2 = all_products[section.settings.featured_product_2] %}
+
+
+<div class="fixed-top-wrapper">
+  <div class="announce-wrapper">
+    <div class="announcement-text-wrapper">
+      <div data-w-id="73796b6f-3402-8a1c-6139-ed274adc34a2" style="display: none;" class="announcement-text-1 announce-rte w-richtext">
+        <p>FREE SHIPPING ON <a href="https://summitthc.com/">ALL ORDERS</a>
+        </p>
+      </div>
+      <div data-w-id="77f6bf6e-3c3a-da4f-be34-ccb850b38318" class="announcement-text-2 announce-rte-pink-link w-richtext">
+        <p>{{section.settings.announcement_text}}<a href="{{section.settings.announce_link}}">{{section.settings.announce_link_text}}</a>
+          
+        </p>
+      </div>
+      <div data-w-id="7d6d7e23-fa37-12aa-0e09-b63bee78ab30" style="display: none;" class="announcement-text-3 announce-rte-blue-link w-richtext">
+        <p>EXPLORE OUR <a href="https://summitthc.com/">PRODUCT GUIDE</a>
+          <a href="https://summitthc.com/"></a>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  {%- comment -%}
+    <div class="announce-wrapper">
+      <div class="announce-rte w-richtext">
+        {{section.settings.announce_text}}
+      </div>
+    </div>
+  {%- endcomment -%}
+  <div id="fixed-nav" class="fixed-nav-wrapper">
+    <div data-animation="default" data-collapse="medium" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" class="navbar w-nav">
+      <div class="nav-container w-container">
+        <div class="nav-flex-row-outer">
+          <div class="nav-flex-col-outer-1">
+            <a href="/" aria-current="page" class="nav-brand-link w-inline-block w--current"><img src="//cdn.shopify.com/s/files/1/0636/9355/3922/files/summit-mark-min.png" loading="lazy" alt="Summit" class="nav-brand-img"><img src="//cdn.shopify.com/s/files/1/0636/9355/3922/files/summit-wordmark-min.png" loading="lazy" alt="" class="nav-brand-img-text"></a>
+          </div>
+          <div class="nav-flex-col-mobile nav-flex-col-mobile-last">
+            <div class="nav-meta-wrapper-mobile">
+              <a href="/account" class="nav-meta-link w-inline-block"><img src="//cdn.shopify.com/s/files/1/0636/9355/3922/files/account-w-min_1account-w-min.png" loading="lazy" alt="Account" class="nav-meta-img"></a>
+              <a href="#" class="nav-meta-link w-inline-block cart-flyout-open" data-ix="cart-flyout-open"><img src="//cdn.shopify.com/s/files/1/0636/9355/3922/files/cart-w-min_1cart-w-min.png" loading="lazy" alt="Cart" class="nav-meta-img"><div class="cart-flyout-cart-text nav-meta-link-cart-text">{{cart.item_count}}</div></a>
+            </div>
+          </div>
+          <div class="nav-flex-col-mobile">
+            <a href="/" class="nav-brand-link-mobile w-inline-block"><img src="//cdn.shopify.com/s/files/1/0636/9355/3922/files/summit-mark-min.png" loading="lazy" alt="Summit" class="nav-brand-img"><img src="//cdn.shopify.com/s/files/1/0636/9355/3922/files/summit-wordmark-min.png" loading="lazy" alt="" class="nav-brand-img-text"></a>
+          </div>
+          <div class="nav-flex-col-outer-2">
+            <nav role="navigation" class="nav-menu w-nav-menu">
+              <div class="nav-menu-logo-wrapper-mobile">
+                <a href="/">
+                  <div class="nav-menu-logo-inner-mobile"><img src="//cdn.shopify.com/s/files/1/0636/9355/3922/files/summit-mark-min.png" loading="lazy" alt="Summit" class="nav-menu-logo-img-mobile"></div>
+                  <div class="nav-menu-logo-img-wrapper-alt"><img src="//cdn.shopify.com/s/files/1/0636/9355/3922/files/summit-wordmark-min.png" loading="lazy" alt="" class="nav-brand-img-text-mobile"></div>
+                 </a>
+              </div>
+              <div data-hover="true" data-delay="0" class="nav-dropdown-show-mobile w-dropdown">
+                <div class="nav-dropdown-toggle w-dropdown-toggle">
+                  <div>SHOP</div><img src="//cdn.shopify.com/s/files/1/0636/9355/3922/files/BKG-down-arrow.svg?v=1676318925" loading="lazy" alt="Arrow Down" class="nav-dropdown-img">
+                </div>
+                <nav class="nav-dropdown-menu w-dropdown-list">
+                  <a href="/products/25mg-30ct-delta-8-vegan-infused-gummies" class="nav-dropdown-link w-dropdown-link">Delta-8 Gummies</a>
+                  <a href="/products/15mg-20ct-delta-9-vegan-infused-gummies" class="nav-dropdown-link w-dropdown-link">Delta-9 Gummies</a>
+                  <a href="https://summitthc.com/products/25mg-20ct-hhc-vegan-infused-gummies" class="nav-dropdown-link w-dropdown-link">HHC Gummies</a>
+                  <a href="https://summitthc.com/pages/product-guide" class="nav-dropdown-link w-dropdown-link">Summit Product Guide</a>
+                  <a href="#" target="_blank" class="nav-dropdown-link w-dropdown-link rr-btn">USDA Organic CBD</a>
+                </nav>
+              </div>
+              <a href="#" class="nav-link no-change nav-link-expand w-inline-block" data-ix="nav-expand">
+                <div>Shop</div><img src="//cdn.shopify.com/s/files/1/0636/9355/3922/files/BKG-down-arrow.svg?v=1676318925" loading="lazy" alt="Arrow Down" class="nav-dropdown-img">
+              </a>
+              <a href="/pages/where-we-ship" class="nav-link w-nav-link">WHERE WE SHIP</a>
+              <a href="/pages/faqs" class="nav-link w-nav-link">FAQ</a>
+              <a href="/blogs/news" class="nav-link w-nav-link">Blog</a>
+              <a href="/pages/lab-testing" class="nav-link w-nav-link">LAB TESTING</a>
+              <div data-hover="true" data-delay="0" class="nav-dropdown w-dropdown">
+                <div class="nav-dropdown-toggle w-dropdown-toggle">
+                  <div>CONTACT</div><img src="//cdn.shopify.com/s/files/1/0636/9355/3922/files/BKG-down-arrow.svg?v=1676318925" loading="lazy" alt="Arrow Down" class="nav-dropdown-img">
+                  <a href="/pages/contact" class="nav-overlay-link w-inline-block"></a>
+                </div>
+                <nav class="nav-dropdown-menu w-dropdown-list">
+                  <a href="/pages/contact" class="nav-dropdown-link w-dropdown-link">Contact Us</a>
+                  <a href="/pages/wholesale" class="nav-dropdown-link w-dropdown-link">Wholesale</a>
+                </nav>
+              </div>
+              {%if template == 'page.where-we-ship'%}
+              <a href="#sk-footer-link" class="nav-menu-tag-wrapper">
+                <div class="nav-menu-tag-text">Get 20% Off</div>
+              </a>
+              {%else%}
+              <a href="/pages/where-we-ship#sk-footer-link-20off" class="nav-menu-tag-wrapper">
+                <div class="nav-menu-tag-text">Get 20% Off</div>
+              </a>
+              {%endif%}
+            </nav>
+            <div class="nav-meta-wrapper">
+              <a href="/account" class="nav-meta-link w-inline-block"><img src="//cdn.shopify.com/s/files/1/0636/9355/3922/files/account-w-min_1account-w-min.png" loading="lazy" alt="Account" class="nav-meta-img"></a>
+              <a href="#" class="nav-meta-link w-inline-block cart-flyout-open" data-ix="cart-flyout-open"><img src="//cdn.shopify.com/s/files/1/0636/9355/3922/files/cart-w-min_1cart-w-min.png" loading="lazy" alt="Cart" class="nav-meta-img"><div class="cart-flyout-cart-text nav-meta-link-cart-text">{{cart.item_count}}</div></a>
+            </div>
+            <div class="menu-btn w-nav-button">
+              <div class="w-icon-nav-menu"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="fixed-nav-overlay-bg"></div>
+  </div>
+
+{%- comment -%}
+
+  <div class="nav-expand-wrapper" data-ix="nav-expand">
+    <div class="nav-expand-inner">
+      <div class="nav-expand-flex-row-outer">
+        <div class="nav-expand-col-left">
+          <div class="nav-expand-col-left-inner">
+            <div class="nav-expand-flex-col-outer">
+              <div class="nav-expand-flex-col-inner">
+                <div class="nav-expand-img-wrapper">
+                  <!--MEGA MENU IMAGE 1-->
+                  <div class="nav-expand-img-holder"><img src="//cdn.shopify.com/s/files/1/0636/9355/3922/files/mega-menu-D8.jpg?v=1664388631" loading="eager" alt="Delta-8" class="nav-expand-img">
+                    <a href="/products/25mg-30ct-delta-8-vegan-infused-gummies" class="nav-expand-overlay-link w-inline-block"></a>
+                  </div>
+                </div>
+                <div class="nav-expand-content-col">
+                  <div class="nav-expand-content-inner">
+                    <div class="nav-expand-sub-heading-wrapper">
+                      <h4 class="nav-expand-sub-heading">VEGAN &amp; INFUSED</h4>
+                    </div>
+                    <div class="nav-expand-heading-wrapper">
+                      <h3 class="nav-expand-heading">
+                        <a href="/products/25mg-30ct-delta-8-vegan-infused-gummies" class="nav-expand-heading-link">Delta-8 Gummies</a>
+                      </h3>
+                    </div>
+                    <div class="nav-expand-review-flex-row-wrapper">
+                      <a href="{{sk_product_1.url}}#sk-review-widget-wrapper-product">
+                        <span 
+                        class="stamped-product-reviews-badge stamped-main-badge" 
+                        data-id="{{ sk_product_1.id }}" 
+                        data-product-sku="{{ sk_product_1.handle }}" 
+                        data-product-title="{{sk_product_1.title}}" 
+                        data-product-type="{{sk_product_1.type}}" 
+                        style="display: block;">
+                        {{sk_product_1.metafields.stamped.badge}}
+                        </span>
+                      </a>                      
+                      <style type="text/css">
+                        .nav-expand-review-flex-row-wrapper .stamped-badge-starrating {
+                          margin-right: 5px !important;
+                          margin-top: 3px !important;
+                          display: inline-block;
+                        }
+
+                        .nav-expand-review-flex-row-wrapper a {
+                          color: #331c94;
+                          font-size: 16px;
+                          font-weight: 400;
+                        }
+                      </style>
+                    </div>
+                    { comment %}
+                    <div class="nav-expand-review-flex-row"><img src="//cdn.shopify.com/s/files/1/0636/9355/3922/files/ratings-stars-1-min.png" loading="lazy" alt="5 Stars" class="nav-expand-star-img">
+                      <div class="nav-expand-review-heading">103 Reviews</div>
+                    </div>
+                    { endcomment %}
+                    <div class="nav-expand-rte-wrapper">
+                      <div class="nav-expand-rte w-richtext">
+                        <p>Choose Delta 8 Gummies for a heavy, relaxing, full-body experience.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="nav-expand-flex-col-outer">
+              <div class="nav-expand-flex-col-inner">
+                <div class="nav-expand-img-wrapper">
+                  <!--MEGA MENU IMAGE 2-->
+                  <div class="nav-expand-img-holder"><img src="https://cdn.shopify.com/s/files/1/0636/9355/3922/files/mega-menu-D9.jpg?v=1664388630" loading="eager" alt="Delta-9" class="nav-expand-img">
+                    <a href="/products/15mg-20ct-delta-9-vegan-infused-gummies" class="nav-expand-overlay-link w-inline-block"></a>
+                  </div>
+                </div>
+                <div class="nav-expand-content-col">
+                  <div class="nav-expand-content-inner">
+                    <div class="nav-expand-sub-heading-wrapper">
+                      <h4 class="nav-expand-sub-heading">VEGAN &amp; INFUSED</h4>
+                    </div>
+                    <div class="nav-expand-heading-wrapper">
+                      <h3 class="nav-expand-heading">
+                        <a href="/products/15mg-20ct-delta-9-vegan-infused-gummies" class="nav-expand-heading-link">Delta-9 Gummies</a>
+                      </h3>
+                    </div>
+                    <div class="nav-expand-review-flex-row-wrapper">
+                      <a href="{{sk_product_2.url}}#sk-review-widget-wrapper-product">
+                        <span 
+                        class="stamped-product-reviews-badge stamped-main-badge" 
+                        data-id="{{ sk_product_2.id }}" 
+                        data-product-sku="{{ sk_product_2.handle }}" 
+                        data-product-title="{{sk_product_2.title}}" 
+                        data-product-type="{{sk_product_2.type}}" 
+                        style="display: block;">
+                        {{sk_product_2.metafields.stamped.badge}}
+                        </span>
+                      </a>
+                     
+                      <style type="text/css">
+                        .nav-expand-review-flex-row-wrapper .stamped-badge-starrating {
+                          margin-right: 5px !important;
+                          margin-top: 3px !important;
+                          display: inline-block;
+                        }
+                        .nav-expand-review-flex-row-wrapper a {
+                          color: #331c94;
+                          font-size: 16px;
+                          font-weight: 400;
+                        }
+                      </style>
+                    </div>
+                    {% comment %}
+                    <div class="nav-expand-review-flex-row"><img src="//cdn.shopify.com/s/files/1/0636/9355/3922/files/ratings-stars-1-min.png" loading="lazy" alt="5 Stars" class="nav-expand-star-img">
+                      <div class="nav-expand-review-heading">103 Reviews</div>
+                    </div>
+                    {% endcomment %}
+                    <div class="nav-expand-rte-wrapper">
+                      <div class="nav-expand-rte w-richtext">
+                        <p>Try our Delta 9 Gummies for an energizing traditional, uplifting, inspiring effect.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="nav-expand-col-right">
+          <div class="nav-expand-col-right-inner">
+            <div class="nav-expand-col-right-heading">Our Sister Brand</div>
+            <a href="#" target="_blank" class="nav-expand-col-right-link w-inline-block rr-btn">
+              <div class="nav-expand-col-right-img-block"><img src="//cdn.shopify.com/s/files/1/0636/9355/3922/files/mega-nav-image-3-min.png" loading="eager" alt="" class="nav-expand-col-right-img"></div>
+              <div class="nav-expand-col-right-btn-text">Shop USDA Organic CBD</div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div><img src="//cdn.shopify.com/s/files/1/0636/9355/3922/files/Mega-Menu-Bottom-Color-Bar.png" loading="lazy" alt="Border" class="nav-expand-border-img">
+  </div>
+  
+  <div class="nav-expand-overlay-bg"></div>
+{%- endcomment -%}
+
+
+
+
+
+<div class="nav-expand-wrapper" data-ix="nav-expand">
+  <div class="nav-expand-inner">
+    <div class="nav-flex-row-wrapper">
+      <div class="nav-expand-flex-row">
+        <div class="nav-expand-flex-col-outer left">
+          <div class="nav-expand-col">
+            <div class="nav-expand-img-wrapper">
+              <div class="nav-expand-img-holder"><img src="https://cdn.shopify.com/s/files/1/0636/9355/3922/files/product-D9_1_c9a0a295-c7cd-432e-86d6-7f28c1922a51.png?v=1679954544" loading="eager" sizes="100vw"  alt="Summit Delta 9 Product Image with text above it that says Energizing and Creative" class="nav-expand-img">
+                <a href="https://summitthc.com/products/15mg-20ct-delta-9-vegan-infused-gummies" class="nav-expand-overlay-link w-inline-block"></a>
+              </div>
+            </div>
+            <div class="nav-expand-heading-wrapper">
+              <h3 class="nav-expand-heading">
+                <a href="https://summitthc.com/products/15mg-20ct-delta-9-vegan-infused-gummies" class="nav-expand-heading-link">Delta-9 Gummies</a>
+              </h3>
+            </div>
+          </div>
+        </div>
+        <div class="nav-expand-flex-col-outer left">
+          <div class="nav-expand-col">
+            <div class="nav-expand-img-wrapper">
+              <div class="nav-expand-img-holder"><img src="https://cdn.shopify.com/s/files/1/0636/9355/3922/files/product-HHC_1_61cb2355-6e97-4d9f-a217-a88346bcf87a.png?v=1679954544" loading="eager" sizes="100vw"  alt="Summit HHC Product Image with text above it that says Mellow &amp; Focused" class="nav-expand-img">
+                <a href="https://summitthc.com/products/25mg-20ct-hhc-vegan-infused-gummies" class="nav-expand-overlay-link w-inline-block"></a>
+              </div>
+            </div>
+            <div class="nav-expand-heading-wrapper">
+              <h3 class="nav-expand-heading">
+                <a href="https://summitthc.com/products/25mg-20ct-hhc-vegan-infused-gummies" class="nav-expand-heading-link">HHC Gummies</a>
+              </h3>
+            </div>
+          </div>
+        </div>
+        <div class="nav-expand-flex-col-outer left">
+          <div class="nav-expand-col">
+            <div class="nav-expand-img-wrapper">
+              <div class="nav-expand-img-holder"><img src="https://cdn.shopify.com/s/files/1/0636/9355/3922/files/product-D8_1_fad97e57-7d07-4aae-9cae-687f94d75dd2.png?v=1679954544" loading="eager" sizes="100vw" alt="Summit Delta 8 Product Image with text above it that says Relaxing &amp; Tranquil" class="nav-expand-img">
+                <a href="https://summitthc.com/products/25mg-30ct-delta-8-vegan-infused-gummies" class="nav-expand-overlay-link w-inline-block"></a>
+              </div>
+            </div>
+            <div class="nav-expand-heading-wrapper">
+              <h3 class="nav-expand-heading">
+                <a href="https://summitthc.com/products/25mg-30ct-delta-8-vegan-infused-gummies" class="nav-expand-heading-link">Delta-8 Gummies</a>
+              </h3>
+            </div>
+          </div>
+        </div>
+        <div class="nav-expand-flex-col-outer left product-guide">
+          <div class="nav-expand-col">
+            <div class="nav-expand-col-right-heading">SUMMIT PRODUCT GUIDE</div>
+            <a href="https://summitthc.com/pages/product-guide" class="nav-expand-col-right-link w-inline-block">
+              <div class="nav-expand-col-right-img-block"><img src="https://cdn.shopify.com/s/files/1/0636/9355/3922/files/product-guide.jpg" loading="eager" alt="Find Your Feeling with our Product Guide" class="nav-expand-col-right-img"></div>
+            </a>
+          </div>
+        </div>
+        <div class="nav-expand-flex-col-outer left last">
+          <div class="nav-expand-col">
+            <div class="nav-expand-col-right-heading">Our Sister Brand</div>
+            <a href="#" target="_blank" class="nav-expand-col-right-link w-inline-block rr-btn ">
+              <div class="nav-expand-col-right-img-block"><img src="https://cdn.shopify.com/s/files/1/0636/9355/3922/files/organic-cbd.jpg" loading="eager" alt="Shop organic CBD with R&amp;R" class="nav-expand-col-right-img"></div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="nav-expand-overlay-bg"></div>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+{%- comment -%}
+  <script>
+    
+    
+    $(document).ready(function() { 
+      
+      $(".announcement-text-3").hide(); 
+      $(".announcement-text-3").fadeOut(1000);
+      $(".announcement-text-2").hide(); 
+      $(".announcement-text-2").fadeOut(1000);
+      $(".announcement-text-1").show(); 
+      $(".announcement-text-1").fadeIn(1000); 
+      
+      setInterval(function() { 
+        $(".announcement-text-1").fadeOut(1000);
+        $(".announcement-text-3").fadeOut(1000);
+        $(".announcement-text-2").fadeIn(1000);  
+        $(".announcement-text-1").hide();
+        $(".announcement-text-3").hide();
+        $(".announcement-text-2").show();
+      }, 4000); 
+      
+    });
+    
+    $(document).ready(function() {  
+      setInterval(function() { 
+        $(".announcement-text-1").fadeIn(1000);  
+    $(".announcement-text-1").show(); 
+    $(".announcement-text-2").fadeOut(1000);
+    $(".announcement-text-2").hide();
+    $(".announcement-text-3").fadeOut(1000);
+    $(".announcement-text-3").hide();
+  }, 8500);
+});
+$(document).ready(function() {  
+  setInterval(function() { 
+    $(".announcement-text-3").fadeIn(1000);  
+    $(".announcement-text-3").show(); 
+    $(".announcement-text-2").fadeOut(1000);
+    $(".announcement-text-2").hide();
+    $(".announcement-text-1").fadeOut(1000);
+    $(".announcement-text-1").hide();
+  }, 1300);
+});
+
+</script>
+{%- endcomment -%}
+
+
+
+
+
+
+
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+      {
+       "type": "text",
+       "id": "announcement_text",
+       "label": "Announcement Link",
+       "default": "HHC IS HERE: "
+      },
+      {
+        "type": "text",
+        "id": "announce_link_text",
+        "label": "Announcement Link Text",
+        "default": "GET 15% OFF WITH CODE MELLOW"
+       },
+       {
+        "type": "url",
+        "id": "announce_link",
+        "label": "Announcement URL"
+       },
+      {
+       "type": "product",
+       "id": "featured_product_1",
+       "label": "Featured Product"
+      },
+      {
+       "type": "product",
+       "id": "featured_product_2",
+       "label": "Featured Product"
+      }
+  ]
+}
+{% endschema %}
+

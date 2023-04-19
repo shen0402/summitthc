@@ -1,0 +1,72 @@
+
+
+
+
+<div class="hero-wrapper-login">
+  <div class="hero-container-login">
+    <div class="form-block-login">
+
+
+      {% form 'customer_login' %}
+        <div class="hero-heading-wrapper-login">
+          <h1>Sign In</h1>
+          <!-- Begin Recharge code -->
+          <p style="margin-top: 20px;">
+            <a class="sub-heading login" href="/tools/recurring/login/">Need help accessing your subscription?</a>
+          </p>
+          <!-- End Recharge code -->
+        </div>
+        {{ form.errors | default_errors }}
+        <input type="email" class="form-input-login w-input" maxlength="256" name="customer[email]" placeholder="Email" id="CustomerEmail" required=""><input type="password" class="form-input-login w-input" maxlength="256" name="customer[password]" placeholder="Password" id="CustomerPassword" required="">
+        <div class="form-btn-wrapper-login"><input type="submit" value="Sign In" data-wait="Please wait..." class="form-btn-login w-button"></div>
+        <div class="form-bottom-wrapper-login">
+          <div class="form-bottom-text-login">
+            <a href="/account/register" class="form-bottom-link-login w-inline-block">Create Account</a>
+          </div>
+          <div class="form-bottom-link-login little-dot w-inline-block">
+            •
+          </div>
+          <div class="form-bottom-link-wrapper-login">
+            <a href="#" class="form-bottom-link-login w-inline-block" data-ix="show-pw-form">
+              <div>Forgot Password?</div>
+            </a>
+          </div>
+        </div>
+      {% endform %}
+
+    </div>
+
+
+    <div class="form-block-forgot-pw ">
+
+     {% form 'recover_customer_password' %}
+        <div class="hero-heading-wrapper-login">
+          <h2 class="section-heading-sm">Reset Your Passord</h2>
+        </div><input type="email" class="form-input-login w-input" maxlength="256" name="email"  placeholder="Email" id="RecoverEmail" required="">
+        <div class="form-btn-wrapper-login"><input type="submit" value="Submit" data-wait="Please wait..." class="form-btn-login w-button"></div>
+        <div class="form-bottom-wrapper-login">
+          <div class="form-bottom-link-wrapper-login">
+            <a href="#" class="form-bottom-link-login w-inline-block" data-ix="hide-pw-form">
+              <div>Cancel</div>
+            </a>
+          </div>
+        </div>
+      {% endform %}
+
+
+    </div>
+
+  </div>
+</div>
+
+
+
+
+
+{% schema %}
+{
+  "name": "Login Page"
+}
+{% endschema %}
+
+

@@ -1,0 +1,189 @@
+
+
+<div class="hero-wrapper-account">
+  <div class="hero-container-account">
+
+    <div class="flex-row-outer-account">
+
+      <div class="flex-col-outer-account-1">
+
+        <div class="flex-col-heading-wrapper-account">
+          <h2 class="section-heading-alt">Welcome{% unless customer.first_name == blank %}, {{customer.first_name}}!{% endunless %}</h2>
+        </div>
+
+          <div class="flex-col-menu-wrapper-account">
+
+            <div class="flex-col-link-wrapper-account">
+                <a href="/account" class="flex-col-link-account flex-col-link-account-order w-inline-block">
+                  <div>Order History</div>
+                </a>
+            </div>
+         
+            <div class="flex-col-link-wrapper-account">
+                <a href="/tools/recurring/login/" class="flex-col-link-account w-inline-block">
+                  <div>Manage Subscriptions</div>
+                </a>
+            </div>
+            
+            <div class="flex-col-link-wrapper-account">
+                <a href="#" class="flex-col-link-account flex-col-link-account-pw w-inline-block">
+                  <div>Reset Password</div>
+                </a>
+            </div>
+
+            <div class="flex-col-link-wrapper-account">
+                <a href="/account/logout" class="flex-col-link-account flex-col-link-wrapper-account-last w-inline-block">
+                  <div>Log Out </div>
+                </a>
+            </div>
+
+          </div>
+
+      </div>
+
+      <div class="flex-col-outer-account-2">
+
+
+          <div class="order-section-account">
+            <div class="order-section-heading-account">
+              <h3 class="section-heading-sm">Recent Orders</h3>
+            </div>
+
+            {% paginate customer.orders by 20 %}
+
+            {% if customer.orders.size != 0 %}
+
+
+                    <div class="order-flex-row-account order-flex-row-account-heading">
+                      <div class="order-flex-col-account-1">
+                        <div class="order-heading-text-account">Placed</div>
+                      </div>
+                      <div class="order-flex-col-account-2">
+                        <div class="order-heading-text-account">Order</div>
+                      </div>
+                      <div class="order-flex-col-account-3">
+                        <div class="order-heading-text-account">Order Number</div>
+                      </div>
+                      <div class="order-flex-col-account-4">
+                        <div class="order-heading-text-account">Price</div>
+                      </div>
+                      <div class="order-flex-col-account-5">
+                        <div class="order-heading-text-account">Status</div>
+                      </div>
+                    </div>
+
+                    <div class="order-section-holder-account">
+
+                      {% for order in customer.orders %}
+
+                      {% assign reorder_url = "" %}
+                        {% for line_item in order.line_items %}
+                          {% capture reorder_url %}{{ reorder_url | append: line_item.variant_id | append: ':' | append: line_item.quantity | append: ',' }}{% endcapture %}
+                      {% endfor %}
+
+                          <div class="order-flex-row-account">
+                            <div class="order-flex-col-account-1">
+                              <div class="order-flex-text-account">{{ order.created_at | date: format: 'date' }}</div>
+                            </div>
+                            <div class="order-flex-col-account-2">
+                              {%- for line_item in order.line_items -%}
+                                <div class="order-flex-text-account">
+                                  <a href="{{line_item.product.url}}" class="order-flex-text-account-link">{{ line_item.product.title }}</a>
+                                </div>
+                              {% endfor %}
+                            </div>
+                            <div class="order-flex-col-account-3">
+                              <div class="order-flex-text-account">
+                                <a href="{{order.customer_url}}" class="order-flex-text-account-link">{{order.name}}</a>
+                              </div>
+                            </div>
+                            <div class="order-flex-col-account-4">
+                              <div class="order-flex-text-account">{{ order.total_price | money }}</div>
+                            </div>
+                            <div class="order-flex-col-account-5">
+                              <div class="status-flex-row-account">
+                                <div class="status-flex-text-account">{{order.fulfillment_status}}</div>
+                                <div class="status-flex-breaker-account"></div>
+                                <a href="{{ '/cart/' | append: reorder_url }}" class="status-flex-link-account w-inline-block">
+                                  <div>Re-order</div>
+                                </a>
+                              </div>
+                            </div>
+                          </div>
+
+
+                      {% endfor %}  
+
+                    </div>
+
+
+              {% else %}
+
+                <div class="jc-account-page-empty-wrapper">
+                  <p class="jc-account-page-empty-text">You haven't placed any orders yet</p>
+                </div>
+
+
+            {% endif %}
+
+
+            {% if paginate.pages > 1 %}
+              {% include 'pagination' %}
+            {% endif %}
+            {% endpaginate %}
+
+
+          </div>
+
+          <div class="forgot-pw-section-account">
+            
+              {% form 'recover_customer_password' %}
+                <div class="order-section-heading-account">
+                  <h3 class="section-heading-sm">Reset Your Password</h3>
+                </div>
+                 <input type="email" class="form-input-login forgot-password w-input" maxlength="256" name="email"  placeholder="Email" id="RecoverEmail" required="">
+                 <div class="form-btn-wrapper-login"><input type="submit" value="Submit" data-wait="Please wait..." class="form-btn-login w-button"></div>
+               {% endform %}
+
+          </div>
+
+
+        
+      </div>
+      
+    </div>
+
+
+{% comment %}
+    <div class="top-heading-wrapper-account">
+      <h1 class="section-heading-sm">Your Account</h1>
+    </div>
+
+    <div class="top-block-account">
+      <div class="top-block-heading-wrapper-account">
+        <h2 class="section-heading-alt">Great News!</h2>
+      </div>
+    
+      <div class="top-block-rte-account w-richtext">
+        <p>Your next auto shipment is scheduled to ship <strong></strong>.</p>
+      </div>
+      
+      <div class="top-block-btn-wrapper-account">
+        <a href="/tools/recurring/login/" class="top-block-btn-account w-button">MANAGE AUTO SHIPMENTS</a>
+      </div>
+    </div>
+    {% endcomment %}
+
+    
+
+  </div>
+</div>
+
+
+{% schema %}
+{
+  "name": "Account Page"
+}
+{% endschema %}
+
+

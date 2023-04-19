@@ -1,0 +1,132 @@
+
+<div class="product-row-section">
+  <div class="product-section-container">
+    <div class="product-section-heading-section">
+      <div class="product-section-sub-heading-wrapper">
+        <h4 class="section-heading-sm" data-ix="fadeindown">REACH YOUR PEAK</h4>
+      </div>
+      <div class="product-section-heading-wrapper">
+        <h3 class="section-heading" data-ix="fadeinup">Discover the sensation &amp; clarity.</h3>
+      </div>
+    </div>
+    <div class="product-section-flex-row">
+
+      {% for product in collections.featured.products %}
+      
+      {%- assign current_variant = product.selected_or_first_available_variant -%}
+      {%- assign compare_at_price = current_variant.compare_at_price -%}
+      {%- assign price = current_variant.price -%}
+      {% assign is_available = current_variant.available %}
+      {% assign sub_heading = product.metafields.product_info.sub_heading %}
+
+      {% assign custom_product_title = product.metafields.product_info.custom_title %}
+
+      {% if custom_product_title == blank %}
+          {% assign sk_product_title = product.title %}
+        {% else %}
+          {% assign sk_product_title = custom_product_title %}
+      {% endif %}
+
+
+      {% case product.id %}
+          {% when 7683530850562 or 7683539566850 %}
+          {% assign subscription_product = product %}
+      {% endcase %}
+
+      {% unless subscription_product %}
+        <div class="product-section-flex-col" data-ix="fadeinright">
+          <div class="product-section-flex-col-inner">
+            <div class="product-col-top-wrapper">
+              <div class="product-col-img-wrapper">
+                <a href="{{product.url}}" class="product-col-img-link w-inline-block">
+                  {% if product.featured_image %}
+                    <img src="{{product.featured_image | img_url: '1200x' }}" loading="lazy" alt="{{product.title}}" class="product-col-img">
+                  {% endif %}
+                </a>
+              </div>
+              {% unless sub_heading == blank %}
+                <div class="product-col-top-heading-wrapper">
+                  <h4 class="section-heading-sm" data-ix="fadeindown">{{sub_heading}}</h4>
+                </div>
+              {% endunless %}
+              
+              <div class="product-col-heading-wrapper">
+                <h5 class="product-col-heading">
+                  <a href="{{product.url}}" class="product-col-heading-link">{{sk_product_title}}</a>
+                </h5>
+              </div>
+            </div>
+            <div class="product-col-bottom-wrapper">
+              <div class="product-col-reviews-row-wrapper">
+                <a href="{{product.url}}#sk-review-widget-wrapper-product">
+                  <span 
+                  class="stamped-product-reviews-badge stamped-main-badge" 
+                  data-id="{{ product.id }}" 
+                  data-product-sku="{{ product.handle }}" 
+                  data-product-title="{{product.title}}" 
+                  data-product-type="{{product.type}}" 
+                  style="display: block;">
+                 
+                  </span>
+                </a>
+                <style type="text/css">
+                  .product-col-reviews-row-wrapper .stamped-badge-caption {
+                    color: #331c94;
+                  }
+                  .product-col-reviews-row-wrapper .stamped-badge-starrating {
+                    margin-right: 6px !important;
+                    margin-top: 3px !important;
+                    display: inline-block;
+                  }
+                  .product-col-reviews-row-wrapper a {
+                    color: #331c94;
+                    font-size: 14px;
+                    font-weight: 400;
+                    text-decoration: underline;
+                  }
+                </style>
+              </div>
+               {% comment %}
+              <div class="product-col-reviews-row"><img src="//cdn.shopify.com/s/files/1/0636/9355/3922/files/ratings-stars-1-min.png" loading="lazy" alt="5 Stars" class="featured-star-img">
+                <a href="#" class="featured-col-reviews-heading-link w-inline-block">
+                  <div>103 Reviews</div>
+                </a>
+              </div>
+             {% endcomment %}
+              <div class="product-col-price-wrapper">
+
+                 {% if is_available == true %}
+                   {% if compare_at_price > price  %}
+                    <div class="product-col-price-text">
+                     <span style="text-decoration: line-through">{{compare_at_price | money }}</span> <span id="price">{{current_variant.price | money }}</span>
+                    </div>
+                    {% else %}
+                   <div class="product-col-price-text" id="price">
+                  {{ product.price | money }}
+                   </div>
+                   {% endif %}
+                {% else %}
+                  <div class="product-col-price-text"><span id="price" style="text-decoration: line-through;">{{product.price | money }}</span> Sold Out</div>
+                {% endif %}
+
+              </div>
+            </div>
+          </div>
+        </div>
+      {%endunless%}
+
+      {% endfor %}
+
+    
+
+    </div>
+  </div>
+</div>
+
+
+{% schema %}
+{
+  "name": "Product Row"
+}
+{% endschema %}
+

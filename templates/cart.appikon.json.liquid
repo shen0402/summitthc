@@ -1,0 +1,17 @@
+{%- layout none -%}
+{
+	"items": [
+		{%- for item in cart.items -%}
+		{
+		"id": {{ item.id | json }},
+		"collectionIds": [
+			{%- for productCollection in item.product.collections -%}
+				 {{ productCollection.id | json }}
+
+			{% unless forloop.last %},{% endunless %}
+			{% endfor %}
+		]
+		}{% unless forloop.last %},{% endunless %}
+		{%- endfor -%}
+	]
+}

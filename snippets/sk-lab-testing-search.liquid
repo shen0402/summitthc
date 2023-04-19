@@ -1,0 +1,48 @@
+
+
+<script type="text/javascript">
+	
+	$(document).ready(function() { 
+
+		$('.lot-search').click(function(){
+		  var lot_product = $(this).attr('lot-product');
+		  var lot_number_element = '.modal-form-input[lot-input="'+ lot_product +'"';
+		  var lot_number = $(lot_number_element).val();
+		  
+		  var modal_col_element = '.modal-flex-col-testing[lot-product="' + lot_product + '"';
+
+		  var modal_error_element = '.modal-error-text[lot-product="' + lot_product + '"';
+		  var found = false;
+		  $(modal_col_element).each(function(i, obj) {
+
+		      var col_lot_number = $(this).attr('lot-number');
+		      
+		      if (col_lot_number == lot_number) {
+		      	$(this).addClass('modal-flex-col-testing-show');
+		      	found = true;
+		      }
+
+		  });
+
+		  if (found == true) {
+		  	$(modal_error_element).removeClass('modal-error-text-show');
+		  } else {
+		  	$(modal_error_element).addClass('modal-error-text-show');
+
+		  	$(modal_col_element).each(function(i, obj) {
+
+		  	    $(this).removeClass('modal-flex-col-testing-show');
+
+		  	});
+
+		  }
+
+
+
+		});
+
+	 });
+
+</script>
+
+

@@ -1,0 +1,36 @@
+
+
+{% section 'sk-contact-hero' %}
+{% section 'sk-contact-form-section' %}
+{% section 'sk-contact-faq-section' %}
+{% section 'sk-contact-banner-section' %}
+{% section 'sk-home-product-info-hhc' %}
+{%- comment -%}
+  {% section 'sk-product-row' %}
+{%- endcomment -%}
+
+
+
+
+{% comment %}
+<script type="text/javascript">
+    $(document).ready(function() { 
+
+      var url = window.location.href;
+
+      if ( url == 'https://www.domain.com/pages/contact?contact' ) {
+        $('html, body').animate({
+        scrollTop: $('#contact').offset().top-106
+        }, 1000);
+      }
+
+      if ( url == 'https://www.domain.com/pages/contact?contact_posted=true' ) {
+        $('html, body').animate({
+        scrollTop: $('#contact').offset().top-106
+        }, 1000);
+      }
+
+    });
+
+</script>
+{% endcomment %}

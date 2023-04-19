@@ -1,0 +1,39 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"  defer="defer"></script>
+
+<script>
+$(document).ready(function(){
+
+   
+  if (!$.cookie('jc_alert')) {
+
+      setTimeout(function(){ 
+      
+        $('.cta-modal').fadeIn(500);
+        $('body').css('overflow', 'hidden');
+      
+      }, 2000);
+
+        var date = new Date();
+        date.setTime(date.getTime() + 2592000000); 
+        $.cookie('jc_alert', true, { expires: date });
+       
+        }
+});
+</script>
+
+<script>
+$(document).ready(function(){
+
+  $('.cta-modal-close-btn').click(function(e) {
+      e.preventDefault();
+     $('body').css('overflow', 'auto');
+     $('.cta-modal').fadeTo(500, 0, function(){
+
+        $('.cta-modal').hide();
+
+     });
+
+  });
+  
+});
+</script>

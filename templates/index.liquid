@@ -1,0 +1,186 @@
+
+
+{% section 'sk-home-hero-hhc' %}
+{%- comment -%}
+  {% section 'sk-home-hero' %}
+  {% section 'sk-home-scroll-bar' %}
+{%- endcomment -%}
+{% section 'sk-home-featured-products-hhc' %}
+{%- comment -%}
+  {% section 'sk-home-featured-products' %}
+{%- endcomment -%}
+
+{%- comment -%}
+  {% section 'sk-home-content-block' %}
+{%- endcomment -%}
+
+
+{% section 'sk-home-content-block-hhc' %}
+
+{%- comment -%}
+  {% section 'sk-home-reviews' %}
+{%- endcomment -%}
+{% section 'sk-home-reviews-hhc' %}
+
+{%- comment -%}
+  {% section 'sk-home-banner-1' %}
+{%- endcomment -%}
+{% section 'sk-home-banner-1-hhc' %}
+
+{%- comment -%}
+  {% section 'sk-home-product-info' %}
+{%- endcomment -%}
+
+{% section 'sk-home-product-info-hhc' %}
+
+{%- comment -%}
+  {% section 'sk-home-banner-2' %}
+{%- endcomment -%}
+{% section 'sk-home-banner-2-hhc' %}
+
+
+{% comment %}
+  {% section 'sk-home-banner-3' %}
+{% endcomment %}
+{% section 'sk-home-banner-3-hhc' %}
+
+
+
+<div id="reviews-widget-wrapper-home" class="reviews-widget-wrapper-home ">
+  
+  <div id="stamped-reviews-widget" data-widget-type="carousel" data-style-color-title="#090134" data-style-color-star="#331c94" data-style-color-text="#090134" data-style-color-link="#331c94" data-with-photos="? string:#331c94 ?"></div>
+  {%- comment -%}
+    <div id="stamped-reviews-widget" data-widget-type="carousel" data-title="Hear From Our Customers" data-auto-play="true" data-auto-play-speed="4000" data-style-color-title="#0b022b" data-style-color-star="#ff8374" data-style-color-text="#0b022b" data-style-color-link="#ff8374" data-random="? string:Hear From Our Customers ?" data-with-photos="? string:#ff8374 ?"></div>
+  {%- endcomment -%}
+
+  
+</div>
+
+
+<style type="text/css">
+  #stamped-reviews-widget[data-widget-type=carousel] .stamped-carousel-title {
+    float: none;
+    text-align: center;
+
+    padding-bottom: 5px;
+    font-family: Overpass, sans-serif;
+    font-size: 38px;
+    line-height: 38px;
+    font-weight: 300;
+    letter-spacing: 1px;
+    color: #331c94;
+  }
+
+  #stamped-reviews-widget[data-widget-type=carousel] .stamped-reviews-date {
+    color: #000;
+    font-size: 13px;
+  }
+
+  #stamped-reviews-widget[data-widget-type="carousel"] .stamped-style-color-title {
+    color: #331c94 !important;
+  }
+
+  #stamped-reviews-widget[data-widget-type=carousel] .stamped-carousel-subtitle.stamped-style-color-star {
+    float: none;
+    text-align: center;
+    margin-right: 0px;
+    padding-left: 70px;
+  }
+
+  #stamped-reviews-widget[data-widget-type=carousel] .stamped-carousel-buttons div {
+    width: auto;
+    padding-left: 7px;
+    padding-right: 7px;
+  }
+
+  #stamped-reviews-widget[data-widget-type=carousel] .stamped-carousel-button-right:before {
+    content: url('//cdn.shopify.com/s/files/1/0636/9355/3922/files/arrow-right-solid-2-min-sm.png');
+    
+  }
+
+  #stamped-reviews-widget[data-widget-type=carousel] .stamped-carousel-button-left:before {
+    content: url('//cdn.shopify.com/s/files/1/0636/9355/3922/files/arrow-left-solid-2-min-sm.png');
+    
+  }
+
+  #stamped-reviews-widget[data-widget-type=carousel] .stamped-carousel-scroll .stamped-reviews-message-block {
+    font-size: 16px;
+    line-height: 20px;
+  }
+
+  #stamped-reviews-widget[data-widget-type=carousel] .stamped-carousel-scroll .stamped-reviews-image a {
+    font-size: 12px;
+    line-height: 14px;
+  }
+
+  #stamped-reviews-widget[data-widget-type=carousel] .stamped-carousel-scroll .stamped-reviews-author {
+    font-size: 15px;
+    line-height: 18px;
+  }
+
+  @media screen and (max-width: 991px) { 
+
+        #stamped-reviews-widget[data-widget-type=carousel] .stamped-carousel-buttons div {
+          width: auto;
+          padding-left: 3px;
+          padding-right: 3px;
+        }
+
+  }
+
+</style>
+
+
+<script type="text/javascript">
+    $(document).ready(function() {
+      $('.testimonial-slide-flex-row-home').slick({
+        infinite: true,
+        slidesToShow: 3,
+        slidesToScroll: 3,
+        dots: true,
+        nextArrow: '<div class="sk-slick-arrow-wrapper"><img src="//cdn.shopify.com/s/files/1/0636/9355/3922/files/arrow-right-solid-2-min.png" class="sk-slick-arrow-img"></div>',
+        prevArrow: '<div class="sk-slick-arrow-wrapper sk-slick-arrow-wrapper-prev"><img src="//cdn.shopify.com/s/files/1/0636/9355/3922/files/arrow-left-solid-2-min.png" class="sk-slick-arrow-img"></div>',
+        responsive: [{
+          breakpoint: 479,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1
+          }
+        }]
+      });
+    });
+  </script>
+
+
+  <script type="text/javascript">
+    $(document).ready(function() { 
+
+      $('.sk-reviews-click-home .stamped-product-reviews-badge').click(function()
+            {
+              $('html, body').animate({
+                  scrollTop: $( '#reviews-widget-wrapper-home' ).offset().top-100
+              }, 1000);
+              return false;
+            });
+
+      $('.hero-reviews-link').click(function()
+            {
+              $('html, body').animate({
+                  scrollTop: $( '#reviews-widget-wrapper-home' ).offset().top-100
+              }, 1000);
+              return false;
+            });
+
+      $('.featured-col-reviews-heading-link').click(function()
+          {
+            $('html, body').animate({
+                  scrollTop: $( '#reviews-widget-wrapper-home' ).offset().top-100
+            }, 1000);
+            return false;
+          });
+
+     });
+  </script>
+
+
+

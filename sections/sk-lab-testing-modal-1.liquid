@@ -1,0 +1,77 @@
+
+
+<div class="modal-testing">
+  <div class="modal-content-wrapper-testing">
+    <div class="modal-img-block-testing modal-img-block-testing-1">
+      <div class="modal-img-content-wrapper-testing">
+        <div class="modal-heading-testing delta-8">Let&#x27;s Get Started</div>
+        <div class="modal-sub-heading-testing">You can find your lot number on your gummy package.</div>
+      </div>
+    </div>
+    <div class="modal-bottom-wrapper-testing">
+      <div class="modal-bottom-heading-testing">Lab Results</div>
+
+      <script type="text/javascript" src="https://form.jotform.com/jsform/222344946975064"></script>
+    
+      {%comment%}
+      <input type="text" class="modal-form-input w-input" maxlength="256" name="field" data-name="Field" placeholder="Enter Lot Number" id="field" required="" lot-input="delta-8">
+      <div class="modal-form-btn-wrapper">
+        <a href="#" class="btn-main lot-search w-button" lot-product="delta-8">Search</a>
+      </div>
+      <div class="modal-error-wrapper-testing">
+        <div class="modal-error-text" lot-product="delta-8">Sorry! That lot number wasn't found.</div>
+      </div>
+      {%endcomment%}
+     
+      <div class="modal-flex-row-wrapper-testing">
+        <div class="modal-flex-row-testing">
+
+          {% for block in section.blocks %}
+            <div class="modal-flex-col-testing" lot-number="{{block.settings.lot_number}}" lot-product="delta-8">
+              <a href="{{block.settings.url}}" class="modal-flex-link-testing w-inline-block" target="_blank">
+                <div>{{block.settings.title}}</div>
+              </a>
+            </div>
+          {% endfor %}
+         
+        </div>
+      </div>
+    </div>
+    <div class="modal-close-btn-testing" data-ix="modal-testing-close"><img src="//cdn.shopify.com/s/files/1/0636/9355/3922/files/icon-lightbox-close.svg?v=1677615016" loading="lazy" alt="" class="modal-close-btn-img-testing"></div>
+  </div>
+  <div class="modal-testing-overlay" data-ix="modal-testing-close"></div>
+</div>
+
+
+
+{% schema %}
+{
+  "name": "Delta-8 COAs",
+  "blocks": [
+    {
+      "type": "text",
+      "name": "COA",
+      "settings": [
+        {
+          "label": "COA Label",
+          "id": "title",
+          "type": "text"
+        },
+        {
+          "label": "COA Lot Number",
+          "id": "lot_number",
+          "info": "For Search",
+          "type": "text"
+        },
+        {
+          "label": "COA Link",
+          "id": "url",
+          "type": "url"
+        }
+
+      ]
+    }
+  ]
+}
+{% endschema %}
+

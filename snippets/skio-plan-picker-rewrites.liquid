@@ -1,0 +1,416 @@
+<script>
+  function patchRequests() {
+    const XHRSend = XMLHttpRequest.prototype.send;
+    XMLHttpRequest.prototype.send = function (...args) {
+      args[0] = reserialize(args[0]);
+      return XHRSend.apply(this, args);
+    };
+
+    const windowFetchCopy = window.fetch;
+    window.fetch = function (...args) {
+      if (args[1] && args[1].body) {
+        args[1].body = reserialize(args[1].body);
+      }
+      return windowFetchCopy(...args);
+    };
+  }
+
+  function XMLHttpRequestPromise(obj) {
+    return new Promise((resolve, reject) => {
+      const xhr = new XMLHttpRequest();
+      xhr.open(obj.method || 'GET', obj.url);
+      if (obj.headers) {
+        Object.keys(obj.headers).forEach((key) => {
+          xhr.setRequestHeader(key, obj.headers[key]);
+        });
+      }
+      xhr.onload = () => {
+        if (xhr.status >= 200 && xhr.status < 300) {
+          resolve(xhr.response);
+        } else {
+          reject(xhr.statusText);
+        }
+      };
+      xhr.onerror = () => reject(xhr.statusText);
+      xhr.send(obj.body);
+    });
+  }
+
+  function reserializeJSON(json) {
+    try {
+      const body = JSON.parse(json);
+      const id = body.id;
+      const lineItems = (body.checkout || {}).line_items;
+      if (id) {
+        const planId = getPlanId(document);
+        if (planId) {
+          body['selling_plan'] = planId;
+        }
+      } else if (lineItems) {
+        body.checkout.line_items = lineItems.map((item) => {
+          const { variant_id: id } = item;
+          if (!id) {
+            return item;
+          }
+
+          const planId = getPlanId(document);
+          if (planId) {
+            item.properties['selling_plan'] = planId;
+          }
+
+          return item;
+        });
+      }
+      const reserializedBody = JSON.stringify(body);
+      return reserializedBody;
+    } catch (e) {
+      return json;
+    }
+  }
+
+  function reserializeFormData(formData) {
+    try {
+      if (!formData.get('selling_plan')) {
+        const planId = getPlanId(document);
+        if (planId) {
+          formData.append('selling_plan', planId);
+        }
+      }
+    } catch (e) {}
+    return formData;
+  }
+
+  function reserializeQueryParam(body) {
+    try {
+      const reserializedBody = body.split('&').map((field) => {
+        return field;
+      });
+      if (!body.includes('selling_plan') && planId) {
+        const planId = getPlanId(document);
+        if (planId) {
+          reserializedBody.push('selling_plan=' + planId);
+        }
+      }
+      return reserializedBody.join('&');
+    } catch (e) {
+      return body;
+    }
+  }
+
+  function reserialize(body) {
+    try {
+      if (!body) {
+        return body;
+      }
+      if (typeof body === 'string') {
+        let isJson = false;
+        try {
+          JSON.parse(body);
+          isJson = true;
+        } catch (e) {}
+        return isJson ? reserializeJSON(body) : reserializeQueryParam(body);
+      } else if (typeof body === 'object' && body.entries && body.entries()) {
+        return reserializeFormData(body);
+      }
+    } catch (e) {}
+    return body;
+  }
+
+  function extractContent(s) {
+    var span = document.createElement('span');
+    span.innerHTML = s;
+    return span.textContent || span.innerText;
+  }
+  function updatePrice(planSelector) {
+    var product = JSON.parse(planSelector.dataset.product);
+    var planId = getPlanId(planSelector);
+    var variantId = getVariantId(planSelector);
+    if (!variantId) {
+      return;
+    }
+    var variant = product.variants_by_id[variantId];
+    planId = planId ? parseInt(planId) : null;
+    var price =
+      planId && variant.selling_plans[planId]
+        ? variant.selling_plans[planId].price
+        : variant.price;
+    var varPrice = parseFloat(
+      extractContent(variant.price).replace('$', '').replace(',', ''),
+    );
+    var sellingPrice = variant.selling_plans[planId]
+      ? variant.selling_plans[planId].price
+      : Object.values(variant.selling_plans)[0].price;
+    var sellingPriceFloat = parseFloat(
+      extractContent(sellingPrice).replace('$', '').replace(',', ''),
+    );
+    var savings = (((varPrice - sellingPriceFloat) / varPrice) * 100).toFixed(
+      0,
+    );
+    var selectors = [
+      '#ProductPrice',
+      '#productPrice-product-template',
+      '#ProductPrice-product-template',
+      '#productPrice > .visually-hidden',
+      '.price .price-item--regular',
+      '.product__price .price-item--regular',
+      '.product__price .product__price--reg',
+      '.product__price .product__current-price',
+      '.product-single__price',
+      '[id^=productPrice-]',
+      '.price .money',
+      '.product__price',
+      '[data-product-price]',
+      '.current_price .money',
+    ].join(',');
+    var wrapper = planSelector.closest(
+      'div[data-section-type], .shopify-section',
+    );
+    if (!wrapper || !wrapper.length) {
+      wrapper = document.body;
+    }
+    var priceContainers = wrapper.querySelectorAll(selectors);
+    priceContainers.forEach(function rewritePrice(container) {
+      // REQUIRED: without this check safari will break
+      if (
+        extractContent(container.innerHTML) !== extractContent(price.toString())
+      ) {
+        container.innerHTML = price;
+      }
+    });
+
+    /*var oneTimes = planSelector.querySelectorAll('.one-time-price');
+    oneTimes.forEach(function(oneTime) {
+      const newText = `One-time Purchase: ${variant.price}`;
+      if (oneTime.textContent !== newText) {
+        oneTime.textContent = newText;
+      }
+    });
+    var subscribeAndSaves = planSelector.querySelectorAll('.subscribe-price');
+    subscribeAndSaves.forEach(function(subscribeAndSave) {
+      const newText = `Subscribe & Save (${savings}%): ${sellingPrice}`;
+      if (subscribeAndSave.textContent !== newText) {
+        subscribeAndSave.textContent = newText;
+      }
+    }); */
+  }
+
+  function updateSellingPlanFormId(planSelector) {
+    var planId = getPlanId(planSelector);
+    var sellingPlanFormId = planSelector.querySelector('[name="selling_plan"]');
+    if (!sellingPlanFormId) {
+      return;
+    }
+    var noValueAndNoPlan = planId == null && sellingPlanFormId.value === '';
+    if (sellingPlanFormId.value != planId && !noValueAndNoPlan) {
+      sellingPlanFormId.value = planId;
+    }
+  }
+
+  function filterGroupsForVariantAndThenUpdate(planSelector) {
+    var variantId = getVariantId(planSelector);
+    if (!variantId) {
+      return;
+    }
+    var product = JSON.parse(planSelector.dataset.product);
+    var variant = product.variants_by_id[variantId];
+    let hasSubscriptionAvailable = false;
+    planSelector
+      .querySelectorAll('[name="skio-subscription"]')
+      .forEach(function (node) {
+        var groupId = node.querySelector(
+          '[name="skio-subscription-value"]',
+        ).value;
+        var isAvailable = Boolean(
+          groupId && variant && variant.group_ids && variant.group_ids[groupId],
+        );
+        if (isAvailable) {
+          hasSubscriptionAvailable = true;
+          if (node.className !== 'available') {
+            node.className = 'available';
+            //checkPlanOnSelect();
+          }
+        } else if (node.className !== 'unavailable') {
+          node.className = 'unavailable';
+        }
+      });
+
+    planSelector
+      .querySelectorAll('[name="skio-one-time"]')
+      .forEach(function (node) {
+        var isAvailable =
+          !product.requires_selling_plan && hasSubscriptionAvailable;
+        if (isAvailable) {
+          if (node.className !== 'available') {
+            node.className = 'available';
+          }
+        } else if (node.className !== 'unavailable') {
+          node.className = 'unavailable';
+        }
+      });
+
+    updatePrice(planSelector);
+    updateSellingPlanFormId(planSelector);
+    // updateCheckedSellingPlanGroup(planSelector)
+  }
+
+  function getPlanId(planSelector) {
+    try {
+      var form = planSelector.closest('form[action*="/cart/add"]');
+      var subscriptionRadio = form.querySelector(
+        '.available[name="skio-subscription"] [name="skio-subscription-value"]:checked',
+      );
+      const containingDiv = subscriptionRadio.closest('.available');
+      var subscription = containingDiv.querySelector(
+        '.available[name="skio-subscription"] select',
+      );
+      var oneTimeChecked = form.querySelector(
+        '.available[name="skio-one-time"] [name="skio-subscription-value"]',
+      ).checked;
+      if (subscription && !oneTimeChecked) {
+        // todo:
+        return parseInt(subscription.value);
+      }
+    } catch {}
+    return null;
+  }
+
+  function getVariantId(planSelector) {
+    try {
+      var form = planSelector.closest('form[action*="/cart/add"]');
+      var input = form.querySelector(
+        'select[name="id"],input[name="id"],button[name="id"]',
+      );
+      return parseInt(input.value);
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function updateCheckedSellingPlanGroup(planSelector) {
+    var planId = getPlanId(planSelector);
+    var form = planSelector.closest('form[action*="/cart/add"]');
+    if (planId) {
+      var subscription = form.querySelector(
+        '.available[name="skio-subscription"] [name="skio-subscription-value"]',
+      );
+      if (subscription && subscription.checked !== true) {
+        subscription.checked = true;
+      }
+      form.querySelectorAll('[data-skio-plan-options]').forEach(function (a) {
+        if (a && a.style.display !== 'flex') {
+          a.style.display = 'flex';
+        }
+      });
+    } else {
+      var oneTime = form.querySelector(
+        '.available[name="skio-one-time"] [name="skio-subscription-value"]',
+      );
+      if (oneTime && oneTime.checked !== true) {
+        oneTime.checked = true;
+      }
+      form.querySelectorAll('[data-skio-plan-options]').forEach(function (a) {
+        if (a && a.style.display !== 'none') {
+          a.style.display = 'none';
+        }
+      });
+    }
+  }
+
+  function addObserver(planSelector) {
+    const rewriteObserver = new MutationObserver(function (mutations) {
+      filterGroupsForVariantAndThenUpdate(planSelector);
+      /*if (window.swatchSelected) {
+        checkPlanOnSelect(planSelector);
+        window.swatchSelected = false;
+      }*/
+    });
+    rewriteObserver.observe(document, {
+      childList: true,
+      subtree: true,
+      attributes: true,
+    });
+  }
+
+  function setupPlanSelector(planSelector) {
+    var product = JSON.parse(planSelector.dataset.product);
+    filterGroupsForVariantAndThenUpdate(planSelector);
+    planSelector.style.display = 'initial';
+  }
+
+  function checkPlanOnSelect(planSelector) {
+    var form = planSelector
+      ? planSelector.closest('form[action*="/cart/add"]')
+      : document;
+    var subscriptionRadioBox = form.querySelector(
+      '.available[name="skio-subscription"] [name="skio-subscription-value"]',
+    );
+    if (subscriptionRadioBox && !subscriptionRadioBox.checked) {
+      subscriptionRadioBox.checked = true;
+    }
+  }
+
+  /* function selectBlocks(selectedBlock, planSelector) {
+    var parentBlocks = planSelector.querySelectorAll('.rc_block');
+    parentBlocks.forEach(function(block) {
+      if (block !== selectedBlock && block.className.includes('rc_block__type--active')) {
+        block.classList.remove('rc_block__type--active');
+      }
+    })
+    if (!selectedBlock.className.includes('rc_block__type--active')) {
+      selectedBlock.classList.add('rc_block__type--active');
+    }
+    filterGroupsForVariantAndThenUpdate(planSelector);
+  }*/
+
+  // check all sub boxes
+  function initialCheckPlanOnSelect() {
+    var subscriptionRadioBoxes = document.querySelectorAll(
+      '[name="skio-subscription"] [name="skio-subscription-value"]',
+    );
+    subscriptionRadioBoxes.forEach(function (subscriptionRadioBox) {
+      if (!subscriptionRadioBox.checked) {
+        subscriptionRadioBox.checked = true;
+      }
+    });
+  }
+
+  function onLoad() {
+    patchRequests();
+    document
+      .querySelectorAll('fieldset.skio-plan-picker')
+      .forEach(function (planSelector) {
+        setupPlanSelector(planSelector);
+        addObserver(planSelector);
+        initialCheckPlanOnSelect();
+        planSelector
+          .querySelectorAll('[name="skio-subscription-value"]')
+          .forEach(function (node) {
+            node.addEventListener('change', function (e) {
+              filterGroupsForVariantAndThenUpdate(planSelector);
+            });
+          });
+        /* planSelector.querySelectorAll('select').forEach(function(node) {
+        node.addEventListener('change', function (e) {
+          checkPlanOnSelect(planSelector);
+          filterGroupsForVariantAndThenUpdate(planSelector);
+        });
+      }); */
+        /* var parentBlocks = document.querySelectorAll('.block');
+      parentBlocks.forEach(function (parentBlock) {
+        parentBlock.addEventListener('click', function(e) {
+          if (parentBlock.closest('.available')) {
+            selectBlocks(parentBlock, planSelector);
+          }
+        });
+      }); */
+      });
+  }
+
+  if (document.readyState !== 'loading') {
+    onLoad();
+  } else {
+    window.addEventListener('DOMContentLoaded', function () {
+      onLoad();
+    });
+  }
+</script>

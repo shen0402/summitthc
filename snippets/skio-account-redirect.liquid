@@ -1,0 +1,19 @@
+
+<script>
+  function init() {
+    var path = window.location.pathname + window.location.search;
+
+    if (path === '/account') {
+      if (localStorage.getItem('storefrontUserId')) {
+        window.location.replace('/a/account/subscriptions');
+      } else {
+        window.location.replace('/a/account/login');
+      }
+    }
+
+    if (path === '/account/login') {
+      window.location.replace('/a/account/login');
+    }
+  }
+  init();
+</script>

@@ -1,0 +1,15 @@
+{% comment %}
+<div class="" {% if article.image %}style="background-image: url({{ article.image | img_url: '800x' }});"{% endif %}></div>
+{% endcomment %}
+{% comment %}
+{{ article.published_at | time_tag: format: 'date' }}
+{{ article.title }}
+{% if article.image %}
+  <img src="{{ article.image | img_url: '800x' }}" class="">
+{% endif %}
+<div class= "meta-content-wrapper-article rte">
+  {{ article.content }}
+</div>
+
+{% endcomment %}
+{% section 'sk-article-page' %}

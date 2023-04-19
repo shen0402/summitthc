@@ -1,0 +1,97 @@
+
+
+
+<script type="text/javascript">
+
+	$('.product-option-block').click(function(){
+
+		var quantity_amount = $(this).attr('quantity-amount');
+		var type = $(this).attr('sk-type');
+
+		if (type == 'subscription') {
+
+			$('.product-option-block[sk-type="subscription"]').each(function(i, obj) {
+	     		$(this).removeClass('product-option-block-active');
+	 		});
+
+	 		$('#Quantity-subscription').val(quantity_amount);
+		   
+		} else {
+
+		   $('.product-option-block[sk-type="standard"]').each(function(i, obj) {
+	     		$(this).removeClass('product-option-block-active');
+	 		});
+
+		   	$('#Quantity').val(quantity_amount);
+		}
+	   
+
+	   $(this).addClass('product-option-block-active');
+
+	   
+
+	});
+
+</script>
+
+
+
+
+
+
+
+{% comment %}
+<script>
+
+	$('.product-page-select').on('change', function() {
+
+		{% if product.options[0] %}var opt1 = document.getElementById('select-1').value;{% endif %}
+		{% if product.options[1] %}var opt2 = document.getElementById('select-2').value;{% endif %}
+		{% if product.options[2] %}var opt3 = document.getElementById('select-3').value;{% endif %}
+		var id = '';
+		{% for v in product.variants %}
+		if(opt1=="{{ v.option1 }}"{% if product.options[1] %} && opt2=="{{ v.option2 }}"{% endif %}{% if product.options[2] %} && opt3=="{{ v.option3 }}"{% endif %}) {
+		    var id = {{ v.id }};
+		    var price = "{{ v.price | money }}";
+		    var is_available =  {{v.available}};
+		    var variant_image = '';
+		    {% if v.image.src != blank %}
+		    var variant_image = "{{ v.image | img_url: '800x' }}";
+		    {% endif %}
+		  }
+		{% endfor %}
+		if(id!='') {
+		  		
+		  document.getElementById('product-select').value = id;
+		  if (variant_image != '') {
+		  	$('.tab-link-product').each(function(i, obj) {
+		  	    var jc_variant_id = $(this).attr('jc-variant-id');
+		  	   // console.log(jc_variant_id);
+		  	    if (variant_image == jc_variant_id) {
+		  	    	$(this).click();
+		  	    } 
+		  	});
+
+		  }
+		  if (is_available == true) {
+		  	$('#price').html(price);
+		  	$('#jc-add-to-cart-btn').attr('value','Add to Cart');
+		  	$('#jc-add-to-cart-btn').removeAttr('disabled');
+		  } else {
+		  	$('#price').html('Sold Out');
+		  	$('#jc-add-to-cart-btn').attr('value','Sold Out');
+		  	$('#jc-add-to-cart-btn').attr('disabled','disabled');
+
+		  }
+		  
+		} else {
+		  document.getElementById('product-select').value = '';
+		  document.getElementById('price').innerHTML = 'Unavailable';
+		  console.log('second '+ is_available);
+		}
+
+	});	
+    
+  
+</script>
+{% endcomment %}

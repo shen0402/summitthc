@@ -1,0 +1,53 @@
+<div class="page-wrapper-search">
+
+  <div class="page-heading-wrapper-search">
+    {% if search.performed == false %}
+      <h1 class="page-heading-search">Search Our Site</h1>
+      {% else %}
+      {% comment %}
+      <h1 class="page-heading-search">{{ 'general.search.results' | t: terms: search.terms }}</h1>
+      {% endcomment %}
+      <h1 class="page-heading-search">Search Results for "{{ search.terms }}"</h1>
+    {% endif %}
+  </div>
+
+  {% if search.performed and search.results_count == 0 %}
+    <div class="rte jc-search-empty">
+      <p style="text-align:center; font-size: 20px;color: #000;">No Search Results</p>
+    </div>
+  {% endif %}
+
+  {% if search.performed and search.results_count > 0 %}
+    <h2 class="visually-hidden">{{ 'general.search.heading' | t: count: search.results_count }}</h2>
+
+    <div class="jc-search-page-grid-wrapper container-xl">
+      <div class="search-page-flex-row">
+        {% for item in search.results %}
+
+          {% if item.object_type == 'product' %}
+            {% assign product = item %}
+
+            <div class="flex-col-search-page">
+              <div class="bottom-flex-col-inner-product" >
+                <a href="{{product.url}}" class="bottom-flex-col-link-block-product w-inline-block" {% if product.featured_image %}style="background-image: url({{ product.featured_image | img_url: '800x' }});"{% endif %}>
+                  <div class="bottom-flex-col-content-product">
+                    <h4 class="bottom-flex-col-heading-product">{{product.title}}</h4>
+                  </div>
+                </a>
+              </div>
+            </div>
+
+
+          {% endif %}
+
+
+
+        {% endfor %}
+      </div>
+    </div>
+
+
+  {% endif %}
+
+
+</div>

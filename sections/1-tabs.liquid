@@ -1,0 +1,16 @@
+
+{% for image in product.images %}
+  <a data-w-tab="Tab {{ forloop.index }}" class="tab-link-product w-inline-block w-tab-link {% if forloop.first == true %}w--current{% endif %}" jc-variant-id="{{ image | img_url: '800x' }}">
+    <div class="tab-link-img-wrapper-product"><img src="{{ image | img_url: '800x' }}" loading="lazy" alt="{{product.title}}" class="tab-link-img-product"></div>
+  </a>
+{% endfor %}
+
+
+{% for image in product.images %}
+  <div data-w-tab="Tab {{ forloop.index }}" class="w-tab-pane {% if forloop.first == true %}w--tab-active{% endif %}">
+    <div class="tab-inner-product">
+      <div class="tab-img-wrapper-product"><img src="{{ image | img_url: '1000x' }}" loading="default" alt="{{image.alt}}" class="tab-img-product"></div>
+    </div>
+  </div>
+{% endfor %}
+

@@ -1,0 +1,192 @@
+{% comment %}
+------ DO NOT ALTER THIS FILE ------
+
+Any changes to this file or any of the files listed below will be reverted as this file is generated automatically by many of our APIs.
+
+This is the main file for the Shopacado Volume Discount app. This gets included in your theme.liquid file.
+
+CODE REMOVAL:
+- To disable our code from running on your site, you just need to remove the "{% render 'appikon-discounts' %}" or "{% include 'appikon-discounts' %}"
+  from your theme.liquid file. You can also delete the files we added, but removing this line will stop any code from being loaded on your storefront.
+
+FILES:
+- snippets/appikon-discounts.liquid (THIS FILE)
+- assets/shopacado-styles.css.liquid
+- assets/shopacado.js
+- templates/cart.appikon.json.liquid
+
+------ DO NOT ALTER THIS FILE ------
+{% endcomment %}
+
+{{ 'shopacado-styles.css' | asset_url | stylesheet_tag }}
+
+{% raw  %}
+<script id="adp-discount-tiers-default" type="text/x-handlebars-template">
+    <div class="adp-discount-tiers">
+    <h4>{{{product_message}}}</h4>
+    <table class="adp-discount-table">
+        <thead>
+        <tr>
+            <th>Minimum Qty</th>
+            <th>Discount</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#vol_rows}}
+        <tr>
+            <td>{{{quantity}}} +</td>
+            <td>{{{price.title}}}</td>
+        </tr>
+        {{/vol_rows}}
+        </tbody>
+    </table>
+</div>
+
+</script>
+<script id="adp-discount-tiers-detailed" type="text/x-handlebars-template">
+    <div class="adp-discount-tiers"><h4>{{{product_message}}}</h4>
+    <table class="adp-discount-table">
+        <thead>
+        <tr>
+            <th>Qty</th>
+            <th>Discount</th>
+        </tr>
+        </thead>
+        <tbody> {{#vol_rows}}
+        <tr>
+            <td>Buy {{{quantity}}}</td>
+            <td>{{{price.title}}} each</td>
+        </tr>
+        {{/vol_rows}}
+        </tbody>
+    </table>
+</div>
+
+</script>
+<script id="adp-discount-tiers-grid" type="text/x-handlebars-template">
+    <div class="adp-discount-tiers"><h4>{{{product_message}}}</h4>
+    <table class="adp-discount-table">
+        <thead>
+        <tr>
+            <th>Minimum Qty</th>
+            <th>Maximum Qty</th>
+            <th>Discount</th>
+        </tr>
+        </thead>
+        <tbody> {{#vol_rows}}
+        <tr>
+            <td>{{{quantity}}}</td>
+            <td>{{{next_range_qty}}}</td>
+            <td>{{{price.title}}}</td>
+        </tr>
+        {{/vol_rows}}
+        </tbody>
+    </table>
+</div>
+
+</script>
+<script id="adp-discount-tiers-grid-alt" type="text/x-handlebars-template">
+    <div class="adp-discount-tiers"><h4>{{{product_message}}}</h4>
+    <table class="adp-discount-table">
+        <thead>
+        <tr>
+            <th>Qty</th>
+            <th>Discount</th>
+        </tr>
+        </thead>
+        <tbody> {{#vol_rows}}
+        <tr>
+            <td>{{{quantity}}} - {{{next_range_qty}}}</td>
+            <td>{{{price.title}}}</td>
+        </tr>
+        {{/vol_rows}}
+        </tbody>
+    </table>
+</div>
+
+</script>
+<script id="adp-buy-x-discount-tiers" type="text/x-handlebars-template">
+    <div class="adp-discount-tiers"><h4>{{{product_message}}}</h4>
+    <table class="adp-discount-table">
+        <thead>
+        <tr>
+            <th>Qty</th>
+            <th>Discount</th>
+        </tr>
+        </thead>
+        <tbody> {{#vol_rows}}
+        <tr>
+            <td>Buy {{{quantity}}}</td>
+            <td>{{{price.title}}}</td>
+        </tr>
+        {{/vol_rows}}
+        </tbody>
+    </table>
+</div>
+
+</script>
+{% endraw %}
+
+<script type="text/javascript">
+    window.appikon = {};
+
+    {% if customer %}
+    window.appikon.customer_tags = "{{customer.tags | join: ','}}";
+    window.appikon.customer_id = "{{customer.id}}";
+    {% endif %}
+
+    {% if template contains 'product' or product %}
+    {% unless product.id == blank %}
+    {% assign adp_page = 'product' %}
+    window.appikon.product = {
+        id: {{product.id}},
+        price: {{product.price}},
+        variant_price: '{{product.selected_or_first_available_variant.price}}'
+    };
+    window.appikon.product_collections = []
+    {% for c in product.collections %}
+    window.appikon.product_collections.push({{c.id}})
+    {% endfor %}
+    {% endunless %}
+    {% endif %}
+
+
+    {% if template contains 'cart' %}
+    {% assign adp_page = 'cart' %}
+    {% endif %}
+
+    {% if cart %}
+    window.appikon.cart = {{cart | json}};
+    ["requires_shipping", "total_discount", "item_count", "total_weight"].map(function(a) {
+        delete window.appikon.cart[a]
+    })
+
+    window.appikon.cart.items = [];
+    window.appikon.cart_product_ids = [];
+    window.appikon.cart_collection_ids = [];
+    {% for item in cart.items %}
+    var appikon_item = {{item | json}};
+
+    ["id", "product_title", "total_discount", "discounts", "grams", "vendor", "taxable", "gift_card", "url", "image", "requires_shipping", "product_type", "product_description", "variant_title", "variant_options"].map(function(k) {
+        delete appikon_item[k]
+    })
+
+    appikon_item["compare_at_price"] = {{item.price}};
+    {% if item.variant.compare_at_price %}
+    appikon_item["compare_at_price"] = {{item.variant.compare_at_price}};
+    {% endif %}
+
+    appikon_item["collection_ids"] = [];
+    {% for c in item.product.collections %}
+    appikon_item["collection_ids"].push({{c.id}});
+    {% endfor %}
+    window.appikon.cart.items.push(appikon_item);
+    window.appikon.cart_product_ids.push(appikon_item.product_id);
+    window.appikon.cart_collection_ids.push(appikon_item.collection_ids);
+    {% endfor %}
+
+    {% endif %}
+    window.appikon.adp_page = "{{adp_page}}";
+</script>
+
+{{ 'shopacado.js' | asset_url | script_tag }}

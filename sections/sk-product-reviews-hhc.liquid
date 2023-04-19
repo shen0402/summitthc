@@ -1,0 +1,116 @@
+<div class="testimonial-section-product">
+  <div class="testimonial-content-home">
+    <div class="testimonial-heading-section-home">
+      <div class="testimonial-sub-heading-wrapper">
+        <h4 class="section-heading-sm" data-ix="fadeindown">REVIEWS</h4>
+      </div>
+      <div class="testimonial-heading-wrapper">
+        <h1 class="section-heading dark" data-ix="fadeinright">What People Are Saying</h1>
+      </div>
+      <div class="testimonial-star-section-wrapper ">
+
+        <div class="reviews-container">
+          <div class="reviews-wrapper">
+            <img class="review-stars" src="https://cdn.shopify.com/s/files/1/0636/9355/3922/files/ratings-stars-2-min.png?v=1649977924" alt="">
+            <div>{{product.metafields.stamped.reviews_count}} Reviews</div>
+          </div>
+        </div>
+
+        {%- comment -%}
+        <div id="stamped-reviews-widget" data-widget-type="site-badge" data-badge-type="minimal" data-color-text="#0b022b" data-color-stars="#331c94"></div>
+
+        
+          <span 
+            class="stamped-product-reviews-badge stamped-main-badge" 
+            data-id="{{ product.id }}" 
+            data-product-sku="{{ product.handle }}" 
+            data-product-title="{{product.title}}" 
+            data-product-type="{{product.type}}" 
+            style="display: block;">
+            
+          </span>
+        {%- endcomment -%}
+      </div>
+      <style type="text/css">
+        .stamped-badge-stars.stamped-style-color-star.stamped-style-size-star{
+          margin-bottom: -5px !important;
+        }
+        .testimonial-star-section-wrapper .stamped-badge-caption {
+          color: #0b022b;
+          text-decoration: underline;
+          font-weight: 400;
+          font-size: 14px;
+        }
+        .testimonial-star-section-wrapper .stamped-badge-starrating {
+          margin-right: 6px !important;
+          margin-top: 5px !important;
+          display: inline-block;
+        }
+      </style>
+      {% comment %}
+      <div class="testimonial-heading-flex-row" data-ix="fadeinup"><img src="//cdn.shopify.com/s/files/1/0636/9355/3922/files/ratings-stars-1-min.png" loading="lazy" alt="5 Stars" class="featured-star-img">
+        <a href="#" class="featured-col-reviews-heading-link w-inline-block">
+          <div>103 Reviews</div>
+        </a>
+      </div>
+      {% endcomment %}
+    </div>
+    <div class="testimonial-slide-inner-home">
+      <div class="testimonial-slide-flex-row-home">
+
+        {% for block in section.blocks %}
+
+          <div id="w-node-_8c1c6b9e-75b5-8971-a108-0f632cfb6ef1-db35c414" class="review-grid-inner">
+            <div class="review-grid-content-wrapper">
+              <div class="review-grid-text">
+                <p class="review-p">{{block.settings.content}}</p>
+              </div>
+              <div class="review-flex-row">
+                <div class="review-content-wrapper"><img src="https://cdn.shopify.com/s/files/1/0636/9355/3922/files/stars-HHC.svg?v=1676318924" loading="lazy" alt="Five Pink Stars" class="star-review-img">
+                  <p class="general-p normal-text">{{block.settings.title}}</p>
+                </div>
+                <div class="img-wrapper"><img src="https://cdn.shopify.com/s/files/1/0636/9355/3922/files/badge-gen-HHC.svg?v=1676409972" loading="lazy" alt="Delta-8"></div>
+              </div>
+            </div>
+          </div>
+
+
+        {% endfor %}
+        
+
+      </div>
+    </div>
+    <div class="testimonial-disclaimer-text">These testimonials are for informational purposes only. The information is not a substitute for expert medical care. Testimonials are written by actual customers and represent their own observations. These observations are not medically substantiated, guaranteed, and may not be typical for other customers.</div>
+  </div>
+</div>
+
+
+
+{% schema %}
+{
+  "name": "Delta-8 Reviews" ,
+  "blocks": [
+    {
+      "type": "text",
+      "name": "Review",
+      "settings": [
+        
+        {
+          "label": "Review",
+          "id": "content",
+          "type": "textarea"
+        },
+        {
+          "label": "Name",
+          "id": "title",
+          "type": "text"
+        }
+
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+
+

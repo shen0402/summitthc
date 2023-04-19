@@ -1,0 +1,35 @@
+<div class="jc-list-inline-pagination">
+  {% unless paginate.previous.is_link %}
+  
+      <a href="{{ paginate.previous.url }}" class="jc-paginate-btn">
+        <
+     
+      </a>
+    
+    {% else %}
+ 
+      <a href="{{ paginate.previous.url }}" class="jc-paginate-btn">
+        <
+      
+      </a>
+    
+  {% endunless %}
+  <div class="jc-pagination__text">
+    {{ 'general.pagination.current_page' | t: current: paginate.current_page, total: paginate.pages }}
+  </div>
+  {% unless paginate.next.is_link %}
+   
+     <a href="{{ paginate.next.url }}" class="jc-paginate-btn">
+       >
+      
+     </a>
+    
+  {% else %}
+    
+      <a href="{{ paginate.next.url }}" class="jc-paginate-btn">
+        >
+       
+      </a>
+    
+  {% endunless %}
+</div>

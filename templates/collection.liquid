@@ -1,0 +1,96 @@
+ {% comment %}
+	{% section 'sk-collection-section' %}
+{% endcomment %}
+
+<div class="hero-wrapper-collection">
+	{% section 'sk-home-product-info-hhc' %}
+	{%- comment -%}
+		{% section 'sk-product-row' %}
+	{%- endcomment -%}
+</div>
+
+	{% comment %}
+
+////////////// Pagination and empty collection  ////////////////
+
+{% if collection.products_count > 0 %}
+
+	{% paginate collection.products by 12 %}
+
+	{% for product in collection.products %}
+		{% assign price = product.price %}
+		{% assign compare_at_price = product.compare_at_price_max %}
+
+		{% if compare_at_price > price  %}
+			<div class=""><span style="text-decoration: line-through;">{{ compare_at_price | money }}</span> {{price | money }}</div>
+		{% else %}
+			<div class="">{{product.price | money }}</div>
+		{% endif %}
+
+
+	{% endfor %}
+
+		{% if paginate.pages > 1 %}
+			{% include 'pagination' %}
+		{% endif %}
+	{% endpaginate %}
+
+
+	{% else %}
+
+	<div class="empty-wrapper-collection">
+	  <p class="empty-text-collection">No Matching Products</p>
+	</div>
+
+{% endif %}
+
+
+
+{% endcomment %}
+
+
+
+	{% comment %}
+	 ////////////// All Sorting Options ////////////////
+
+	 <select id="sort-by" class="styled-select">
+	   <option value="manual">Featured</option>
+	   <option value="price-ascending">Price, low to high</option>
+	   <option value="price-descending">Price, high to low</option>
+	   <option value="title-ascending">Alphabetically, A-Z</option>
+	   <option value="title-descending">Alphabetically, Z-A</option>
+	   <option value="created-ascending">Date, old to new</option>
+	   <option value="created-descending">Date, new to old</option>
+	   <option value="best-selling">Best Selling</option>
+	 </select>
+
+	{% endcomment %}
+
+
+	{% comment %}
+	 ////////////// Filtering By Tag  ////////////////
+
+	<select id="collection-sort" name="Color" class="form-input">
+          {% for tag in collection.all_tags %}
+            {% assign tag_handle = tag | handleize %}
+            
+            <option value="blank" selected="true">Color</option>
+            {% if tag_handle == 'red' or
+            tag_handle == black' %}
+
+              {% if current_tags contains tag %}
+                  <option value="{{tag_handle}}" selected="true">{{tag}}</option>
+                {% else %}
+                  <option value="{{tag_handle}}">{{tag}}</option>
+              {% endif %}  
+
+            {% endif %}
+          {% endfor %}
+
+        </select>
+
+	{% endcomment %}
+
+
+
+

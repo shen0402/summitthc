@@ -1,0 +1,31 @@
+{% section 'sk-account-login-section' %}
+
+<style type="text/css">
+	#rc_login {
+		display: none !important;
+	}
+</style>
+<script>
+  var getUrlParameter = function getUrlParameter(sParam) {
+    var sPageURL = window.location.search.substring(1),
+        sURLVariables = sPageURL.split('&'),
+        sParameterName,
+        i;
+    for (i = 0; i < sURLVariables.length; i++) {
+      sParameterName = sURLVariables[i].split('=');
+      if (sParameterName[0] === sParam) {
+        return typeof sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+      }
+    }
+    return false;
+  }; 
+  var autoredirect = getUrlParameter('checkout_url');
+  if(autoredirect != ''){
+    if(document.querySelector('form[action="/account/login"]') != null){
+      document.querySelector('form[action="/account/login"]').insertAdjacentHTML('beforeend', '<input name="checkout_url" type="hidden" value="/cart" />');    
+    }
+    if(document.querySelector('form[action="/account"]') != null){
+      document.querySelector('form[action="/account"]').insertAdjacentHTML('beforeend', '<input name="return_to" type="hidden" value="/cart" />');
+    }
+  }
+</script>

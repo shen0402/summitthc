@@ -1,0 +1,35 @@
+
+<div class="form-section-contact">
+  <div class="form-container-contact">
+    <div class="form-block-contact" data-ix="fadeinup">
+
+      {% form 'contact', id:"Contact-Form" %}
+        {% if form.posted_successfully? %}
+          <div class="jc-form-done">
+            <div>Thank you! Your submission has been received!</div>
+          </div>
+        {% else %}
+        <input type="hidden" name="contact[form-name]" value="General Contact Form">
+        <div class="form-group-contact">
+          <div class="form-col-contact"><input type="text" class="form-input-contact w-input" maxlength="256" name="contact[name]" placeholder="Name" id="Name" required=""></div>
+          <div class="form-col-contact form-col-contact-alt"><input type="text" class="form-input-contact w-input" maxlength="256" name="contact[email]" placeholder="Email" id="Email" required=""></div>
+        </div>
+        <div class="form-input-wrapper-contact"><input type="text" class="form-input-contact w-input" maxlength="256" name="contact[subject]" placeholder="Subject" id="Subject" required=""></div>
+        <div class="form-input-wrapper-contact"><textarea placeholder="Message" maxlength="5000" id="Message" name="contact[message]" required="" class="form-input-contact-area w-input"></textarea></div>
+        <div class="form-btn-wrapper-contact"><input type="submit" value="Submit" data-wait="Please wait..." class="form-btn-contact w-button"></div>
+        {% endif %}
+      {% endform %}
+
+    </div>
+  </div>
+  <div class="form-section-overlay-contact"></div>
+</div>
+
+
+{% schema %}
+{
+  "name": "Form Section"
+}
+{% endschema %}
+
+

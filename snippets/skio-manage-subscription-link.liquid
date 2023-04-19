@@ -1,0 +1,22 @@
+
+            {% if customer and customer.email %}
+              {% assign skio_hash_key = "006a7c1739e9aa168cdbc1f9a563a493" %}
+              <script defer>
+                const lastPartOfUrlWithoutQueryString = window.location.pathname.substring(
+                  window.location.pathname.lastIndexOf('/') + 1,
+                );
+                window.addEventListener('load', function () {
+                  if (lastPartOfUrlWithoutQueryString === 'account' && (Shopify.theme.theme_store_id === 887 || Shopify.theme.theme_store_id === 796)) {
+                    const logoutButton = document.querySelector("[href='/account/logout']");
+                    if (logoutButton) {
+                      window.localStorage.setItem('skio-hash', '{{customer.id | append: skio_hash_key | md5 }}');
+                      logoutButton.insertAdjacentHTML(
+                        'afterend',
+                        '<p><a href="/a/account/shopify-login?email={{customer.email | url_encode}}&hash={{customer.id | append: skio_hash_key | md5 }}&id={{customer.id | url_encode}}&totalSpent={{customer.total_spent | url_encode}}&addressId={{customer.default_address.id | url_encode}}">Manage Subscriptions</a></p>',
+                      );
+                    }
+                  }
+                })
+              </script>
+            {% endif %}
+          

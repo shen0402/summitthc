@@ -1,0 +1,44 @@
+
+
+{%- assign main_product_id = product.id -%}
+
+{% for collection in product.collections %}
+  {% comment %}
+    All - 239623635129
+  {% endcomment %}
+  {% if collection.id != 239623635129 %}
+    {% assign category_collection = collection %}
+  {% endif %}
+  
+{% endfor %}
+
+{% assign jc_category_size = category_collection.products.size %}
+{% assign jc_limit = jc_category_size | minus: 2 %}
+
+{% if jc_category_size < 3 %}
+    {% assign jc_index = 1 %}
+  {% else %}
+    {% for product in category_collection.products %}
+
+       {% assign jc_index = 1 %}
+
+       {% if product.id == main_product_id %}
+         {% if forloop.index > jc_limit %}
+            {% assign jc_index = 0 %}
+          {% else %}
+             {% assign jc_index = forloop.index  %} 
+          {% endif %} 
+         
+         {% break %}
+
+       {% endif %}
+
+   {% endfor %} 
+{% endif %}
+
+
+{% for product in category_collection.products offset:jc_index limit:2 %}
+	<div>
+		{{product.title}}
+	</div>
+{% endfor %}

@@ -1,0 +1,108 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+
+<div class="verification-modal">
+  <div class="verification-modal-content-wrapper">
+    <div class="verification-modal-inner">
+      <div class="verification-top-wrapper">
+        <div class="verification-img-wrapper"><img src="//cdn.shopify.com/s/files/1/0636/9355/3922/files/summit-mark-min.png" loading="lazy" alt="Summit" class="verification-img-top"></div>
+        <div class="verification-img-wrapper"><img src="//cdn.shopify.com/s/files/1/0636/9355/3922/files/summit-wordmark-min.png" loading="lazy" alt="" class="verification-img-bottom"></div>
+      </div>
+      <div class="verification-heading">Please confirm that you are 21 years of age or older.</div>
+      <div class="verification-btn-wrapper">
+        <a id="modal-enter" href="#" class="verification-btn w-button">Yes, I&#x27;m 21 years of age or older</a>
+      </div>
+      <div class="verification-btn-wrapper">
+        <a id="modal-exit" href="#" class="verification-btn-alt w-button">I&#x27;m Under 21 years old</a>
+      </div>
+      <div class="verification-modal-text">You must be legal age in your respective country for entry. By entering you accept our terms and conditions and our privacy policy.</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- <div class="newsletter-modal">
+  <div class="newsletter-modal-content-wrapper">
+    <div class="newsletter-flex-row-outer">
+      <div class="newsletter-flex-col-1">
+        <div class="newsletter-img-block"></div>
+      </div>
+      <div class="newsletter-flex-col-2">
+        <div class="newsletter-flex-col-inner">
+          <div class="newsletter-modal-heading-wrapper">
+            <h3 class="newsletter-modal-heading">Connect With Us!</h3>
+          </div>
+          <div class="newsletter-modal-sub-heading">SAVE 15%</div>
+          <div class="newsletter-modal-text">Sign up for the latest Summit updates, promotions, new product releases, and receive a 15% off summitTHC.com code!</div>
+          <div class="newsletter-form-block">
+            <div class="klaviyo-form-WpvVip"></div>
+             {% comment %}
+            <form id="email-form" name="email-form" data-name="Email Form" method="get" action="#">
+              <input type="email" class="newsletter-form-input w-input" maxlength="256" name="email-2" data-name="Email 2" placeholder="Enter your email" id="email-2" required="">
+              <div class="newsletter-btn-wrapper"><input type="submit" value="Sign Up" data-wait="Please wait..." class="newsletter-form-btn w-button"></div>
+            </form>
+            {% endcomment %}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="newsletter-close-btn"><img src="//cdn.shopify.com/s/files/1/0636/9355/3922/files/close_2close.png" loading="lazy" alt="Close" class="newsletter-close-btn-img"></div>
+  </div>
+</div> -->
+
+
+
+
+<script type="text/javascript">
+      $(document).ready(function() {
+
+        if (!$.cookie('sk_verification_summit')) {
+          $('.verification-modal').fadeIn(500);
+          
+        }
+
+        $('#modal-enter').click(function(e) {
+          e.preventDefault();
+          $('.verification-modal').fadeOut();
+          var date = new Date();
+          date.setTime(date.getTime() + 7776000000);
+          $.cookie('sk_verification_summit', true, {
+            expires: date
+          });
+          
+        });
+
+        $('#modal-exit').click(function(e) {
+          window.location.replace("https://www.google.com/");
+        });
+
+        // if (!$.cookie('sk_newsletter_summit')) {
+        //   setTimeout(function() {
+        //     $('.newsletter-modal').fadeIn(500);
+        //     $('body').css('overflow', 'hidden');
+        //     var date = new Date();
+        //     date.setTime(date.getTime() + 7776000000);
+        //     $.cookie('sk_newsletter_summit', true, {
+        //       expires: date
+        //     });
+        //   }, 30000);
+          
+        // }
+        // $('.newsletter-close-btn').click(function(e) {
+        //   e.preventDefault();
+        //   $('body').css('overflow', 'auto');
+        //   $('.newsletter-modal').fadeOut(500);
+        //   /* $('.newsletter-modal').fadeTo(500, 0, function(){
+        //      $('.newsletter-modal').hide();
+        //    });*/
+        // });
+        
+      });
+ </script>
+
+
+ {% schema %}
+ {
+   "name": "Pop-Ups"
+ }
+ {% endschema %}
+

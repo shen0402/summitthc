@@ -1,0 +1,115 @@
+
+
+{% section 'sk-account-page' %}
+
+
+<script type="text/javascript">
+  $(document).ready(function() { 
+
+    $('.flex-col-link-account-pw').click(function(){
+      
+      $('.order-section-account').hide();
+      $('.forgot-pw-section-account').show();
+      
+    });
+    
+
+   });
+</script>
+
+
+{% comment %} /////// Customer Object ///////
+
+{{customer.first_name}}
+{{customer.last_name}}
+{{customer.name}}
+{{customer.email}}
+{% endcomment %}
+
+{% comment %} /////// Customer Addresses ///////
+<div class="">
+
+  {% for address in customer.addresses %}
+    <p>{{ address.street }}</p>
+<!-- Begin ReCharge code -->
+<p id="rc_link_container">
+    <a href="/tools/recurring/login">Manage Subscriptions</a>
+</p>
+<!-- End ReCharge code -->
+
+    {% if address.address2 %}
+      <p>{{ address.address2 }}</p>
+    {% endif %}
+    <p>{{ address.city }} {{ address.province_code }}, {{address.zip}}</p>
+    {% if address.phone %}
+      <p>{{ address.phone }}</p>
+    {% endif %}
+    
+  {% endfor %}
+  
+</div>
+{% endcomment %}
+
+{% comment %} /////// Customer Orders ///////
+
+
+{% paginate customer.orders by 20 %}
+
+{% if customer.orders.size != 0 %}
+
+<div class="heading-flex-row-account-page">
+  <div class="flex-col-account-page-1">
+    <div class="heading-flex-text-account-page">Order</div>
+  </div>
+  <div class="flex-col-account-page-2">
+    <div class="heading-flex-text-account-page">Date</div>
+  </div>
+  <div class="flex-col-account-page-3">
+    <div class="heading-flex-text-account-page">Payment Status</div>
+  </div>
+  <div class="flex-col-account-page-4">
+    <div class="heading-flex-text-account-page">Fulfillment Status</div>
+  </div>
+  <div class="flex-col-account-page-5">
+    <div class="heading-flex-text-account-page">Total</div>
+  </div>
+</div>
+
+  {% for order in customer.orders %}
+  	
+
+  <div class="flex-row-account-page">
+    <div class="flex-col-account-page-1">
+      <a href="{{order.customer_url}}" class="flex-col-link-block-account-page w-inline-block">
+        <div>{{order.name}}</div>
+      </a>
+    </div>
+    <div class="flex-col-account-page-2">
+      <div class="flex-col-text-account-page">{{ order.created_at | date: format: 'date' }}</div>
+    </div>
+    <div class="flex-col-account-page-3">
+      <div class="flex-col-text-account-page">{{order.financial_status}}</div>
+    </div>
+    <div class="flex-col-account-page-4">
+      <div class="flex-col-text-account-page">{{order.fulfillment_status}}</div>
+    </div>
+    <div class="flex-col-account-page-5">
+      <div class="flex-col-text-account-page">{{ order.total_price | money }}</div>
+    </div>
+  </div>	
+
+
+
+  {% endfor %}
+{% else %}   
+
+<div class="jc-account-page-empty-wrapper">
+  <p class="jc-account-page-empty-text">You haven't placed any orders yet</p>
+</div>
+{% endif %}
+{% if paginate.pages > 1 %}
+  {% include 'pagination' %}
+{% endif %}
+{% endpaginate %}
+
+{% endcomment %}

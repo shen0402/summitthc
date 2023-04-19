@@ -1,0 +1,54 @@
+<div class="search-modal">
+
+    <div class="search-modal-content-wrapper">
+        <div class="search-modal-close-btn"><img src="" loading="lazy" alt="Close" class="search-modal-close-img" /></div>
+        <div class="search-modal-form-block w-form">
+            <form  action="/search" >
+                <div class="flex-row-search-modal">
+                    <input type="text" class="form-input-modal-search w-input" maxlength="256" name="q" placeholder="Search..." id="search" />
+                    <input type="submit" value="Search" data-wait="Please wait..." class="search-modal-btn w-button" />
+                </div>
+            </form>
+        </div>
+        
+    </div>
+
+</div>
+
+<script type="text/javascript">
+
+  $(document).ready(function(){
+
+
+
+      $('.search-modal-open').click(function(e) {
+        e.preventDefault();
+        $('body').css('overflow', 'hidden');
+        var current_modal = $('.search-modal');
+        current_modal.css('display','block');
+        current_modal.fadeTo(500,1);
+        
+    });
+
+      $('.search-modal-close-btn').click(function(e) {
+          e.preventDefault();
+          $('body').css('overflow', 'auto');
+          var current_modal = $('.search-modal');
+          current_modal.fadeTo(500,0,function(){
+          $(this).hide();
+      });
+
+      });
+
+
+  });
+  
+</script>
+
+
+{% schema %}
+{
+  "name": "Search Pop-Up"
+ 
+}
+{% endschema %}

@@ -1,0 +1,1007 @@
+
+
+
+
+<div class="cart-flyout-wrapper">
+  <div class="cart-flyout-overlay cart-flyout-close-target" data-ix="cart-flyout-close"></div>
+  <div class="cart-flyout-content-wrapper">
+    <div class="cart-flyout-inner">
+    	 {% comment %}
+    <div class="cart-flyout-close-btn cart-flyout-close-target" data-ix="cart-flyout-close"><img src="//cdn.shopify.com/s/files/1/0259/6510/1090/files/close-black.png" loading="lazy" alt="Close" class="cart-flyout-close-btn-img"></div>
+    {% endcomment %}
+
+    <div class="cart-flyout-top-flex-row">
+    	<div class="cart-flyout-top-flex-col">
+    		<a href="#" class="cart-flyout-top-link cart-flyout-close-target w-inline-block" data-ix="cart-flyout-close">
+             <div>← Continue Shopping</div>
+          </a>
+    	</div>
+    	<div class="cart-flyout-top-flex-col">
+    		<a href="/cart" class="cart-flyout-top-link-cart w-inline-block">
+    			<img src="//cdn.shopify.com/s/files/1/0636/9355/3922/files/cart-dark.png" loading="lazy" alt="Cart" class="cart-flyout-top-flex-img">
+          <div class="cart-flyout-cart-text flyout">{{cart.item_count}}</div>
+    		</a>
+    	</div>
+    </div>
+
+    {% unless cart.item_count > 0 %}
+        {% assign jc_cart_hide_class = 'jc-cart-hide' %}
+      {% endunless %}
+
+    <div class="cart-flyout-heading-wrapper {{jc_cart_hide_class}}">
+      <div class="cart-flyout-heading">
+        Review Order
+      </div>
+    </div>
+
+      <div id="jc-ajax-product-section" class="cart-flyout-item-section">
+{% assign hasSub = true %}
+        {%- for item in cart.items -%}
+
+{% if item.product.requires_selling_plan == false %}
+                {% assign hasSub = false %}
+            {% endif %}
+            <div class="cart-flyout-item">
+              <div class="cart-flyout-item-flex-row">
+                <div class="cart-flyout-item-flex-col-1">
+                  <div class="cart-flyout-item-img-block">
+                    <a href="{{item.product.url}}" class="cart-flyout-img-link w-inline-block"><img src="{{ item | img_url: 'x256' }}" loading="lazy" alt="{{ item.product.title }}" class="cart-flyout-item-img"></a>
+                  </div>
+                </div>
+                <div class="cart-flyout-item-flex-col-2">
+                  {%- comment -%}
+                    <div class="cart-flyout-item-sub-title">
+                      VEGAN & INFUSED
+                    </div>
+                  {%- endcomment -%}
+                  <div class="cart-flyout-item-title">
+                    <a id="jc-ajax-url" href="{{item.product.url}}" class="cart-flyout-item-title-link">{{ item.product.title }}</a>
+                  </div>
+
+                    <div class="cart-flyout-variant-section">
+
+                      {%- assign variant_options = 'template ' | split: ' ' -%}
+                      {%- if item.product.has_only_default_variant != true -%}
+                        {%- assign variant_options = item.options_with_values -%}
+                      {%- endif -%}
+                      {%- assign property_size = item.properties | size -%}
+
+                      <div {% if item.product.has_only_default_variant and property_size == 0 %}style="display:none;"{% endif %}>
+                        {%- for option in variant_options -%}
+                          <div id="jc-ajax-options" class="cart-flyout-variant-block"><span class="cart-flyout-variant-heading">{{ option.name }}:</span> {{ option.value }}</div>
+                        {% endfor %}
+                      </div>
+
+                      
+
+                    </div>
+
+                    <div class="cart-flyout-variant-block cart-flyout-variant-block-qty">
+                      <div class="cart-flyout-qty-flex-row">
+                        <div class="cart-flyout-qty-input-wrapper">
+                          <a href="#" class="cart-flyout-qty-link cart-flyout-qty-link-down w-inline-block">
+                            <div>-</div>
+                          </a><input type="number" class="cart-flyout-qty-input w-input" maxlength="256" name="cartItemQuantity" value="{{ item.quantity }}" id="cartItemQuantity" required="">
+                          <a href="#" class="cart-flyout-qty-link cart-flyout-qty-link-up w-inline-block">
+                            <div>+</div>
+                          </a>
+                        </div>
+                        <a href="#" class="cart-flyout-qty-btn w-button">Update</a>
+                      </div>
+                    </div>
+
+                  
+
+                </div>
+                <div class="cart-flyout-item-flex-col-3">
+
+                  <div class="cart-flyout-remove-wrapper">
+                    <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0" class="cart-flyout-remove-link w-inline-block">
+                      <img src="https://cdn.shopify.com/s/files/1/0636/9355/3922/files/trash-new.png?v=1677107771" class="cart-flyout-remove-img">
+                    </a>
+                  </div>
+
+                  
+                  {%- assign hasDiscount = false -%}
+                  {%- if item.original_price != item.final_price -%}
+                    {%- assign hasDiscount = true -%}
+                  {%- endif -%}
+
+                  {% if hasDiscount == true %}
+                       <div class="cart-flyout-item-price-text"><span id="jc-ajax-original-price" class="flyout-price-text-discount"><div class="" data-id="{{ item.key }}"><div class="qb-total-line-item sk-ajax-og-price" data-id="{{ item.key }}"><div class="qb-total-line-item" data-id="{{ item.key }}">{{ item.original_line_price | money }}</div></div></div></span> <span id="jc-ajax-final-line-price" class="sk-ajax-final-price">{{ item.final_line_price | money }}</span></div> 
+                    {% else %}
+                      <div class="cart-flyout-item-price-text"><span id="jc-ajax-final-price" class="sk-ajax-final-price">{{ item.final_line_price | money }}</span></div>
+                  {% endif %}
+                  
+
+                </div>
+              </div>
+            </div>
+
+
+        {% endfor %}
+
+      </div>
+
+      {% assign sk_product_1 = all_products[section.settings.featured_product_1] %}
+      {% assign sk_product_2 = all_products[section.settings.featured_product_2] %}
+
+      <div class="cart-flyout-related-wrapper jc-cart-hide">
+        <div class="cart-flyout-related-heading">People Also Enjoy</div>
+        <div class="cart-flyout-related-flex-row">
+          <div class="cart-flyout-related-flex-col cart-flyout-related-flex-col-hide" sk-product-taget='Delta-8'>
+            <div class="cart-flyout-related-flex-col-inner">
+              <div class="cart-flyout-related-meter-wrapper">
+                <div class="cart-flyout-mid-meter-img-row">
+                  <div class="cart-flyout-related-meter-text">RELAXING</div>
+                  <div class="cart-flyout-related-meter-text">ENERGIZING</div>
+                </div>
+                <div class="cart-flyout-related-meter-img-wrapper"><img src="https://cdn.shopify.com/s/files/1/0636/9355/3922/files/arrow-D8-up.svg?v=1676409972" loading="lazy" alt="Arrow Image" class="cart-flyout-related-meter-arrow-img"></div>
+              </div>
+              <div class="cart-flyout-related-img-wrapper"><img src="https://cdn.shopify.com/s/files/1/0636/9355/3922/files/SM_Fly_Cart_Upsell_D8.png?v=1671643650" loading="lazy" alt="Delta-8 Product" class="cart-flyout-related-img"></div>
+              <div class="cart-flyout-related-heading-wrapper">
+                <div class="cart-flyout-related-sub-heading">Vegan &amp; Infused</div>
+                <div class="cart-flyout-col-heading">Delta-8 Gummies</div>
+              </div>
+              <div class="cart-related-form-block">
+
+                {% form "product", sk_product_1 %}
+                  <select name="id" id="product-select-flyout-1" class="jc-product-select product-form__variants no-js" style="display: none;">
+                    {% for variant in sk_product_1.variants %}
+                      {% if variant.available %}
+                        <option jc-price="{{variant.price | money}}" {% if variant == product.selected_or_first_available_variant %} selected="selected" {% endif %} value="{{ variant.id }}">
+                          {{ variant.title }}
+                        </option>
+                      {% else %}
+                        <option jc-price="Sold Out" disabled="disabled">{{ variant.title }} - {{ 'products.product.sold_out' | t }}</option>
+                      {% endif %}
+                    {% endfor %}
+                  </select>
+                  <input type="number" class="form-text-field services-ind-quantity w-input" maxlength="256" name="quantity" value="1" min="1" pattern="[0-9]*" id="Quantity-flyout-1" required="" style="display:none;">
+                  <button type="submit" class="cart-related-submit-btn w-button">
+                    Add - {{ sk_product_1.price | money }}
+                  </button>
+
+                {% endform %}
+         
+              </div>
+              <div class="cart-related-bottom-text">Do we ship to your state? <a href="/pages/where-we-ship">Find out</a></div>
+            </div>
+          </div>
+          <div class="cart-flyout-related-flex-col cart-flyout-related-flex-col-hide" sk-product-taget='Delta-9'>
+            <div class="cart-flyout-related-flex-col-inner">
+              <div class="cart-flyout-related-meter-wrapper">
+                <div class="cart-flyout-mid-meter-img-row">
+                  <div class="cart-flyout-related-meter-text">RELAXING</div>
+                  <div class="cart-flyout-related-meter-text">ENERGIZING</div>
+                </div>
+                <div class="cart-flyout-related-meter-img-wrapper cart-flyout-related-meter-img-wrapper-alt"><img src="https://cdn.shopify.com/s/files/1/0636/9355/3922/files/arrow-D8-up.svg?v=1676409972" loading="lazy" alt="Arrow Image" class="cart-flyout-related-meter-arrow-img"></div>
+              </div>
+              <div class="cart-flyout-related-img-wrapper"><img src="https://cdn.shopify.com/s/files/1/0636/9355/3922/files/SM_Fly_Cart_Upsell_D9.png?v=1671643650" loading="lazy" alt="Delta-9 Product" class="cart-flyout-related-img"></div>
+              <div class="cart-flyout-related-heading-wrapper">
+                <div class="cart-flyout-related-sub-heading">Vegan &amp; Infused</div>
+                <div class="cart-flyout-col-heading">Delta-9 Gummies</div>
+              </div>
+              <div class="cart-related-form-block ">
+
+                {% form "product", sk_product_2 %}
+                  <select name="id" id="product-select-flyout-2" class="jc-product-select product-form__variants no-js" style="display: none;">
+                    {% for variant in sk_product_2.variants %}
+                      {% if variant.available %}
+                        <option jc-price="{{variant.price | money}}" {% if variant == product.selected_or_first_available_variant %} selected="selected" {% endif %} value="{{ variant.id }}">
+                          {{ variant.title }}
+                        </option>
+                      {% else %}
+                        <option jc-price="Sold Out" disabled="disabled">{{ variant.title }} - {{ 'products.product.sold_out' | t }}</option>
+                      {% endif %}
+                    {% endfor %}
+                  </select>
+                  <input type="number" class="form-text-field services-ind-quantity w-input" maxlength="256" name="quantity" value="1" min="1" pattern="[0-9]*" id="Quantity-flyout-2" required="" style="display:none;">
+                  <button type="submit" class="cart-related-submit-btn w-button">
+                    Add - {{ sk_product_2.price | money }}
+                  </button>
+
+                {% endform %}
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+
+      <div id="cart-bottom-content-wrapper" class="{{jc_cart_hide_class}} cart-bottom-content-wrapper">
+
+        <div class="cart-flyout-bottom-inner">
+
+          <div class="cart-flyout-total-wrapper">
+            <div class="cart-flyout-shipping-amt-section">
+              
+            </div>
+
+            <div class="cart-flyout-table-section">
+              
+              <div class="cart-flyout-table-content">
+                <div class="cart-flyout-table-label-wrapper top">
+                  <div class="cart-flyout-table-text purple">SHIPPING</div>
+                </div>
+
+                <div class="cart-flyout-table-form-block ">
+                  
+                    <div class="cart-flyout-radio-flex-row"><label class="cart-flyout-table-radio-field w-radio"><input type="radio" name="flyout-shipping" id="standard" value="standard" class="w-form-formradioinput cart-flyout-table-radio-btn cart-flyout-table-radio-btn-standard w-radio-input" checked="checked"><span class="cart-flyout-table-radio-label w-form-label" for="standard">Standard Shipping (3-8 Business Days)</span></label>
+                      <div class="cart-flyout-table-text">FREE</div>
+                    </div>
+                    <div class="cart-flyout-radio-flex-row cart-flyout-radio-flex-row-priority"><label class="cart-flyout-table-radio-field w-radio"><input type="radio" name="flyout-shipping" id="priority" value="priority" class="w-form-formradioinput cart-flyout-table-radio-btn w-radio-input"><span class="cart-flyout-table-radio-label w-form-label" for="priority">Priority Shipping (2-5 Business Days)</span></label>
+                      <div class="cart-flyout-table-text">$9.99</div>
+                    </div>
+                    <div class="cart-flyout-radio-flex-row cart-flyout-radio-flex-row-shipping-free"><label class="cart-flyout-table-radio-field w-radio"><input type="radio" name="flyout-shipping" id="priority-free" value="priority-free" class="w-form-formradioinput cart-flyout-table-radio-btn w-radio-input"><span class="cart-flyout-table-radio-label w-form-label" for="priority-free">Priority Shipping (2-5 Business Days)</span></label>
+                      <div class="cart-flyout-table-text">FREE</div>
+                    </div>
+
+                </div>
+
+              </div>
+              <div class="cart-flyout-table-heading-wrapper {% if hasSub  %} hidden-discountbox{% endif %}">
+                <div class="cart-flyout-table-text purple bot">DISCOUNTS</div>
+                {%comment%}
+                <div class="cart-flyout-table-text">Product Total (<span class="table-cart-qty-flag">{{cart.item_count}}</span>)</div>
+                {%endcomment%}
+                <div class="cart-flyout-table-text discountTotaldispaly  "><span class="jc-subtotal-flag csapps-cart-original-total">{{ cart.total_price | money }}</span></div>
+              </div>
+              {%comment%}
+              <div class="cart-flyout-table-heading-wrapper cart-flyout-table-heading-wrapper-alt">
+                <div class="cart-flyout-table-text">Have a discount code? Enter it at checkout.</div>
+                <div class="cart-flyout-table-text">—</div>
+              </div>
+              
+              <div class="cart-flyout-table-heading-wrapper cart-flyout-table-heading-wrapper-alt">
+                <div class="cart-flyout-table-text">TAXES (CALCULATED AT CHECKOUT)</div>
+                <div class="cart-flyout-table-text">—</div>
+              </div>
+              {%endcomment%}
+              <div class="cart-flyout-table-heading-wrapper cart-flyout-table-heading-wrapper-alt beforediscountOuter">
+                <div class="cart-flyout-table-text cart-flyout-table-text-b">Total Before Discounts</div>
+                <div class="cart-flyout-table-text cart-flyout-table-text-b beforediscountTotal"><span class="cart-total-plus-shipping-flag csapps-cart-original-total">{{ cart.total_price | money }}.</span></div>
+              </div>
+              <div class="cart-flyout-table-heading-wrapper cart-flyout-table-heading-wrapper-alt estimatedOuter">
+                <div class="cart-flyout-table-text cart-flyout-table-text-b">ESTIMATED TOTAL</div>
+                <div class="cart-flyout-table-text cart-flyout-table-text-b estimateTotal"><span class="cart-total-plus-shipping-flag csapps-cart-original-total">{{ cart.total_price | money }}.</span></div>
+              </div>
+            </div>
+            {% comment %}
+            <div class="cart-flyout-total-flex-row">
+              <div class="cart-flyout-total-heading">Subtotal</div>
+              <div class="cart-flyout-total-heading"><span class="jc-subtotal-flag"><span class='ak-upsell-original-price'>{{ cart.total_price | money_with_currency }}</span><span class='ak-upsell-cart-total'></span></span></div>
+            </div>
+            {% endcomment %}
+
+
+          </div>
+
+          <div class="cart-flyout-btn-section">
+            <div class="cart-flyout-btn-flex-row">
+
+              {%- comment -%}
+                {% render 'snippet-gf-discount-code' %}
+              {%- endcomment -%}
+
+              
+              <div class="cart-flyout-btn-wrapper">
+                {% comment %}
+                <form action="{{ routes.cart_url }}" method="post" novalidate class="cart">
+                <input type="submit" name="checkout" class="btn-main btn-main-flyout w-button" value="Secure Checkout">
+                </form>
+                {% endcomment %}
+                <input type="submit" name="checkout" value="Checkout" class="btn-main-flyout w-inline-block" >
+                {% comment %}
+                  <a href="/cart" class="btn-main-flyout w-inline-block">
+                  <img src="//cdn.shopify.com/s/files/1/0636/9355/3922/files/locked.png" loading="lazy" alt="Lock" class="btn-main-flyout-img">
+                  <div>CHECKOUT</div>
+                  {% endcomment %}
+                </a>
+              </div>
+
+              <div class="cart-flyout-btn-wrapper cart-flyout-close-target">
+                <a href="#" class="btn-main-flyout hollow w-inline-block" data-ix="cart-flyout-close">
+                  <div>Keep Shopping</div>
+                </a>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="cart-flyout-taxes-section">
+            <div class="cart-flyout-taxes-text">Taxes are calculated at checkout.</div>
+          </div>
+          
+        </div>
+
+      </div>
+
+      {% unless cart.item_count > 0 %}
+        {% assign jc_cart_show_class = 'jc-cart-show' %}
+      {% endunless %}
+
+      <div id="jc-empty-cart-wrapper" class="flyout-product-block flyout-product-block-empty {{jc_cart_show_class}}">
+        <div class="cart-flyout-empty-text">Your Cart is Empty</div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+
+
+
+
+<script type="text/javascript">
+  function jcUpdateCart () {
+     $('#jc-ajax-product-section').html('');
+     var sk_product_array = [];
+     
+     jQuery.ajax({
+           url: '/cart.js',
+           dataType: 'json'
+         })
+         .done(function(data){
+           var newCount = data.item_count;
+           var count_string = data.item_count.toString();
+          // console.log(data.items.length);
+         // $('.nav-meta-cart-text').text(count_string);
+         /*$('.nav-cart-quantity-text').each(function(i, obj) {
+             $(this).html(count_string);
+         });*/
+         $('.cart-flyout-cart-text').text(count_string);
+         $('.table-cart-qty-flag').text(count_string);
+ 
+ 
+         
+          if ( data.item_count > 0) {
+           $('#cart-bottom-content-wrapper').removeClass('jc-cart-hide');
+           $('#jc-empty-cart-wrapper').removeClass('jc-cart-show');
+           $('.cart-flyout-heading-wrapper').removeClass('jc-cart-hide');
+           $('.cart-flyout-related-wrapper').removeClass('jc-cart-hide');
+ 
+          } else {
+           $('#cart-bottom-content-wrapper').addClass('jc-cart-hide');
+           $('#jc-empty-cart-wrapper').addClass('jc-cart-show');
+           $('.cart-flyout-heading-wrapper').addClass('jc-cart-hide');
+           $('.cart-flyout-related-wrapper').addClass('jc-cart-hide');
+ 
+ 
+          }
+           var hasSub = true;
+           data.items.forEach(function(item, index) {
+             console.log('requires_selling_plan---- ',typeof item.selling_plan_allocation);
+             if(item.selling_plan_allocation == undefined){
+               hasSub = false
+             }
+           });
+         console.log('hasSub', hasSub)
+           if(hasSub == true){
+             $('.cart-flyout-table-heading-wrapper').addClass('hidden-discountbox');
+           }else{
+             $('.cart-flyout-table-heading-wrapper').removeClass('hidden-discountbox');
+           }
+          // for (var i = 0; i < data.item_count; i++) {
+           data.items.forEach(function(item, index) {
+             // Delta-8 - 7650180137218
+             // Delta-9 - 7650180661506
+             var item_product_id = item.product_id;
+ 
+             sk_product_array.push(item_product_id); 
+   
+ 
+             /*
+             console.log('Title ' + item.product_title ); //product title
+             console.log('Variant Title ' + item.variant_title )
+             console.log('Orig Price ' + item.original_price ); //price
+             console.log('Price ' + item.price ); //price
+             console.log('URL ' + item.url ); //url
+             console.log('Quantity ' + item.quantity ); //quantity
+             console.log('Image URL ' + item.image ); // item's image
+             console.log('Has NO variants?: ' + item.product_has_only_default_variant); // only default variant?
+             */
+  
+             var original_price_formatted = ((Math.round(item.original_price) / 100).toFixed(2));
+             var item_price_formatted = ((Math.round(item.line_price) / 100).toFixed(2));
+ 
+             var item_price_discount_10_percent = (((Math.round(item.line_price) / 100)*.90).toFixed(2));
+             var item_price_discount_15_percent = (((Math.round(item.line_price) / 100)*.85).toFixed(2));
+ 
+ 
+             var jc_total_discount = item.total_discount;
+ 
+             if (jc_total_discount != 0) {
+               var jc_has_discount = true;
+             } else {
+               var jc_has_discount = false;
+             }
+             /*
+             console.log('Has a Discount?: ' + jc_has_discount );
+             */
+             if ( item.product_has_only_default_variant == false ) {
+ 
+               var variant_count = item.options_with_values.length;
+               
+ 
+               for (var j = 0; j < variant_count; j++) { 
+                 //console.log(item.options_with_values[j].name + ": " + item.options_with_values[j].value);
+                 if (j == 0) {
+                   var dom_variant_options = '<div id="jc-ajax-options" class="cart-flyout-variant-block"><span class="cart-flyout-variant-heading">'+item.options_with_values[j].name+'</span> '+item.options_with_values[j].value+'</div>';
+                 } else {
+                   var dom_variant_options = dom_variant_options + '<div id="jc-ajax-options" class="cart-flyout-variant-block"><span class="cart-flyout-variant-heading">'+item.options_with_values[j].name+'</span> '+item.options_with_values[j].value+'</div>';
+                 }
+ 
+               }
+ 
+              // console.log(item.product_title);
+              // console.log(dom_variant_options);
+             }
+ 
+ 
+ 
+           /* if (jc_has_discount == true) {
+               var dom_price = '<div class="cart-flyout-item-price-text flyout-price-text"><span id="jc-ajax-original-price" class="flyout-price-text-discount sk-ajax-og-price">$'+original_price_formatted+'</span> <span id="jc-ajax-final-line-price sk-ajax-final-price">$'+item_price_formatted+'</span></div>';
+             } else {
+               var dom_price = '<div class="cart-flyout-item-price-text"><span id="jc-ajax-final-price" class="sk-ajax-final-price">$'+item_price_formatted+'</span></div>';
+             } */
+ 
+             // Delta-8 - 7650180137218
+             // Delta-9 - 7650180661506
+            // var item_product_id = item.product_id;
+ 
+            if ( item_product_id == 7650180137218 || item_product_id == 7650180661506 || item_product_id == 7934597071106 ) {
+ 
+               if (item.quantity == 1) {
+                 var dom_price = '<div class="cart-flyout-item-price-text">$<span id="" class="sk-ajax-final-price">'+item_price_formatted+'</span></div>';
+               } 
+ 
+               else if (item.quantity == 2) {
+                  var dom_price = '<div class="cart-flyout-item-price-text flyout-price-text"><span id="jc-ajax-original-price" class="flyout-price-text-discount sk-ajax-og-price">$'+item_price_formatted+'</span> $<span id="" class="sk-ajax-final-price">'+item_price_discount_10_percent+'</span></div>';
+               } 
+ 
+               else if (item.quantity > 2) {
+                 var dom_price = '<div class="cart-flyout-item-price-text flyout-price-text"><span id="jc-ajax-original-price" class="flyout-price-text-discount sk-ajax-og-price">$'+item_price_formatted+'</span> $<span id="" class="sk-ajax-final-price">'+item_price_discount_15_percent+'</span></div>';
+               } 
+ 
+               else {
+                 var dom_price = '<div class="cart-flyout-item-price-text">$<span id="" class="sk-ajax-final-price">'+item_price_formatted+'</span></div>';
+               }
+ 
+ 
+            }
+            else {
+ 
+               var dom_price = '<div class="cart-flyout-item-price-text">$<span id="" class="sk-ajax-final-price">'+item_price_formatted+'</span></div>';
+ 
+            } 
+             
+ 
+             if (item.product_has_only_default_variant == true) {
+               var dom_variant_title = '';
+             } else {
+ 
+               var dom_variant_title = dom_variant_options;
+             }
+ 
+             // Delta-8 - 7650180137218
+             // Delta-9 - 7650180661506
+            // var item_product_id = item.product_id;
+ 
+ 
+            if ( item_product_id == 7650180137218 || item_product_id == 7650180661506 || item_product_id == 7934597071106 ) {
+ 
+               if ( item_product_id == 7650180137218 ) {
+                 if (item.quantity > 0 && item.quantity < 3) {
+ 
+                   if (item.quantity == 1) {
+                     var nudge_text = '<div class="nudge-wrapper"><div class="cart-flyout-nudge-text">Add 1 more and save 10% 🤑</div></div>';
+                   } 
+ 
+                   if (item.quantity == 2) {
+                     var nudge_text = '<div class="nudge-wrapper"><div class="cart-flyout-nudge-text">Add one more and save 15% 🤑</div></div> ';
+                   } 
+ 
+                 } else {
+                   var nudge_text = '<div></div>';
+                 }
+            }
+ 
+            if ( item_product_id == 7650180661506 ) {
+               if (item.quantity > 0 && item.quantity < 3) {
+ 
+                 if (item.quantity == 1) {
+                   var nudge_text = '<div class="nudge-wrapper"><div class="cart-flyout-nudge-text">Add 1 more and save 10% 🤑</div></div>';
+                 } 
+ 
+                 if (item.quantity == 2) {
+                   var nudge_text = '<div class="nudge-wrapper"><div class="cart-flyout-nudge-text">Add one more and save 15% 🤑</div></div> ';
+                 } 
+ 
+               } else {
+                 var nudge_text = '<div></div>';
+               }
+            }
+ 
+ 
+            if ( item_product_id == 7934597071106 ) {
+             if (item.quantity > 0 && item.quantity < 3) {
+ 
+               if (item.quantity == 1) {
+                 var nudge_text = '<div class="nudge-wrapper"><div class="cart-flyout-nudge-text">Add 1 more and save 10% 🤑</div></div>';
+               } 
+ 
+               if (item.quantity == 2) {
+                 var nudge_text = '<div class="nudge-wrapper"><div class="cart-flyout-nudge-text">Add one more and save 15% 🤑</div></div> ';
+               } 
+ 
+             } else {
+               var nudge_text = '<div></div>';
+             }
+          }
+ 
+           } 
+ 
+           else {
+ 
+                   var nudge_text = '<div></div>';
+               }
+ 
+            
+ 
+             var line_item_key = item.key;
+             var selling_plan = '';
+             var savings_text = '';
+             if (item.hasOwnProperty('selling_plan_allocation')) {
+               var selling_plan = '<div class="cart-flyout-selling-plan">'+item.selling_plan_allocation.selling_plan.name+ '</div>';
+               var savings_text = '<div class="cart-flyout-savings-text">You Saved 15%!</div>';
+             }
+             
+            
+ 
+ 
+             var dom_content = nudge_text + '<div class="cart-flyout-item"><div class="cart-flyout-item-flex-row"><div class="cart-flyout-item-flex-col-1"><div class="cart-flyout-item-img-block"><a href="'+item.url+'" class="cart-flyout-img-link w-inline-block"><img src="'+item.image+'"loading="lazy" alt="'+item.product_title+'"class="cart-flyout-item-img"></a></div></div><div class="cart-flyout-item-flex-col-2"><div class="cart-flyout-item-title"><a id="jc-ajax-url" href="'+item.url+'" class="cart-flyout-item-title-link">'+item.product_title+'</a></div><div class="cart-flyout-variant-section"><div id="jc-ajax-options" class="cart-flyout-variant-block"><span class="cart-flyout-variant-heading">'+dom_variant_title+'</span></div></div>'+ savings_text + selling_plan + '<div class="cart-flyout-variant-block cart-flyout-variant-block-qty"><div class="cart-flyout-qty-flex-row"><div class="cart-flyout-qty-input-wrapper"><a href="#" class="cart-flyout-qty-link cart-flyout-qty-link-down w-inline-block"><div>-</div></a><input type="number" class="cart-flyout-qty-input w-input" maxlength="256" name="cartItemQuantity" value="'+item.quantity+'" id="cartItemQuantity-'+index+'" required="" sk-qty-target="'+line_item_key+'"><a href="#" class="cart-flyout-qty-link cart-flyout-qty-link-up w-inline-block"><div>+</div></a></div><a href="#" class="cart-flyout-qty-btn w-button">Update</a></div></div>' + '</div><div class="cart-flyout-item-flex-col-3"><div class="cart-flyout-remove-wrapper"><a href="#" class="cart-flyout-remove-link w-inline-block" line-item-key="' + line_item_key + '"><img src="https://cdn.shopify.com/s/files/1/0636/9355/3922/files/trash-new.png?v=1677107771" class="cart-flyout-remove-img"></a></div>'+dom_price+'</div></div>';
+ 
+             $('#jc-ajax-product-section').append(dom_content);
+ 
+ 
+ 
+          /*   console.log('------- NEXT ITEM --------');*/
+ 
+ 
+           });
+ 
+           // Delta-8 - 7650180137218
+           // Delta-9 - 7650180661506
+           //console.log('array final: ' + sk_product_array);
+ 
+           var is_delta_8 = sk_product_array.indexOf(7650180137218);
+           var is_delta_9 = sk_product_array.indexOf(7650180661506);
+ 
+          /* console.log('is delta 8: '+ is_delta_8);
+           console.log('is delta 9: '+ is_delta_9);
+           console.log(sk_product_array);*/
+ 
+           if (is_delta_8 >= 0 && is_delta_9 >= 0) {
+ 
+             $('.cart-flyout-related-wrapper').addClass('jc-cart-hide');
+ 
+           } else {
+ 
+               $('.cart-flyout-related-wrapper').addClass('jc-cart-hide');
+ 
+               if (is_delta_8 >= 0 ) {
+                 $('.cart-flyout-related-wrapper').removeClass('jc-cart-hide');
+                 $('.cart-flyout-related-flex-col[sk-product-taget="Delta-9"]').removeClass('cart-flyout-related-flex-col-hide');
+                 $('.cart-flyout-related-flex-col[sk-product-taget="Delta-8"]').addClass('cart-flyout-related-flex-col-hide');
+               }
+ 
+               if (is_delta_9 >= 0) {
+                 $('.cart-flyout-related-wrapper').removeClass('jc-cart-hide');
+                 $('.cart-flyout-related-flex-col[sk-product-taget="Delta-8"]').removeClass('cart-flyout-related-flex-col-hide');
+                 $('.cart-flyout-related-flex-col[sk-product-taget="Delta-9"]').addClass('cart-flyout-related-flex-col-hide');
+               }
+ 
+ 
+           }
+           
+ 
+           var jc_subtotal_amount =(data.items_subtotal_price / 100);
+          // var jc_subtotal_amount_rounded = Math.ceil(jc_subtotal_amount);
+           var jc_subtotal_amount_rounded = parseFloat(jc_subtotal_amount.toFixed(2));
+           var jc_subtotal_needed = 72.22 - jc_subtotal_amount_rounded;
+           var jc_subtotal_needed_formatted = parseFloat(jc_subtotal_needed.toFixed(2));
+ 
+           /*console.log('sub amt: ' + jc_subtotal_amount );
+           console.log('sub amt rounded: ' + jc_subtotal_amount_rounded );
+           console.log('sub needed: ' + jc_subtotal_needed );*/
+ 
+           /*
+ 
+           if (data.item_count > 0) {
+ 
+            if ( jc_subtotal_amount_rounded < 72.22) {
+              var percent_full = (jc_subtotal_amount / 72.22) * 100;
+              var percent_full_rounded = parseFloat(percent_full.toFixed(2));
+ 
+              $('.cart-flyout-shipping-amt-section').html('<div class="cart-flyout-progress-bar"><div class="cart-flyout-progress-bar-inner" style="width: ' + percent_full_rounded + '%;"></div></div>Spend <strong>$' + jc_subtotal_needed_formatted + '</strong> more to get <strong>FREE Priority Shipping</strong>'); 
+ 
+              $('.cart-flyout-radio-flex-row-priority').css('display','flex');
+              $('.cart-flyout-radio-flex-row-shipping-free').css('display','none');
+ 
+            } else {
+              $('.cart-flyout-shipping-amt-section').html("You've Unlocked <strong>FREE Priority Shipping</strong>"); 
+              $('.cart-flyout-radio-flex-row-priority').css('display','none');
+              $('.cart-flyout-radio-flex-row-shipping-free').css('display','flex');
+              
+ 
+            }
+ 
+           }
+ 
+           */
+ 
+           if (data.item_count > 0) {
+ 
+             if ( jc_subtotal_amount_rounded < 72.22) {
+               var percent_full = (jc_subtotal_amount / 72.22) * 100;
+               var percent_full_rounded = parseFloat(percent_full.toFixed(2));
+ 
+               $('.cart-flyout-shipping-amt-section').html('<div class="cart-flyout-progress-bar"><div class="cart-flyout-progress-bar-inner" style="width: 50%;"></div></div><strong>Add one more product</strong> to get <strong>FREE Priority Shipping</strong>'); 
+ 
+               $('.cart-flyout-radio-flex-row-priority').css('display','flex');
+               $('.cart-flyout-radio-flex-row-shipping-free').css('display','none');
+ 
+             } else {
+               $('.cart-flyout-shipping-amt-section').html("You've Unlocked <strong>FREE Priority Shipping</strong>"); 
+               $('.cart-flyout-radio-flex-row-priority').css('display','none');
+               $('.cart-flyout-radio-flex-row-shipping-free').css('display','flex');
+               
+ 
+             }
+ 
+           }
+ 
+ 
+           
+           var jc_cart_total_discount = data.total_discount;
+ 
+           if (jc_cart_total_discount > 0) {
+             var jc_cart_has_discount = true;
+           } else {
+             var jc_cart_has_discount = false;
+           }
+ 
+           var jc_original_total_price = ((Math.round( data.original_total_price) / 100).toFixed(2)); ;
+         //  var subtotal_formatted = ((Math.round( data.items_subtotal_price) / 100).toFixed(2));
+ 
+           var subtotal_formatted = 0.00;
+           $('.sk-ajax-final-price').each(function(i, obj) {
+               var price_value = $(this).text();
+               var price_value_formatted = parseFloat(price_value);
+               subtotal_formatted = subtotal_formatted + price_value_formatted;
+               
+           });
+ 
+           var subtotal_formatted_fixed = subtotal_formatted.toFixed(2);
+ 
+          // var total_plus_shipping = ((Math.round( (data.items_subtotal_price) / 100) + 10 ).toFixed(2));
+   
+          var total_plus_shipping = ( (data.items_subtotal_price / 100) + 9.99 ).toFixed(2);
+          //console.log("UPDATING TOTAL CART PRICE");
+          //console.log(subtotal_formatted);
+          //console.log(subtotal_formatted_fixed); 
+          //console.log(total_plus_shipping); 
+          
+ 
+         $('.jc-subtotal-flag').html('<span class="subtotal-flag-inner csapps-cart-original-total">'+ subtotal_formatted_fixed + '</span>');
+         $('.cart-total-plus-shipping-flag').html('$ '+ subtotal_formatted_fixed);
+ 
+         $('.cart-flyout-table-radio-btn').each(function(i, obj) {
+             $(this).removeAttr('checked');
+         });
+ 
+         $('.cart-flyout-table-radio-btn-standard').attr('checked','checked');
+         
+          
+           
+         });
+         
+        
+   
+       }
+ </script>
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+
+
+
+  $(document).ready(function() { 
+
+     /* if (window.location.href.indexOf("?cart-flyout-open=1") > -1) {
+        $('body').css('overflow', 'hidden');
+        jcCartTrigger();
+      }*/
+
+
+        $('.cart-flyout-open').click(function(e) {
+          e.preventDefault();
+          $('body').css('overflow', 'hidden');
+        // $('.cart-flyout-wrapper').addClass('sk-cart-flyout-open');
+          jcUpdateCart();
+          if(typeof fire_cart_data !== 'undefined'){
+            fire_cart_data(1, 'all');
+          }
+        });
+
+        $('.cart-flyout-close-target').click(function(e) {
+          e.preventDefault();
+       //  $('.cart-flyout-wrapper').removeClass('sk-cart-flyout-open');
+        $('body').css('overflow', 'auto');
+        });
+
+   });
+
+
+</script>
+<script type="text/javascript">
+
+
+
+  $(document).ready(function() { 
+
+     /* if (window.location.href.indexOf("?cart-flyout-open=1") > -1) {
+        $('body').css('overflow', 'hidden');
+        jcCartTrigger();
+      }*/
+
+
+        $('.cart-flyout-open-1').click(function(e) {
+          e.preventDefault();
+          $('body').css('overflow', 'hidden');
+        // $('.cart-flyout-wrapper').addClass('sk-cart-flyout-open');
+          jcUpdateCart();
+          if(typeof fire_cart_data !== 'undefined'){
+            fire_cart_data(1, 'all');
+          }
+        });
+
+        $('.cart-flyout-close-target').click(function(e) {
+          e.preventDefault();
+       //  $('.cart-flyout-wrapper').removeClass('sk-cart-flyout-open');
+        $('body').css('overflow', 'auto');
+        });
+
+   });
+
+
+</script>
+<script type="text/javascript">
+  function jcCartTrigger () {
+      $(".nav-meta-link.cart-flyout-open")[0].click();
+  }
+</script>
+<script type="text/javascript">
+  function jcCartTrigger () {
+      $(".nav-meta-link.cart-flyout-open-1")[0].click();
+  }
+</script>
+
+
+
+{%- comment -%}*********************************    TOTAL CART PRICE UPDATING   
+<script type="text/javascript">
+  $(document).ready(function() { 
+
+
+
+
+   
+    $('.cart-flyout-table-radio-btn').on('change', function() {
+
+        var shipping_selection_field = $('.cart-flyout-table-radio-btn:checked');
+        var shipping_selection = shipping_selection_field .val();
+
+        var product_total_amount = $('.subtotal-flag-inner');
+        var product_total_amount_to_numb = product_total_amount.val();
+
+        if (shipping_selection == 'standard') {
+
+          var new_total_amount_text = product_total_amount.text();
+
+          var new_total_amount_number = parseFloat(new_total_amount_text.replace('$', ''));
+          var new_total_amount = new_total_amount_number.toFixed(2);
+
+          
+          $('.cart-total-plus-shipping-flag').html('$' + new_total_amount );
+          
+
+          
+          console.log("UPDATING TOTAL CART PRICE");
+
+
+
+          /*
+              var new_total_amount_text = product_total_amount.text();
+              var new_total_amount_number = parseFloat(new_total_amount_text);
+              var new_total_amount = new_total_amount_number.toFixed(2);
+              $('.cart-total-plus-shipping-flag').html('$ ' + new_total_amount );
+              */
+        } 
+
+        else if (shipping_selection == 'priority') {
+
+          
+             var new_total_amount_text = product_total_amount.text();
+
+             var new_total_amount_number = parseFloat(new_total_amount_text.replace('$', ''));
+             var new_total_amount = (new_total_amount_number + 9.99).toFixed(2);
+              $('.cart-total-plus-shipping-flag').html('$' + new_total_amount );
+              
+        } 
+
+        else {
+         
+            var new_total_amount_text = product_total_amount.text();
+
+            var new_total_amount_number = parseFloat(new_total_amount_text.replace('$', ''));
+            var new_total_amount = new_total_amount_number.toFixed(2);
+            $('.cart-total-plus-shipping-flag').html('$' + new_total_amount );
+
+        }
+        
+
+      }); 
+
+   });
+
+
+</script>
+*************************************{%- endcomment -%}
+
+
+<script type="text/javascript">
+
+  var sk_main_page_url = new URL(window.location.href);
+  sk_main_page_url.searchParams.set('cart-flyout-open','1');
+  var sk_refresh_url = sk_main_page_url.href;
+  
+
+  $(document).on("click",".cart-flyout-remove-link",function () {
+      var line_item_key = $(this).attr('line-item-key');
+      UpdateItemInCart(line_item_key,0);
+      
+  });
+
+  function UpdateItemInCart (item,quantity) {
+    fetch('/cart/update.js', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        updates: {
+          [item]: quantity
+        }
+      })
+    }).then(response => response.json())
+      .then((newCart) => {
+       // window.location.href = sk_refresh_url;
+       jcUpdateCart ();
+        console.log('Updated cart:', newCart);
+
+      })
+      .catch(console.error)
+  }
+</script>
+
+<script type="text/javascript">
+  
+  $(document).on("click",".cart-flyout-qty-link-down",function () {
+      var current_input = $(this).siblings('.cart-flyout-qty-input');
+      current_input.val( function(i, oldval) {
+              
+              if (oldval < 2) {
+                return 0;
+              }  else {
+                return --oldval;
+              }
+          });
+      
+  });
+
+  $(document).on("click",".cart-flyout-qty-link-up",function () {
+      var current_input = $(this).siblings('.cart-flyout-qty-input');
+      current_input.val( function(i, oldval) {
+
+             return ++oldval;
+              
+          });
+      
+  });
+
+  $(document).on("click",".cart-flyout-qty-btn",function () {
+      var input_wrapper = $(this).siblings('.cart-flyout-qty-input-wrapper');
+      var input_elm = input_wrapper.find('.cart-flyout-qty-input');
+      var input_val = input_elm.val();
+      var input_item_key = input_elm.attr('sk-qty-target');
+
+      UpdateItemInCart(input_item_key,input_val);
+      
+  });
+
+</script>
+
+<style type="text/css">
+  .qb-min-cart-warnings {
+    display: none !important;
+  }
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% schema %}
+{
+  "name": "Cart Flyout",
+  "settings": [
+      {
+       "type": "product",
+       "id": "featured_product_1",
+       "label": "Featured Product"
+      },
+      {
+       "type": "product",
+       "id": "featured_product_2",
+       "label": "Featured Product"
+      }
+  ]
+
+  
+}
+{% endschema %}
+
+

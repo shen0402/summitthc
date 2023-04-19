@@ -1,0 +1,7 @@
+{% comment %}
+  Search template for Quantity Breaks Now (https://apps.shopify.com/quantity-breaks-now)
+  {% endcomment %}
+  {% layout none %}
+  {% paginate search.results by 50 %}
+  {{ search.results | json }}
+  {% endpaginate %}

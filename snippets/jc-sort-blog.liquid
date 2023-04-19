@@ -1,0 +1,16 @@
+<script type="text/javascript">
+	$('#blog-category-filter').on('change', function() {
+	  var current_value = this.value;
+	  if (current_value == 'none') {
+	    return false;
+	  }
+	  else {
+	    var shop_url = '{{shop.url}}';
+	    var blog_url = '{{blog.url}}';
+	    var param_url = current_value;
+	    var full_url = shop_url+param_url+'#main-content';
+	    window.location.href = full_url;
+	  }
+
+	});
+</script>

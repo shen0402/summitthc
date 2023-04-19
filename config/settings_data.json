@@ -1,0 +1,1135 @@
+{
+  "current": {
+    "color_text": "#3d4246",
+    "color_body_text": "#000000",
+    "color_sale_text": "#557B97",
+    "color_button": "#557B97",
+    "color_button_text": "#fff",
+    "color_small_button_text_border": "#3d4246",
+    "color_text_field_text": "#000",
+    "color_text_field_border": "#949494",
+    "color_text_field": "#fff",
+    "color_image_overlay_text": "#fff",
+    "color_image_overlay": "#3d4246",
+    "image_overlay_opacity": 40,
+    "color_borders": "#e8e9eb",
+    "color_body_bg": "#fff",
+    "type_header_font": "work_sans_n6",
+    "type_header_base_size": 26,
+    "type_base_font": "work_sans_n4",
+    "type_base_size": 16,
+    "type_bold_product_titles": false,
+    "share_image": "shopify:\/\/shop_images\/SM_Social_Sharing_V2.jpg",
+    "share_facebook": true,
+    "share_twitter": true,
+    "share_pinterest": true,
+    "favicon": "shopify:\/\/shop_images\/SM_Favicon_V2_d681ec52-b1d9-45fb-8fdb-a68c03c614d5.png",
+    "checkout_logo_image": "shopify:\/\/shop_images\/SM_Logos_RGB_SM_Logo_Vertical__PURP.png",
+    "checkout_accent_color": "#331c94",
+    "checkout_button_color": "#331c94",
+    "sections": {
+      "header": {
+        "type": "header",
+        "settings": {
+        }
+      },
+      "hero": {
+        "type": "hero",
+        "settings": {
+          "text_size": "large"
+        }
+      },
+      "slideshow": {
+        "type": "slideshow",
+        "blocks": {
+          "slideshow-0": {
+            "type": "image",
+            "settings": {
+            }
+          },
+          "slideshow-1": {
+            "type": "image",
+            "settings": {
+            }
+          }
+        },
+        "block_order": [
+          "slideshow-0",
+          "slideshow-1"
+        ],
+        "settings": {
+        }
+      },
+      "featured-collections": {
+        "type": "collection",
+        "settings": {
+          "collection": "frontpage"
+        }
+      },
+      "feature-row": {
+        "type": "feature-row",
+        "settings": {
+        }
+      },
+      "footer": {
+        "type": "footer",
+        "blocks": {
+          "link_list": {
+            "type": "link_list",
+            "settings": {
+            }
+          },
+          "text": {
+            "type": "text",
+            "settings": {
+            }
+          },
+          "newsletter": {
+            "type": "newsletter",
+            "settings": {
+            }
+          }
+        },
+        "block_order": [
+          "link_list",
+          "text",
+          "newsletter"
+        ],
+        "settings": {
+        }
+      },
+      "sk-header": {
+        "type": "sk-header",
+        "custom_css": [
+
+        ],
+        "settings": {
+          "announcement_text": "EXPLORE OUR&nbsp;",
+          "announce_link_text": "PRODUCT GUIDE",
+          "announce_link": "shopify:\/\/pages\/product-guide",
+          "featured_product_1": "25mg-30ct-delta-8-vegan-infused-gummies",
+          "featured_product_2": "15mg-20ct-delta-9-vegan-infused-gummies"
+        }
+      },
+      "sk-home-hero": {
+        "type": "sk-home-hero",
+        "settings": {
+          "featured_product": "15mg-20ct-delta-9-vegan-infused-gummies",
+          "review_count": "350+ Reviews"
+        }
+      },
+      "sk-home-scroll-bar": {
+        "type": "sk-home-scroll-bar",
+        "settings": {
+        }
+      },
+      "sk-home-featured-products": {
+        "type": "sk-home-featured-products",
+        "settings": {
+          "featured_product_1": "25mg-30ct-delta-8-vegan-infused-gummies",
+          "featured_product_2": "15mg-20ct-delta-9-vegan-infused-gummies"
+        }
+      },
+      "sk-home-content-block": {
+        "type": "sk-home-content-block",
+        "settings": {
+        }
+      },
+      "sk-home-reviews": {
+        "type": "sk-home-reviews",
+        "settings": {
+          "featured_product": "15mg-20ct-delta-9-vegan-infused-gummies",
+          "review_count": "350+"
+        }
+      },
+      "sk-home-banner-1": {
+        "type": "sk-home-banner-1",
+        "settings": {
+        }
+      },
+      "sk-home-product-info": {
+        "type": "sk-home-product-info",
+        "settings": {
+        }
+      },
+      "sk-home-banner-2": {
+        "type": "sk-home-banner-2",
+        "settings": {
+        }
+      },
+      "sk-home-banner-3": {
+        "type": "sk-home-banner-3",
+        "settings": {
+        }
+      },
+      "sk-footer": {
+        "type": "sk-footer",
+        "settings": {
+        }
+      },
+      "sk-modal": {
+        "type": "sk-modal",
+        "settings": {
+        }
+      },
+      "sk-product-section": {
+        "type": "sk-product-section",
+        "settings": {
+        }
+      },
+      "sk-product-reviews-delta-9": {
+        "type": "sk-product-reviews-delta-9",
+        "blocks": {
+          "4890c8e0-61ba-4f98-a317-44673a84269d": {
+            "type": "text",
+            "settings": {
+              "content": "\"The summit gummies are the real deal, and we love the way they make us feel.\"",
+              "title": "Jackie Johnson"
+            }
+          },
+          "c4c5feeb-b685-40de-9c7c-b2b25c8dc562": {
+            "type": "text",
+            "settings": {
+              "content": "\"My husband and I love these! They taste really delicious and they're pretty powerful. I'd start with half of one.\"",
+              "title": "Selina Moreno"
+            }
+          },
+          "49f0317c-b74d-4d74-9c21-63a7b853e89a": {
+            "type": "text",
+            "settings": {
+              "content": "\"I found these online and figured I'd try them, since they have a guarantee. I was not disappointed, and they really work. Take them on an empty stomach for max effect.\"",
+              "title": "Francis L"
+            }
+          },
+          "347c9187-51c0-44e5-8993-b20e1e5d772d": {
+            "type": "text",
+            "settings": {
+              "content": "\"Start with half a gummy and take on an empty stomach like the instructions say. They work REALLY well. They also taste great.\"",
+              "title": "Miriam Cohen"
+            }
+          },
+          "a0a3a2af-f5e3-41cd-8e8d-882e768082b4": {
+            "type": "text",
+            "settings": {
+              "content": "\"I had to try these to see what everyone was talking about, and they're right. You can really feel these work. They taste great and are really perfect. Quality ingredients. Look at the label!\"",
+              "title": "Jasmine Taylor"
+            }
+          },
+          "55dcecad-d2e1-4b94-ac94-e5713d367762": {
+            "type": "text",
+            "settings": {
+              "content": "\"Give these a try and you'll love them. They taste really good and it's way better than vaping or putting that other crap in your lungs.\"",
+              "title": "Avery Evans"
+            }
+          },
+          "f17e3035-744d-46b2-b2d4-fd94e9341fe3": {
+            "type": "text",
+            "settings": {
+              "content": "\"They're sweet and powerful. I take mine about an hour before dinner and my whole evening is so much more enjoyable.\"",
+              "title": "Dalia Frazier"
+            }
+          },
+          "490b1770-8226-4a9a-aacd-5824a878326d": {
+            "type": "text",
+            "settings": {
+              "content": "\"My sister and I found these online since we've always wanted to try Delta 9 THC gummies. Love that we can see the lab results and the proof is in the product. They work!\"",
+              "title": "Abagail Lam"
+            }
+          },
+          "8f214b29-6763-406a-b8a4-abc8bb185277": {
+            "type": "text",
+            "settings": {
+              "content": "\"So happy I found these. The Summit gummies taste really good and they have the lab testing to back them up. Clean, potent THC gummies. STRONG when you eat them on an empty stomach.\"",
+              "title": "Aron Lucero"
+            }
+          },
+          "d5b305e4-4194-49c7-9375-8ca6657d1b41": {
+            "type": "text",
+            "settings": {
+              "content": "\"I was reading about delta 9 gummies online and looked into a few brands. These were the best value, best ingredients, and strongest I've found.\"",
+              "title": "Payton Spence"
+            }
+          },
+          "87c31596-9ddd-4c39-bfca-c870d9bb0bcb": {
+            "type": "text",
+            "settings": {
+              "content": "\"Summit really delivers on both efficacy and taste. A well rounded gummy that's supported by lab reports. Their testing goes beyond any other gummy I've found.\"",
+              "title": "Carl Davidson"
+            }
+          },
+          "ae47c433-233a-493e-97ae-bade88be6164": {
+            "type": "text",
+            "settings": {
+              "content": "\"Finally!! A pure, clean, lab tested, delicious, and high performance delta 9 THC gummy. These are the best I've found, and I love the free shipping and bulk discounts!!!\"",
+              "title": "Marquise Webster"
+            }
+          }
+        },
+        "block_order": [
+          "4890c8e0-61ba-4f98-a317-44673a84269d",
+          "c4c5feeb-b685-40de-9c7c-b2b25c8dc562",
+          "49f0317c-b74d-4d74-9c21-63a7b853e89a",
+          "347c9187-51c0-44e5-8993-b20e1e5d772d",
+          "a0a3a2af-f5e3-41cd-8e8d-882e768082b4",
+          "55dcecad-d2e1-4b94-ac94-e5713d367762",
+          "f17e3035-744d-46b2-b2d4-fd94e9341fe3",
+          "490b1770-8226-4a9a-aacd-5824a878326d",
+          "8f214b29-6763-406a-b8a4-abc8bb185277",
+          "d5b305e4-4194-49c7-9375-8ca6657d1b41",
+          "87c31596-9ddd-4c39-bfca-c870d9bb0bcb",
+          "ae47c433-233a-493e-97ae-bade88be6164"
+        ],
+        "settings": {
+        }
+      },
+      "sk-product-image-banner-1": {
+        "type": "sk-product-image-banner-1",
+        "settings": {
+        }
+      },
+      "sk-product-icon-section-delta-9": {
+        "type": "sk-product-icon-section-delta-9",
+        "settings": {
+        }
+      },
+      "sk-product-bottom-section-delta-9": {
+        "type": "sk-product-bottom-section-delta-9",
+        "settings": {
+        }
+      },
+      "sk-product-faqs-delta-9": {
+        "type": "sk-product-faqs-delta-9",
+        "settings": {
+        }
+      },
+      "sk-ship-map-section": {
+        "type": "sk-ship-map-section",
+        "settings": {
+        }
+      },
+      "sk-product-image-banner-2": {
+        "type": "sk-product-image-banner-2",
+        "settings": {
+        }
+      },
+      "sk-product-block-delta-8": {
+        "type": "sk-product-block-delta-8",
+        "settings": {
+          "featured_product": "25mg-30ct-delta-8-vegan-infused-gummies"
+        }
+      },
+      "sk-product-row": {
+        "type": "sk-product-row",
+        "settings": {
+        }
+      },
+      "sk-product-reviews-delta-8": {
+        "type": "sk-product-reviews-delta-8",
+        "blocks": {
+          "b7a4794b-8dce-4bf4-8b2b-338c397f6b7e": {
+            "type": "text",
+            "settings": {
+              "content": "\"I really prefer these delta 8 gummies for winding down and slipping into bed. Love the effects and they taste great! Blue Raz is my fav.\"",
+              "title": "Carrie Spachman"
+            }
+          },
+          "ed639665-4822-425a-a7e7-46ae9542164a": {
+            "type": "text",
+            "settings": {
+              "content": "\"A lot of these brands are cheap and don't actually post lab tests like Summit. These are the real thing and they work really well.\"",
+              "title": "Clay Kennedy"
+            }
+          },
+          "bdd126cf-436e-4252-9897-44d93823e310": {
+            "type": "text",
+            "settings": {
+              "content": "\"I love the effects of these... super relaxing and perfect for chilling out. All of the flavors taste really good, and the discount on two jars is really good.\"",
+              "title": "Chelsea Jackson"
+            }
+          },
+          "72f7cc1e-45d9-4303-8e97-f10e8f89c910": {
+            "type": "text",
+            "settings": {
+              "content": "\"Summit mango flavor is so good. These gummies are amazing and I love to share them with my friends. Everyone loves them!\"",
+              "title": "Michael Andrews"
+            }
+          },
+          "6f031c26-9666-4294-a192-c35b36565712": {
+            "type": "text",
+            "settings": {
+              "content": "\"I can't recommend these enough! You really have to try them before eating when your stomach is empty to get the best effects.\"",
+              "title": "Fiona Castro"
+            }
+          },
+          "a55e91c3-3aaf-4221-8017-f0e74895da3e": {
+            "type": "text",
+            "settings": {
+              "content": "\"I've been looking for a lab verified gummy and Summit delta 8 gummies hit the mark. Priced well for such a premium, great tasting, potent gummy.\"",
+              "title": "Jo Mooney"
+            }
+          },
+          "3fd5638d-3aac-4119-9799-e0c65ad339f9": {
+            "type": "text",
+            "settings": {
+              "content": "\"These are excellent in terms of taste and performance. Free shipping is great!\"",
+              "title": "Mandy Garner"
+            }
+          },
+          "edf332bf-7a8c-4de3-b538-2d45c9647cd1": {
+            "type": "text",
+            "settings": {
+              "content": "\"My brother recommended these to help with sleep, and I'm so glad I found them. Total gamechanger for me.\"",
+              "title": "Chris Good"
+            }
+          },
+          "d6707661-ac0a-459b-8ff3-d45dfd659d37": {
+            "type": "text",
+            "settings": {
+              "content": "\"I've been using the Summit gummies for a few months now and have to say they work so well. Nice and relaxing.\"",
+              "title": "Aryana Contreras"
+            }
+          },
+          "f9936b65-2788-4992-9a3c-e47e8e3a55e8": {
+            "type": "text",
+            "settings": {
+              "content": "\"I learned about delta 8 online and am so impressed about this company. They're doing all the right things. Free shipping, lab tests, great products.\"",
+              "title": "Caleb Long"
+            }
+          },
+          "9c6fe074-351f-4eef-a768-a4c5663deeb4": {
+            "type": "text",
+            "settings": {
+              "content": "\"Finally found a company I can trust. So many crappy products out there, but these stand apart. This is a clean, high quality delta 8 gummy.\"",
+              "title": "Jeff Kramer"
+            }
+          },
+          "0e8768c3-4cb9-4167-b1d0-98f61061e6bc": {
+            "type": "text",
+            "settings": {
+              "content": "The summit gummies are both tasty and effective. I take one before dinner on an empty stomach, as instructed. They work!!",
+              "title": "Seth Odom"
+            }
+          }
+        },
+        "block_order": [
+          "b7a4794b-8dce-4bf4-8b2b-338c397f6b7e",
+          "ed639665-4822-425a-a7e7-46ae9542164a",
+          "bdd126cf-436e-4252-9897-44d93823e310",
+          "72f7cc1e-45d9-4303-8e97-f10e8f89c910",
+          "6f031c26-9666-4294-a192-c35b36565712",
+          "a55e91c3-3aaf-4221-8017-f0e74895da3e",
+          "3fd5638d-3aac-4119-9799-e0c65ad339f9",
+          "edf332bf-7a8c-4de3-b538-2d45c9647cd1",
+          "d6707661-ac0a-459b-8ff3-d45dfd659d37",
+          "f9936b65-2788-4992-9a3c-e47e8e3a55e8",
+          "9c6fe074-351f-4eef-a768-a4c5663deeb4",
+          "0e8768c3-4cb9-4167-b1d0-98f61061e6bc"
+        ],
+        "settings": {
+        }
+      },
+      "sk-product-icon-section-delta-8": {
+        "type": "sk-product-icon-section-delta-8",
+        "settings": {
+        }
+      },
+      "sk-product-bottom-section-delta-8": {
+        "type": "sk-product-bottom-section-delta-8",
+        "settings": {
+        }
+      },
+      "sk-product-faqs-delta-8": {
+        "type": "sk-product-faqs-delta-8",
+        "settings": {
+        }
+      },
+      "sk-product-block-delta-9": {
+        "type": "sk-product-block-delta-9",
+        "settings": {
+        }
+      },
+      "sk-cart-flyout": {
+        "type": "sk-cart-flyout",
+        "settings": {
+          "featured_product_1": "25mg-30ct-delta-8-vegan-infused-gummies",
+          "featured_product_2": "15mg-20ct-delta-9-vegan-infused-gummies"
+        }
+      },
+      "sk-lab-testing-hero": {
+        "type": "sk-lab-testing-hero",
+        "settings": {
+        }
+      },
+      "sk-lab-testing-sub-hero": {
+        "type": "sk-lab-testing-sub-hero",
+        "settings": {
+        }
+      },
+      "sk-lab-testing-main-content": {
+        "type": "sk-lab-testing-main-content",
+        "settings": {
+        }
+      },
+      "sk-lab-testing-contact-section": {
+        "type": "sk-lab-testing-contact-section",
+        "settings": {
+        }
+      },
+      "sk-lab-testing-banner": {
+        "type": "sk-lab-testing-banner",
+        "settings": {
+        }
+      },
+      "sk-lab-testing-modal-1": {
+        "type": "sk-lab-testing-modal-1",
+        "blocks": {
+          "53ca82e4-d710-4568-9f6e-21f2fab3ca46": {
+            "type": "text",
+            "settings": {
+              "title": "25mg Gummy - Lot 2471 \/ 2471-2",
+              "lot_number": "2472",
+              "url": "https:\/\/cdn.shopify.com\/s\/files\/1\/0636\/9355\/3922\/files\/Summit_25mg_Delta-8_Hemp_Gummies_Lot_2471_COA.pdf"
+            }
+          },
+          "6f5be5e8-071b-4f0c-8893-be6d970f3497": {
+            "type": "text",
+            "settings": {
+              "title": "25mg Gummy - Lot 2472",
+              "lot_number": "2472",
+              "url": "https:\/\/cdn.shopify.com\/s\/files\/1\/0636\/9355\/3922\/files\/Summit_25mg_Delta-8_Infused_Gummy_Lot_2472_1.pdf?v=1660089302"
+            }
+          }
+        },
+        "block_order": [
+          "53ca82e4-d710-4568-9f6e-21f2fab3ca46",
+          "6f5be5e8-071b-4f0c-8893-be6d970f3497"
+        ],
+        "settings": {
+        }
+      },
+      "sk-lab-testing-modal-2": {
+        "type": "sk-lab-testing-modal-2",
+        "blocks": {
+          "7229d457-efef-45fa-acbe-775ef9c71f9e": {
+            "type": "text",
+            "settings": {
+              "title": "15mg Gummy - Lot 0900",
+              "lot_number": "0900",
+              "url": "https:\/\/cdn.shopify.com\/s\/files\/1\/0636\/9355\/3922\/files\/Summit_Delta-9_CoA_Lot_0900.pdf?v=1650479670"
+            }
+          },
+          "90b685e9-ce8b-4c57-afcc-aeedf11fc9be": {
+            "type": "text",
+            "settings": {
+              "title": "15mg Gummy - Lot 0902",
+              "lot_number": "0902",
+              "url": "https:\/\/cdn.shopify.com\/s\/files\/1\/0636\/9355\/3922\/files\/Summit_15mg_Delta-9_Gummy_COA_Lot_0902.pdf?v=1681143285"
+            }
+          }
+        },
+        "block_order": [
+          "7229d457-efef-45fa-acbe-775ef9c71f9e",
+          "90b685e9-ce8b-4c57-afcc-aeedf11fc9be"
+        ],
+        "settings": {
+        }
+      },
+      "sk-campain-section": {
+        "type": "sk-campain-section",
+        "settings": {
+          "banner": "https:\/\/s.mmgo.io\/t\/Cbm0\/scale_3x",
+          "main_heading": "Two Days Only",
+          "sub_heading": "Shop <strong>15% OFF<\/strong> as part of our SMS crew.",
+          "btn_url": "https:\/\/summitthc.com\/discount\/VIP15?redirect=%2Fcollections%2Ffeatured",
+          "btn_text": "SHOP THE SALE"
+        }
+      },
+      "sk-welcome-section": {
+        "type": "sk-welcome-section",
+        "settings": {
+          "main_heading": "Get the Goods",
+          "btn_url": "https:\/\/summitthc.com\/collections\/featured",
+          "btn_text": "SHOP WITH CODE <strong>WELCOME20<\/strong>"
+        }
+      },
+      "sk-home-hero-hhc": {
+        "type": "sk-home-hero-hhc",
+        "settings": {
+          "featured_product": "",
+          "review_count": ""
+        }
+      },
+      "sk-home-featured-products-hhc": {
+        "type": "sk-home-featured-products-hhc",
+        "settings": {
+          "featured_product_1": "",
+          "featured_product_2": ""
+        }
+      },
+      "sk-home-content-block-hhc": {
+        "type": "sk-home-content-block-hhc",
+        "settings": {
+        }
+      },
+      "sk-home-reviews-hhc": {
+        "type": "sk-home-reviews-hhc",
+        "settings": {
+          "featured_product": "25mg-20ct-hhc-vegan-infused-gummies",
+          "review_count": "400+"
+        }
+      },
+      "sk-home-banner-1-hhc": {
+        "type": "sk-home-banner-1-hhc",
+        "settings": {
+        }
+      },
+      "sk-home-product-info-hhc": {
+        "type": "sk-home-product-info-hhc",
+        "settings": {
+        }
+      },
+      "sk-home-banner-2-hhc": {
+        "type": "sk-home-banner-2-hhc",
+        "settings": {
+        }
+      },
+      "sk-home-banner-3-hhc": {
+        "type": "sk-home-banner-3-hhc",
+        "settings": {
+        }
+      },
+      "sk-lab-testing-page": {
+        "type": "sk-lab-testing-page",
+        "settings": {
+        }
+      },
+      "sk-lab-testing-modal-3": {
+        "type": "sk-lab-testing-modal-3",
+        "blocks": {
+          "daa44ad6-12b4-46a3-bdc9-2d2047a6e0c0": {
+            "type": "text",
+            "settings": {
+              "title": "25mg HHC Gummy CoA's",
+              "lot_number": "1111",
+              "url": "https:\/\/cdn.shopify.com\/s\/files\/1\/0636\/9355\/3922\/files\/Summit_HHC_Lot_1111.pdf?v=1680110063"
+            }
+          }
+        },
+        "block_order": [
+          "daa44ad6-12b4-46a3-bdc9-2d2047a6e0c0"
+        ],
+        "settings": {
+        }
+      },
+      "where-we-ship-section-product": {
+        "type": "where-we-ship-section-product",
+        "settings": {
+        }
+      },
+      "sk-other-product": {
+        "type": "sk-other-product",
+        "settings": {
+        }
+      },
+      "sk-product-reviews-hhc": {
+        "type": "sk-product-reviews-hhc",
+        "blocks": {
+          "d13aa5e6-8da6-4c3a-a58d-81a1165d73f3": {
+            "type": "text",
+            "settings": {
+              "content": "The HHC gummies have such great flavors and help me unwind. I take about half a gummy every night.",
+              "title": "Debbie Sanderson"
+            }
+          },
+          "07ae3cec-ceb9-41da-bb9f-0b84d859c68b": {
+            "type": "text",
+            "settings": {
+              "content": "My wife and I love to relax with these. Take a half gummy, jump in the hot tub after 30 min, and enjoy!",
+              "title": "Max Sherman"
+            }
+          },
+          "1171e8f9-36ce-4e9a-a923-292ed54ffd41": {
+            "type": "text",
+            "settings": {
+              "content": "These hit pretty hard, and they seriously relax you. The tropical flavors are delicious.",
+              "title": "Erik Brooks"
+            }
+          },
+          "ad0a9552-888e-4f7a-8865-a49245bc776f": {
+            "type": "text",
+            "settings": {
+              "content": "I found the HHC gummies to mellow me out and I love that they ship right to my door.",
+              "title": "Sara Brody"
+            }
+          },
+          "6159ac68-1732-479b-995f-aa1386ffd946": {
+            "type": "text",
+            "settings": {
+              "content": "We all tried these during a party, and it made everything so much more fun. Super good taste, too.",
+              "title": "Erin Chang"
+            }
+          },
+          "48023c31-161a-4ae8-9c00-bbedbe4bb42b": {
+            "type": "text",
+            "settings": {
+              "content": "I used these for some general pain and they work well. Love to have a dose before my yoga routine!",
+              "title": "Suzanne Gilbert"
+            }
+          },
+          "6559b14a-b948-4b4e-9da8-1613e2c7db1b": {
+            "type": "text",
+            "settings": {
+              "content": "Compared to others I've tried, these actually tasted good and help me destress.",
+              "title": "Brianna Dougherty"
+            }
+          },
+          "67d7096f-1ca0-4abf-8fe8-5c0dcece8c08": {
+            "type": "text",
+            "settings": {
+              "content": "Read about Summit on Google and they're legit. I switched to these from smoking and enjoy them much more.",
+              "title": "Marissa Kepler"
+            }
+          },
+          "c1ad65d5-284f-4b42-8e6f-e5848073c6ac": {
+            "type": "text",
+            "settings": {
+              "content": "These are my go-to gummies for the weekend and I feel totally relaxed after taking one.",
+              "title": "Don Baker"
+            }
+          },
+          "93ba5037-f19e-4065-8465-62af0160d47c": {
+            "type": "text",
+            "settings": {
+              "content": "I've added these to my nightly routine to unwind. They help me sleep so much deeper and longer.",
+              "title": "Pria Savaparthary"
+            }
+          },
+          "6f649e9c-d510-4092-b4fc-655c817de16e": {
+            "type": "text",
+            "settings": {
+              "content": "I can't get Delta 8 where I live, but these are just as good.",
+              "title": "Bryan Ordonez"
+            }
+          },
+          "6f654694-60ff-4ab6-9999-65962f62e0f7": {
+            "type": "text",
+            "settings": {
+              "content": "Summit makes the best tasting, best performing gummies I've tried.",
+              "title": "Marquise Jefferson"
+            }
+          }
+        },
+        "block_order": [
+          "d13aa5e6-8da6-4c3a-a58d-81a1165d73f3",
+          "07ae3cec-ceb9-41da-bb9f-0b84d859c68b",
+          "1171e8f9-36ce-4e9a-a923-292ed54ffd41",
+          "ad0a9552-888e-4f7a-8865-a49245bc776f",
+          "6159ac68-1732-479b-995f-aa1386ffd946",
+          "48023c31-161a-4ae8-9c00-bbedbe4bb42b",
+          "6559b14a-b948-4b4e-9da8-1613e2c7db1b",
+          "67d7096f-1ca0-4abf-8fe8-5c0dcece8c08",
+          "c1ad65d5-284f-4b42-8e6f-e5848073c6ac",
+          "93ba5037-f19e-4065-8465-62af0160d47c",
+          "6f649e9c-d510-4092-b4fc-655c817de16e",
+          "6f654694-60ff-4ab6-9999-65962f62e0f7"
+        ],
+        "settings": {
+        }
+      },
+      "sk-product-icon-section-hhc": {
+        "type": "sk-product-icon-section-hhc",
+        "settings": {
+        }
+      },
+      "sk-product-bottom-section-hhc": {
+        "type": "sk-product-bottom-section-hhc",
+        "settings": {
+        }
+      },
+      "sk-product-faqs-hhc": {
+        "type": "sk-product-faqs-hhc",
+        "settings": {
+        }
+      }
+    },
+    "content_for_index": [
+      "hero",
+      "featured-collections",
+      "feature-row",
+      "slideshow"
+    ],
+    "blocks": {
+      "855628211100114053": {
+        "type": "shopify:\/\/apps\/klaviyo-email-marketing-sms\/blocks\/klaviyo-onsite-embed\/2632fe16-c075-4321-a88b-50b567f42507",
+        "disabled": false,
+        "settings": {
+        }
+      },
+      "4918592460924562117": {
+        "type": "shopify:\/\/apps\/optimonk-website-personalizer\/blocks\/app-embed\/0b488be1-fc0a-4fe6-8793-f2bef383dba8",
+        "disabled": false,
+        "settings": {
+        }
+      }
+    }
+  },
+  "presets": {
+    "Default": {
+      "color_text": "#3d4246",
+      "color_body_text": "#69727b",
+      "color_sale_text": "#557B97",
+      "color_borders": "#e8e9eb",
+      "color_button": "#557B97",
+      "color_button_text": "#fff",
+      "color_small_button_text_border": "#3d4246",
+      "color_text_field": "#fff",
+      "color_text_field_text": "#000",
+      "color_text_field_border": "#949494",
+      "color_image_overlay_text": "#fff",
+      "color_image_overlay": "#3d4246",
+      "image_overlay_opacity": 40,
+      "color_body_bg": "#fff",
+      "type_header_font": "work_sans_n6",
+      "type_header_base_size": 26,
+      "type_base_font": "work_sans_n4",
+      "type_base_size": 16,
+      "type_bold_product_titles": false,
+      "share_facebook": true,
+      "share_twitter": true,
+      "share_pinterest": true,
+      "sections": {
+        "header": {
+          "type": "header",
+          "settings": {
+          }
+        },
+        "hero": {
+          "type": "hero",
+          "settings": {
+            "text_size": "large"
+          }
+        },
+        "slideshow": {
+          "type": "slideshow",
+          "blocks": {
+            "slideshow-0": {
+              "type": "image",
+              "settings": {
+              }
+            },
+            "slideshow-1": {
+              "type": "image",
+              "settings": {
+              }
+            }
+          },
+          "block_order": [
+            "slideshow-0",
+            "slideshow-1"
+          ],
+          "settings": {
+          }
+        },
+        "featured-collections": {
+          "type": "collection",
+          "settings": {
+            "collection": "frontpage"
+          }
+        },
+        "feature-row": {
+          "type": "feature-row",
+          "settings": {
+          }
+        },
+        "footer": {
+          "type": "footer",
+          "blocks": {
+            "link_list": {
+              "type": "link_list",
+              "settings": {
+              }
+            },
+            "text": {
+              "type": "text",
+              "settings": {
+              }
+            },
+            "newsletter": {
+              "type": "newsletter",
+              "settings": {
+              }
+            }
+          },
+          "block_order": [
+            "link_list",
+            "text",
+            "newsletter"
+          ],
+          "settings": {
+          }
+        }
+      },
+      "content_for_index": [
+        "hero",
+        "featured-collections",
+        "feature-row",
+        "slideshow"
+      ]
+    },
+    "Light": {
+      "color_text": "#162950",
+      "color_body_text": "#6d6d6d",
+      "color_sale_text": "#DA2F0C",
+      "color_borders": "#e4e4e4",
+      "color_button": "#DA2F0C",
+      "color_button_text": "#ffffff",
+      "color_small_button_text_border": "#162950",
+      "color_text_field": "#ffffff",
+      "color_text_field_text": "#162950",
+      "color_text_field_border": "#909090",
+      "color_image_overlay_text": "#ffffff",
+      "color_image_overlay": "#3d3d3d",
+      "image_overlay_opacity": 40,
+      "color_body_bg": "#f8f8f8",
+      "type_header_font": "muli_n6",
+      "type_header_base_size": 26,
+      "type_base_font": "muli_n4",
+      "type_base_size": 18,
+      "type_bold_product_titles": true,
+      "share_facebook": true,
+      "share_twitter": true,
+      "share_pinterest": true,
+      "social_twitter_link": "",
+      "social_facebook_link": "",
+      "social_pinterest_link": "",
+      "social_instagram_link": "",
+      "social_tumblr_link": "",
+      "social_snapchat_link": "",
+      "social_youtube_link": "",
+      "social_vimeo_link": "",
+      "favicon": "",
+      "checkout_header_image": "",
+      "checkout_logo_image": "",
+      "checkout_logo_position": "left",
+      "checkout_logo_size": "small",
+      "checkout_body_background_image": "",
+      "checkout_body_background_color": "#ffffff",
+      "checkout_input_background_color_mode": "white",
+      "checkout_sidebar_background_image": "",
+      "checkout_sidebar_background_color": "#e8f3f6",
+      "checkout_heading_font": "Roboto",
+      "checkout_body_font": "Source Sans Pro",
+      "checkout_accent_color": "#1990c6",
+      "checkout_button_color": "#23314e",
+      "checkout_error_color": "#ff6d6d",
+      "sections": {
+        "header": {
+          "type": "header",
+          "settings": {
+            "align_logo": "left",
+            "logo": "",
+            "logo_max_width": 135,
+            "main_linklist": "main-menu",
+            "message": true,
+            "color_bg": "#162950",
+            "color_text": "#ffffff"
+          }
+        },
+        "hero": {
+          "type": "hero",
+          "settings": {
+            "alignment": "center",
+            "hero_size": "x-large",
+            "text_size": "large"
+          }
+        },
+        "slideshow": {
+          "type": "slideshow",
+          "blocks": {
+            "slideshow-0": {
+              "type": "image",
+              "settings": {
+                "image": "",
+                "alignment": "center center"
+              }
+            },
+            "1492095993817": {
+              "type": "image",
+              "settings": {
+                "image": "",
+                "alignment": "center"
+              }
+            }
+          },
+          "block_order": [
+            "slideshow-0",
+            "1492095993817"
+          ],
+          "settings": {
+            "slideshow_height": "medium",
+            "text_size": "medium",
+            "autorotate": false,
+            "autorotate_speed": 5
+          }
+        },
+        "featured-collections": {
+          "type": "collection",
+          "settings": {
+            "grid": 3,
+            "rows": 1,
+            "show_vendor": true,
+            "show_view_all": true
+          }
+        },
+        "product-template": {
+          "type": "product-template",
+          "settings": {
+            "image_size": "medium",
+            "show_quantity_selector": false,
+            "show_variant_labels": true,
+            "show_vendor": false,
+            "enable_zoom": true,
+            "show_share_buttons": true
+          }
+        },
+        "collection-template": {
+          "type": "collection-template",
+          "settings": {
+            "layout": "grid",
+            "grid": 2,
+            "rows": 2,
+            "show_collection_image": true,
+            "show_vendor": false,
+            "sort_enable": true,
+            "tags_enable": true
+          }
+        },
+        "1492033809691": {
+          "type": "map",
+          "settings": {
+          }
+        },
+        "1492033877875": {
+          "type": "quotes",
+          "blocks": {
+            "1492033877875-0": {
+              "type": "quote",
+              "settings": {
+              }
+            }
+          },
+          "block_order": [
+            "1492033877875-0"
+          ],
+          "settings": {
+          }
+        },
+        "1492033924902": {
+          "type": "custom-content",
+          "blocks": {
+            "1492033924902-0": {
+              "type": "text",
+              "settings": {
+                "width": "100%",
+                "alignment": "center",
+                "align_text": "center"
+              }
+            }
+          },
+          "block_order": [
+            "1492033924902-0"
+          ],
+          "settings": {
+            "title": ""
+          }
+        },
+        "1492096252560": {
+          "type": "collection-list",
+          "blocks": {
+            "1492096252560-0": {
+              "type": "featured_collection",
+              "settings": {
+              }
+            },
+            "1492096252560-1": {
+              "type": "featured_collection",
+              "settings": {
+              }
+            },
+            "1492096252560-2": {
+              "type": "featured_collection",
+              "settings": {
+              }
+            }
+          },
+          "block_order": [
+            "1492096252560-0",
+            "1492096252560-1",
+            "1492096252560-2"
+          ],
+          "settings": {
+            "grid": 3
+          }
+        },
+        "blog-template": {
+          "type": "blog-template",
+          "settings": {
+            "layout": "grid",
+            "blog_show_author": true,
+            "blog_show_date": false
+          }
+        },
+        "article-template": {
+          "type": "article-template",
+          "settings": {
+            "blog_show_author": true,
+            "blog_show_date": true,
+            "show_share_buttons": true
+          }
+        },
+        "cart-template": {
+          "type": "cart-template",
+          "settings": {
+            "cart_notes_enable": false
+          }
+        },
+        "footer": {
+          "type": "footer",
+          "blocks": {
+            "link_list": {
+              "type": "link_list",
+              "settings": {
+              }
+            },
+            "text": {
+              "type": "text",
+              "settings": {
+              }
+            },
+            "newsletter": {
+              "type": "newsletter",
+              "settings": {
+              }
+            }
+          },
+          "block_order": [
+            "link_list",
+            "text",
+            "newsletter"
+          ],
+          "settings": {
+          }
+        }
+      },
+      "content_for_index": [
+        "hero",
+        "featured-collections",
+        "slideshow",
+        "1492033924902",
+        "1492096252560",
+        "1492033877875",
+        "1492033809691"
+      ]
+    }
+  }
+}

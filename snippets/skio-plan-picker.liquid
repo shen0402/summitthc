@@ -1,0 +1,133 @@
+{% if product and product.selling_plan_groups.size > 0 %}
+  <style>
+    .available {
+      display: initial;
+    }
+    .unavailable {
+      display: none;
+    }
+    input[type="radio"]:focus + label .checked-radio-button {
+      display: flex;
+    }
+    :not(input[type="radio"]:focus) + label .checked-radio-button {
+      display: none;
+    }
+    input[type="radio"]:active + label .checked-radio-button {
+      display: flex;
+    }
+    :not(input[type="radio"]:active) + label .checked-radio-button {
+      display: none;
+    }
+    input[type="radio"]:checked + label .checked-radio-button {
+      display: flex;
+    }
+    :not(input[type="radio"]:checked) + label .checked-radio-button {
+      display: none;
+    }
+
+    input[type="radio"]:focus + label .unchecked-radio-button {
+      display: none;
+    }
+    :not(input[type="radio"]:focus) + label .unchecked-radio-button {
+      display: flex;
+    }
+    input[type="radio"]:active + label .unchecked-radio-button {
+      display: none;
+    }
+    :not(input[type="radio"]:active) + label .unchecked-radio-button {
+      display: flex;
+    }
+    input[type="radio"]:checked + label .unchecked-radio-button {
+      display: none;
+    }
+    :not(input[type="radio"]:checked) + label .unchecked-radio-button {
+      display: flex;
+    }
+  </style>
+  {% assign variantPrice = product.selected_or_first_available_variant.price %}
+  <fieldset class="skio-plan-picker" style="display: none;padding: 0;border: none;margin-bottom: 40px;margin-top: 10px">
+    <input type="hidden" name="selling_plan" value="{{ product.selected_selling_plan.id }}" />
+    {% unless product.requires_selling_plan %}
+      <div name="skio-one-time">
+         <div style="display: flex;align-items: center">
+          <input style="display: none" id="{{ product.id }}-one-time" name="skio-subscription-value" type="radio" value="">
+          <label for="{{ product.id }}-one-time" style="display: flex;align-items: center; cursor: pointer;">
+            <span class="unchecked-radio-button" style="margin-right: 10px; "><svg class="gUZ pBj U9O kVc" height="18" width="18" viewBox="0 0 24 24" aria-hidden="true" aria-label="" role="img"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm0 22.2C6.45 22.2 1.8 17.7 1.8 12 1.8 6.3 6.3 1.8 12 1.8c5.7 0 10.2 4.5 10.2 10.2 0 5.7-4.65 10.2-10.2 10.2z"></path></svg></span>
+            <span class="checked-radio-button" style="margin-right: 10px;"><svg class="gUZ pBj U9O kVc" height="18" width="18" viewBox="0 0 24 24" aria-hidden="true" aria-label="" role="img"><path d="M12 0a12 12 0 100 24 12 12 0 000-24zM6.37 11.61a1.25 1.25 0 011.76 0l2.37 2.36 5.37-5.35a1.25 1.25 0 011.76 1.76L10.5 17.5l-4.13-4.13a1.25 1.25 0 010-1.76z"></path></svg></span>
+            {% comment %} One-time purchase: {{ product.selected_or_first_available_variant.price | money }} {% endcomment %}
+            <span class="one-time-price">One-time purchase</span>
+          </label>
+        </div>
+      </div>
+    {% endunless %}
+    {% for group in product.selling_plan_groups %}
+      {% comment %} {% assign sellingPlanPrice = group.selling_plans[0].price_adjustments[0].value %}
+      {% assign variantPriceFloat = variantPrice | times: 1.0 %}
+      {% assign sellingPlanPriceFloat = sellingPlanPrice | times: 1.0 %}
+      {% assign savingsFlat = variantPriceFloat | minus: sellingPlanPriceFloat %}
+      {% assign savings = savingsFlat | times: 100.0 | divided_by: variantPriceFloat | round %} {% endcomment %}
+      <div name="skio-subscription">
+        {% comment %} <div class="rc_block rc_block__type rc_block__type__autodeliver" > {% endcomment %}
+        <div style="display: flex;align-items: center; margin-top: 10px">
+          <input style="display: none" type="radio" id="{{ group.id }}" name="skio-subscription-value" value="{{ group.id }}">
+          <label for="{{ group.id }}" style="margin-bottom: 16px; display: flex;align-items: center;     cursor: pointer;">
+            <span class="unchecked-radio-button" style="margin-right: 10px; "><svg class="gUZ pBj U9O kVc" height="18" width="18" viewBox="0 0 24 24" aria-hidden="true" aria-label="" role="img"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm0 22.2C6.45 22.2 1.8 17.7 1.8 12 1.8 6.3 6.3 1.8 12 1.8c5.7 0 10.2 4.5 10.2 10.2 0 5.7-4.65 10.2-10.2 10.2z"></path></svg></span>
+            <span class="checked-radio-button" style="margin-right: 10px; "><svg class="gUZ pBj U9O kVc" height="18" width="18" viewBox="0 0 24 24" aria-hidden="true" aria-label="" role="img"><path d="M12 0a12 12 0 100 24 12 12 0 000-24zM6.37 11.61a1.25 1.25 0 011.76 0l2.37 2.36 5.37-5.35a1.25 1.25 0 011.76 1.76L10.5 17.5l-4.13-4.13a1.25 1.25 0 010-1.76z"></path></svg></span>
+            {% comment %} Subscribe and save: {{ product.selected_or_first_available_variant.selling_plan_allocations[0].price | money }} {% endcomment %}
+            <span class="subscribe-price">
+              {% if group.name == "Subscription" %} 
+              Subscribe and save
+              {% else %}
+              Prepaid
+              {% endif %} 
+            </span>
+          </label>
+        </div>
+        <div style="display: flex; margin-left: 27px; margin-bottom: 0px; align-items: center" data-skio-plan-options>
+          <div style="margin-right: 10px;">
+          Delivery
+          </div>
+          <select>
+            {% for plan in group.selling_plans %}
+              <option value="{{ plan.id }}">{{ plan.options[0].value }}</option>
+            {% endfor %}
+          </select>
+        </div>
+      </div>
+    {% endfor %}
+  </fieldset>
+  <script>
+    var product = {{ product | json }};
+
+    var selling_plans_by_id = {};
+    product.selling_plan_groups.forEach(function (group) {
+      group.selling_plans.forEach(function (plan) {
+        selling_plans_by_id[plan.id] = plan;
+        selling_plans_by_id[plan.id].selling_plan_group_id = group.id;
+      })
+    });
+
+    var variants_by_id = {};
+    {% for variant in product.variants %}
+      {% assign variant_id = variant.id %}
+      variants_by_id[{{ variant_id }}] = {{ variant | json }};
+      variants_by_id[{{ variant_id }}].price = {{ variant.price | money | json }};
+      variants_by_id[{{ variant_id }}].group_ids = {};
+      variants_by_id[{{ variant_id }}].selling_plans = {};
+
+      {% for alloc in variant.selling_plan_allocations %}
+        variants_by_id[{{ variant_id }}].group_ids[{{ alloc.selling_plan_group_id | json }}] = true;
+        variants_by_id[{{ variant_id }}].selling_plans[{{ alloc.selling_plan.id }}] = {};
+        variants_by_id[{{ variant_id }}].selling_plans[{{ alloc.selling_plan.id }}].price = {{ alloc.price | money | json }};
+      {% endfor %}
+    {% endfor %}
+
+    product.selected_selling_plan = {{ product.selected_selling_plan | json }};
+    product.selling_plans_by_id = selling_plans_by_id;
+    product.variants_by_id = variants_by_id;
+    
+    if (document.currentScript) {
+      document.currentScript.previousElementSibling.dataset.product = JSON.stringify(product);
+    }
+  </script>
+{% endif %}

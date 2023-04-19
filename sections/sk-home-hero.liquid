@@ -1,0 +1,66 @@
+{% assign sk_product = all_products[section.settings.featured_product] %}
+<div class="hero-wrapper">
+  <div class="hero-content-wrapper">
+    <div class="hero-content-inner" data-ix="fadeinright">
+      <div class="hero-main-heading-wrapper">
+        <h1 class="hero-main-heading-home">Reach Your Peak</h1>
+      </div>
+      <p class="hero-heading-text">Premium, potent Delta 8 and Delta 9 THC edibles delivered to your door - legally.</p>
+      <div class="hero-btn-wrapper">
+        <a href="/products/15mg-20ct-delta-9-vegan-infused-gummies" class="btn-banner-home w-button">Shop Summit</a>
+      </div>
+      {% comment %}
+      <div class="hero-reviews-row-wrapper sk-reviews-click-home">
+        <span 
+        class="stamped-product-reviews-badge stamped-main-badge" 
+        data-id="{{ sk_product .id }}" 
+        data-product-sku="{{ sk_product .handle }}" 
+        data-product-title="{{sk_product .title}}" 
+        data-product-type="{{sk_product .type}}" 
+        style="display: block;">
+        
+        </span>
+        <style type="text/css">
+          .hero-reviews-row-wrapper .stamped-badge-caption {
+            color: #fff;
+          }
+          .hero-reviews-row-wrapper .stamped-badge-starrating {
+            margin-right: 6px !important;
+            margin-top: 3px !important;
+            display: inline-block;
+          }
+        </style>
+      </div>
+      {% endcomment %}
+      <div class="hero-reviews-row"><img src="//cdn.shopify.com/s/files/1/0636/9355/3922/files/Stars-Blue-min.png" loading="lazy" alt="5 Stars" class="hero-reviews-img">
+        <a href="#" class="hero-reviews-link w-inline-block">
+          <div>{{section.settings.review_count}}</div>
+        </a>
+      </div>
+      
+    </div>
+  </div><img src="//cdn.shopify.com/s/files/1/0636/9355/3922/files/home-mobile_hero.jpg?v=1670346511" loading="eager" alt="Summit" class="hero-mobile-bg-img-home">
+  <div class="hero-overlay-mobile"></div>
+</div>
+
+
+
+{% schema %}
+{
+  "name": "Hero Section",
+  "settings": [
+      {
+       "type": "product",
+       "id": "featured_product",
+       "label": "Featured Product"
+      },
+      {
+        "type": "text",
+        "id": "review_count",
+        "label": "Review Count"
+       }
+  ]
+}
+{% endschema %}
+
+

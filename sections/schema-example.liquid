@@ -1,0 +1,116 @@
+{% for block in section.blocks %}
+{% comment %}
+  {{block.settings.press_date}}
+{% endcomment %}
+{% endfor %}
+
+
+{% comment %}/////////// All Image Stuff  ////////////{% endcomment %}
+
+<div class="" {% if product.featured_image %}style="background-image: url({{ product.featured_image | img_url: '800x' }});"{% endif %}></div>
+
+<img src="{{ section.settings.bg_image | img_url: '800x' }}" alt="{{section.settings.bg_image.alt}}" class="">
+
+
+
+{% assign jc_product = all_products[section.settings.featured_experience] %}
+
+
+<style type="text/css">
+  .home-slider-btn.home-slider-btn-{{block.id}} {
+    color: {{block.settings.slide_font_color}};
+    font-size: {{block.settings.button_font_size}}px;
+
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Section Name" ,
+  "max_blocks": 2,
+  "settings": [
+      {
+         "type": "text",
+         "id": "heading_text",
+         "default": "This is a heading",
+         "label": "Heading Text"
+      }
+  ],
+  "blocks": [
+    {
+      "type": "text",
+      "name": "Event",
+      "settings": [
+        
+        {
+          "label": "Text Content",
+          "id": "text_content",
+          "type": "text"
+        },
+        {
+          "label": "Text Area",
+          "id": "text_area",
+          "type": "textarea"
+        },
+        {
+           "label": "Rich Text",
+           "id": "rich_text", 
+           "type": "richtext",
+           "default": "<p>This is a rich text element</p>"
+        },
+        {
+          "label": "Image",
+          "id": "image_example",
+          "info": "Add alt text for SEO and Accessibility",
+          "type": "image_picker"
+        },
+        {
+          "label": "URL To Events",
+          "id": "event_url",
+          "type": "url"
+        },
+        {
+           "type": "product",
+           "id": "featured_experience",
+           "label": "Featured Experience"
+        },
+        {
+           "type": "checkbox",
+           "id": "id",
+           "label": "text",
+           "default": false,
+           "info": "text"
+        },
+        {
+           "type": "color",
+           "id": "slide_font_color",
+           "label": "Slide Font Color",
+           "default": "#ffffff"
+        },
+        {
+           "type": "range",
+           "id": "slide_heading_font_size",
+           "label": "Slide Heading Font Size",
+           "min": 10,
+           "max": 100,
+           "step": 3,
+           "unit": "px",
+           "default": 64
+        },
+        {
+           "type": "radio",
+           "id": "slide_heading_font_weight",
+           "options": [
+              { "value": "700", "label": "700"},
+              { "value": "500", "label": "500"},
+              { "value": "400", "label": "400"}
+           ],
+           "default":   "700",
+           "label": "Slide Heading Font Weight"
+        }
+
+      ]
+    }
+  ]
+}
+{% endschema %}

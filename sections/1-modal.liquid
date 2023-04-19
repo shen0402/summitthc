@@ -1,0 +1,56 @@
+<div class="form-modal-wrapper">
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+
+<script type="text/javascript">
+
+  $(document).ready(function(){
+
+     
+    if (!$.cookie('jc_domain_newsletter')) {
+
+        setTimeout(function(){ 
+        
+          $('.form-modal-wrapper').fadeIn(500);
+          $('body').css('overflow', 'hidden');
+        
+        }, 2000);
+
+        /*
+        var date = new Date();
+        date.setTime(date.getTime() + 2592000000); 
+        $.cookie('jc_news_alert', true, { expires: date });
+        */
+
+          $.cookie('jc_domain_newsletter', true);
+         
+          }
+  });
+  
+</script>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+
+    $('.form-modal-close-btn').click(function(e) {
+        e.preventDefault();
+       $('body').css('overflow', 'auto');
+       $('.form-modal-wrapper').fadeTo(500, 0, function(){
+
+          $('.form-modal-wrapper').hide();
+
+       });
+
+    });
+
+    
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Newsletter Popup" 
+}
+{% endschema %}

@@ -1,0 +1,22 @@
+
+
+
+
+<div class="hero-wrapper-login">
+  <div class="hero-container-login">
+    <div class="form-block-login">
+
+      {% form 'activate_customer_password' %}
+        <div class="hero-heading-wrapper-login">
+          <h1 class="section-heading-sm">Activate Account</h1>
+        </div>
+        {{ form.errors | default_errors }}
+        <input type="password" class="form-input-login w-input" maxlength="256" name="customer[password]" placeholder="Password" id="CustomerPassword" required=""><input type="password" class="form-input-login w-input" maxlength="256" name="customer[password_confirmation]" placeholder="Confirm Password" id="CustomerPasswordConfirmation" required="">
+        <div class="form-btn-wrapper-login"><input type="submit" value="Submit" data-wait="Please wait..." class="form-btn-login w-button"></div>
+      {% endform %}
+
+    </div>
+  </div>
+</div>
+
+

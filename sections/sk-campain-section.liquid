@@ -1,0 +1,73 @@
+<div class="hero-wrapper-campaign">
+    <div class="hero-grid-campaign">
+      <div id="w-node-_92d53855-83a6-d917-3402-829e59892fae-f8324471" class="clock-wrapper">
+        <div class="html-clock-embed w-embed">
+            
+            <img src="{{section.settings.banner}}" alt="motionmailapp.com">
+        
+        </div>
+      </div>
+      <div id="w-node-_2689ac94-e069-0cbd-4565-75b2e157c6c3-f8324471" class="hero-flex-col-campaign"  {% if section.settings.bg_img %} style="background-image: url({{section.settings.bg_img | image_url }})"{%endif%}></div>
+      <div class="hero-flex-col-campaign-right">
+        <div class="campaign-text-wrapper">
+          <h1 class="h1-big-bold left-align" data-ix="fadeinleft">{{section.settings.main_heading}}</h1>
+          <p class="campaign-text" data-ix="fadeinleft">{{section.settings.sub_heading}}</p>
+          <div class="hero-btn-wrapper-campaign" data-ix="fadeinleft">
+            <a href="{{section.settings.btn_url}}" class="hero-btn-link-campaign w-inline-block">
+              <div>{{section.settings.btn_text}}</div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+ 
+
+
+  {% schema %}
+{
+"name": "Campaign Section" ,
+"settings": [
+    {
+        "label": "Banner",
+        "id": "banner",
+        "default": "https://s.mmgo.io/t/Ca4j/scale_3x",
+        "type": "text"
+    },
+    {
+     "label": "Main Heading",
+     "id": "main_heading",
+     "default": "One Day Only",
+     "type": "text"
+    },
+    {
+     "label": "Sub Heading",
+     "id": "sub_heading",
+     "default": "Shop 15% OFF as part of our SMS crew for one day only.",
+     "type": "text"
+    },
+    {
+     "label": "Button Url",
+        "id": "btn_url",
+        
+        "type": "url"
+    },
+    {
+        "label": "Button Text",
+           "id": "btn_text",
+           "default": "SHOP THE SALE",
+           "type": "text"
+       },
+       {
+        "label": "Background Image",
+           "id": "bg_img",
+           
+           "type": "image_picker"
+       }
+
+]
+}
+{% endschema %}

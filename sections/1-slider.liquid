@@ -1,0 +1,27 @@
+
+
+<div class="w-slider-mask">
+	{% if forloop.index == 1 or 
+	  forloop.index == 3 or 
+	  forloop.index == 5 or
+	  forloop.index == 7
+	  %}
+	  	<div class="w-slide">
+	  	{% comment %}Opening Div Tags{% endcomment %}
+	  	{% endif %}
+	  	{% comment %}Just flex Col - no opening div tags{% endcomment %}
+	  
+
+
+	  {% if forloop.index == 2 or 
+	    forloop.index == 4 or 
+	    forloop.index == 6 or
+	    forloop.index == 8 or
+	    forloop.last == true 
+	    %}
+	    {% comment %}Closing Div tags if end of slide{% endcomment %}
+		</div>
+
+	    {% endif %}
+
+</div>

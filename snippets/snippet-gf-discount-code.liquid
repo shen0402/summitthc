@@ -1,0 +1,128 @@
+
+<style>
+  #checkout-container{
+    position: absolute;
+    width: 0;
+    height: 0;
+    z-index: -1;
+    display: none;
+    opacity:0;
+  }
+  .cart-sidebar-discount {
+    display: flex;
+    flex-direction: column;
+    width:300px;
+  }
+  .cart-sidebar-discount input{
+    margin-top:20px;
+    background: #eee;
+    border: 1px solid #eee;
+    height:50px;
+    outline: none;
+    font-size: 18px;
+    letter-spacing: .75px;
+    text-align: center;
+  }
+  #apply-discount-btn {
+    background-color: #000;
+    color:#fff;
+    border: 0;
+    height: 60px;
+    width: 100%;
+    font-size: 18px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .75px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+  }
+  span.discount-code-value>small {
+    background: #eee;
+    padding: 0px 10px;
+    color: #000;
+    font-weight: bold;
+    border-radius: 20px;
+  }
+  small.discount-error-msg {
+    color: #e22120;
+    position: relative;
+    font-size: 15px;
+  }
+  .loader{
+    border: 5px solid #f3f3f3;
+    border-top: 4px solid #000;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    animation: spin .5s linear infinite;
+  }
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+</style>
+
+<div class="cart-sidebar-discount">
+  <span class="discount-code">Discount Code <span class="discount-code-value"></span></span>
+  <span id="discount-code-status"></span>
+  <input type="text" id="discount-code" autocomplete="off">
+  <button id="apply-discount-btn">APPLY</button>
+</div>
+
+<script>
+  let applyBtn = document.querySelector("#apply-discount-btn");
+  let discountCodeStatus = document.querySelector("#discount-code-status");
+  let checkoutContainer = document.createElement('div');
+  let discountCode = document.querySelector(".discount-code .discount-code-value");
+  let discountCodeInput = document.querySelector("#discount-code");
+  let totalCart = document.querySelector(".cart-subtotal__price_new") // Total Cart Selector to update the total ammount. 
+  let totalDiscount = document.querySelector(".cart-subtotal__price_discount")
+  checkoutContainer.id = "checkout-container";
+  document.body.appendChild(checkoutContainer); 
+  if (localStorage.discountCode) applyDiscount(localStorage.discountCode, "a")
+  applyBtn.addEventListener("click", function(e){ 
+      applyDiscount(discountCodeInput.value, "m");
+  });
+  function applyDiscount(code, action) {
+    applyBtn.innerHTML += "<div class='loader'></div>";
+    applyBtn.style.pointerEvents = "none";
+    let discountApplyUrl = window.location.href+"/checkout?discount="+code+"&t="+Date.now();
+    fetch(discountApplyUrl)
+    .then(function(response) {
+      return response.text();
+    }).then(function(data) {
+      let discountError = data.match('id="error-for-reduction_code"');
+      checkoutContainer.innerHTML = data;
+      let summary = checkoutContainer.querySelector(".sidebar");
+      let total = checkoutContainer.querySelector(".payment-due__price").textContent.trim();
+      if(discountError){
+        let discountErrorMsg = summary.querySelector(".field__message.field__message--error").textContent.replace(" or gift card", ".");
+        console.log(discountErrorMsg);
+        discountCodeStatus.innerHTML = "<small class='discount-error-msg'>" + discountErrorMsg + "</small>";
+        discountCodeInput.style.border = "1px solid red";
+      }else{
+        discountCodeInput.style.border = "";
+        discountCode.innerHTML = ": <small>" + code.trim() + "</small>";
+        localStorage.setItem("discountCode", code.trim());
+        discountCodeStatus.innerHTML = ""
+      }
+      applyBtn.style.pointerEvents = "auto";
+      totalCart.innerHTML = total;
+
+      function parsePrice(price) {
+        return parseFloat(price.replace(/[^\d.-]/g, ''));
+    }
+      // Replace the problematic line with the following:
+let originalTotalPrice = {{cart.total_price}} / 100; // Convert the original total price from cents to a dollar value
+let totalNumber = parsePrice(total); // Convert the total string to a number
+let discountValue = (originalTotalPrice - totalNumber).toFixed(2); // Calculate the discount and format the result
+totalDiscount.innerHTML = 'DISCOUNT: ' + '$' + discountValue; // Display the discount value with a dollar sign
+
+      checkoutContainer.innerHTML = "";
+      applyBtn.innerHTML = "APPLY";
+    });
+  }
+</script>

@@ -1,0 +1,52 @@
+
+
+  <div class="hero-wrapper-welcome">
+    <div class="hero-box-welcome" {% if section.settings.bg_img %} style="background-image: url({{section.settings.bg_img | image_url }})"{%endif%}>
+      <div class="welcome-text-wrapper">
+        <h1 class="h1-big-bold" data-ix="fadeinup">{{section.settings.main_heading}}</h1>
+        <div class="hero-btn-wrapper-welcome" >
+          <a href="{{section.settings.btn_url}}" class="hero-btn-link-welcome w-inline-block">
+            <div>{{section.settings.btn_text}}</div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+ 
+
+
+  {% schema %}
+{
+"name": "Welcome Section" ,
+"settings": [
+    {
+     "label": "Main Heading",
+     "id": "main_heading",
+     "default": "Get the Goods",
+     "type": "text"
+    },
+
+    {
+     "label": "Button Url",
+        "id": "btn_url",
+        
+        "type": "url"
+    },
+    {
+        "label": "Button Text",
+           "id": "btn_text",
+           "default": "SHOP WITH CODE <strong>WELCOME20</strong>",
+           "type": "text"
+       },
+       {
+        "label": "Background Image",
+           "id": "bg_img",
+           
+           "type": "image_picker"
+       }
+]
+}
+{% endschema %}

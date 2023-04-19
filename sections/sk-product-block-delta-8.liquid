@@ -1,0 +1,101 @@
+
+{% assign sk_product = all_products[section.settings.featured_product] %}
+
+
+<div class="bottom-section-product">
+  <div class="bottom-container-product">
+    <div class="bottom-heading-section-product">
+      <div class="bottom-sub-heading-wrapper-product">
+        <h4 class="section-heading-sm">MORE TO LOVE</h4>
+      </div>
+      <div class="bottom-heading-wrapper-product">
+        <h3 class="section-heading">Have you tried Delta-8?</h3>
+      </div>
+    </div>
+    <div class="bottom-content-block-product">
+      <div class="featured-content-block">
+        <div class="featured-flex-row-outer">
+          <div class="featured-flex-col-outer">
+            <div class="featured-flex-col-img-wrapper">
+              <img src="//cdn.shopify.com/s/files/1/0636/9355/3922/files/SM_Thumbnails_D8__thumb_1.jpg?v=1664495100" loading="lazy" alt="Delta-8" class="featured-flex-col-img">
+            </div>
+          </div>
+          <div class="featured-flex-col-outer">
+            <div class="featured-flex-col-inner featured-flex-col-inner-alt">
+              <div class="featured-flex-col-content-wrapper">
+                <div class="featured-col-sub-heading-wrapper">
+                  <h4 class="section-heading-sm">VEGAN &amp; INFUSED</h4>
+                </div>
+                <div class="featured-col-heading-wrapper">
+                  <h3 class="section-heading-alt">Hemp Derived Delta-8 Gummies</h3>
+                </div>
+                <div class="product-col-reviews-row-wrapper">
+                  <a href="{{sk_product.url}}#sk-review-widget-wrapper-product">
+                    <span 
+                    class="stamped-product-reviews-badge stamped-main-badge" 
+                    data-id="{{ sk_product.id }}" 
+                    data-product-sku="{{ sk_product.handle }}" 
+                    data-product-title="{{sk_product.title}}" 
+                    data-product-type="{{sk_product.type}}" 
+                    style="display: block;">
+                   
+                    </span>
+                  </a>
+                  <style type="text/css">
+                    .product-col-reviews-row-wrapper .stamped-badge-caption {
+                      color: #331c94;
+                    }
+                    .product-col-reviews-row-wrapper .stamped-badge-starrating {
+                      margin-right: 6px !important;
+                      margin-top: 5px !important;
+                      display: inline-block;
+                    }
+
+                    .product-col-reviews-row-wrapper a {
+                      color: #331c94;
+                      font-size: 14px;
+                      font-weight: 400;
+                      text-decoration: underline;
+                    }
+                  </style>
+                </div>
+                {% comment %}
+                <div class="product-col-reviews-row-featured"><img src="//cdn.shopify.com/s/files/1/0636/9355/3922/files/ratings-stars-1-min.png" loading="lazy" alt="5 Stars" class="featured-star-img">
+                  <a href="#" class="featured-col-reviews-heading-link w-inline-block">
+                    <div>103 Reviews</div>
+                  </a>
+                </div>
+                {% endcomment %}
+                <div class="featured-col-description-wrapper">
+                  <div class="body-rte-dark w-richtext">
+                    <p>Choose Delta 8 Gummies for a heavy, relaxing, full-body experience.</p>
+                  </div>
+                </div>
+                <div class="product-col-price-text">$54.99</div>
+                <div class="featured-col-btn-wrapper">
+                  <a href="/products/25mg-30ct-delta-8-vegan-infused-gummies" class="btn-main w-button">Try Delta-8</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% schema %}
+{
+  "name": "Product Block",
+  "settings": [
+      {
+       "type": "product",
+       "id": "featured_product",
+       "label": "Featured Product"
+      }
+  ]
+}
+{% endschema %}
+
+

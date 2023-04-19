@@ -1,0 +1,168 @@
+{% assign sk_product = all_products[section.settings.featured_product] %}
+
+
+
+
+
+ 
+<!-- Slider Wrapper -->
+<div class="slider-container">
+
+<div class="css-slider-wrapper">
+  <input type="radio" name="slider" class="slide-radio1" checked id="slider_1">
+  <input type="radio" name="slider" class="slide-radio2" id="slider_2">
+  <input type="radio" name="slider" class="slide-radio3" id="slider_3">
+
+ 
+  <!-- Slider Pagination -->
+  <div class="slider-pagination">
+    <label for="slider_1" class="page1"></label>
+    <label for="slider_2" class="page2"></label>
+    <label for="slider_3" class="page3"></label>
+  </div>
+ 
+  <!-- Slider #1 -->
+  <div class="slider slide-1">
+
+
+    <div class="home-hero-slide w-slide">
+      <div class="hero-wrapper">
+        <div class="hero-content-wrapper">
+          <div class="hero-content-inner" data-ix="fadeinright">
+            <div class="hero-subheader-wrapper">
+              <p class="subheader purple-text">ELEVATED RELIEF</p>
+            </div>
+            <h1 class="hero-main-heading-home">How Do You Want to Feel?</h1>
+            <div class="hero-heading-wrapper">
+              <p class="hero-heading-text">Our handy product guide will help you get where you want to go.</p>
+            </div>
+            <div class="hero-btn-wrapper">
+              <a href="https://summitthc.com/pages/product-guide" class="btn-main-purple w-button">EXPLORE OUR STASH</a>
+            </div>
+            <div class="hero-reviews-row"><img loading="lazy" src="https://cdn.shopify.com/s/files/1/0636/9355/3922/files/stars-white.svg" alt="Five White Stars" class="hero-reviews-img">
+              <a href="#stamped-reviews-widget" class="hero-reviews-link w-inline-block">
+                <div>400+ Reviews</div>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="hero-overlay-mobile"></div>
+      </div>
+    </div>
+
+
+  </div>
+ 
+  <!-- Slider #2 -->
+  <div class="slider slide-2">
+
+    <div class="home-hero-slide w-slide">
+      <div class="hero-wrapper hero-wrapper-slide-2">
+        <div class="hero-content-wrapper">
+          <div class="hero-content-inner" data-ix="fadeinright">
+            <div class="hero-subheader-wrapper">
+              <p class="subheader purple-text">MELLOW &amp; FOCUSED</p>
+            </div>
+            <h1 class="hero-main-heading-home">Introducing: New HHC Gummies</h1>
+            <div class="hero-heading-wrapper">
+              <p class="hero-heading-text">A softer, uplifting experience designed to give you maximum relief.</p>
+            </div>
+            <div class="hero-btn-wrapper">
+              <a href="https://summitthc.com/products/25mg-20ct-hhc-vegan-infused-gummies" class="btn-main-dark-pink w-button">GIVE HHC A TRY</a>
+            </div>
+            <div class="hero-reviews-row"><img loading="lazy" src="https://cdn.shopify.com/s/files/1/0636/9355/3922/files/stars-white.svg" alt="Five White Stars" class="hero-reviews-img">
+              <a href="#stamped-reviews-widget" class="hero-reviews-link w-inline-block">
+                <div>400+ Reviews</div>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="hero-overlay-mobile"></div>
+      </div>
+    </div>
+
+  </div>
+ 
+  <!-- Slider #3 -->
+  <div class="slider slide-3">
+
+    
+    <div class="home-hero-slide w-slide">
+      <div class="hero-wrapper hero-wrapper-slide-3">
+        <div class="hero-content-wrapper">
+          <div class="hero-content-inner" data-ix="fadeinright">
+            <div class="hero-subheader-wrapper">
+              <p class="subheader purple-text">WE&#x27;RE POPULAR! OVER 350 REVIEWS</p>
+            </div>
+            <h1 class="hero-main-heading-home">Let Us Help You Reach Your Peak</h1>
+            <div class="hero-heading-wrapper">
+              <p class="hero-heading-text">The Best in Delta-8, Delta-9, and HHC–delivered right to your door.</p>
+            </div>
+            <div class="hero-btn-wrapper">
+              <a href="https://summitthc.com/collections/featured" class="btn-main-purple w-button">GET EFFECTIVE RELIEF</a>
+            </div>
+            <div class="hero-reviews-row"><img loading="lazy" src="https://cdn.shopify.com/s/files/1/0636/9355/3922/files/stars-white.svg" alt="Five White Stars" class="hero-reviews-img">
+            <a href="#stamped-reviews-widget" class="hero-reviews-link w-inline-block">
+              <div>400+ Reviews</div>
+            </a>
+            </div>
+          </div>
+        </div>
+        <div class="hero-overlay-mobile"></div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+</div>
+
+
+<script>
+  var TIMEOUT = 6000;
+
+var $radios;var $activeRadio;var currentIndex;
+var radiosLength;
+
+
+
+function handleNext() {
+  
+
+
+  currentIndex = $activeRadio.index();
+  radiosLength = $radios.length;
+
+  $radios
+    .attr('checked', false);
+
+
+  if (currentIndex >= radiosLength - 1) {
+
+    $radios
+      .first()
+      .click();
+
+  } else {
+
+    $activeRadio
+      .next('input[class*="slide-radio"]')
+      .click();
+
+  }
+
+}
+
+
+
+
+
+</script>
+
+
+
+
+
+
+

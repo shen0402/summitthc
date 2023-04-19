@@ -1,0 +1,363 @@
+<div id='frcp_app_wrapper' class='frcp-app-wrapper'></div>
+<!-- /templates/customers/order.liquid -->
+{% comment %}
+<header class="section-header text-center">
+  <h1>{{ 'customer.account.title' | t }}</h1>
+  <hr class="hr--small">
+</header>
+
+<div class="grid">
+
+  <div class="grid__item medium-down--text-center">
+    <p><a href="/account" class="return-link">&larr; {{ 'customer.account.return' | t }}</a></p>
+    <hr class="hr--small hr--clear">
+  </div>
+
+  <div class="grid__item one-whole xlarge--two-thirds">
+    <h2 class="h3">{{ 'customer.order.title' | t: name: order.name }}</h2>
+
+    <p>
+      <span class="date">{{ 'customer.order.date' | t: date: order.created_at | date: format: 'date_at_time' }}</span>
+    </p>
+
+    {%- if order.cancelled -%}
+      <div class="errors">
+        {%- assign cancelled_at = order.cancelled_at | date: format: 'date_at_time' -%}
+        <p class="h5">{{ 'customer.order.cancelled' | t: date: cancelled_at }}</p>
+        <p>{{ 'customer.order.cancelled_reason' | t: reason: order.cancel_reason }}</p>
+      </div>
+    {%- endif -%}
+
+    <div class="table-wrap table-wrap--order">
+      <table class="order-table">
+        <thead>
+          <tr>
+            <th scope="col">{{ 'customer.order.product' | t }}</th>
+            <th scope="col">{{ 'customer.order.sku' | t }}</th>
+            <th class="text-right" scope="col">{{ 'customer.order.price' | t }}</th>
+            <th class="text-right" scope="col">{{ 'customer.order.quantity' | t }}</th>
+            <th class="text-right" scope="col">{{ 'customer.order.total' | t }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {%- for line_item in order.line_items -%}
+            <tr id="{{ line_item.key }}">
+              <th class="order-table__product" scope="row" data-label="{{ 'customer.order.product' | t }}">
+                <div>
+                  {{ line_item.title | link_to: line_item.product.url }}
+                  {%- if line_item.line_level_discount_allocations != blank -%}
+                    <ul class="order-discount order-discount--list order-discount--title" aria-label="{{ 'customer.order.discount' | t }}">
+                      {%- for discount_allocation in line_item.line_level_discount_allocations -%}
+                        <li class="order-discount__item">
+                          <span class="icon icon-saletag" aria-hidden="true"></span>{{ discount_allocation.discount_application.title }} (-{{ discount_allocation.amount | money }})
+                        </li>
+                      {%- endfor -%}
+                    </ul>
+                  {%- endif -%}
+                </div>
+                {%- if line_item.fulfillment -%}
+                  <div class="note">
+                    {%- assign created_at = line_item.fulfillment.created_at | date: format: 'date' -%}
+                    {{ 'customer.order.fulfilled_at' | t: date: created_at }}
+                    <div>
+                      {%- if line_item.fulfillment.tracking_url -%}
+                        <a href="{{ line_item.fulfillment.tracking_url }}">
+                          {{ 'customer.order.track_shipment' | t }}
+                        </a>
+                      {%- endif -%}
+                      <div>
+                        {{ line_item.fulfillment.tracking_company }}
+                        {%- if line_item.fulfillment.tracking_number -%} #{{ line_item.fulfillment.tracking_number }} {%- endif -%}
+                      </div>
+                    </div>
+                  </div>
+                {%- endif -%}
+              </th>
+              <td data-label="{{ 'customer.order.sku' | t }}">{{ line_item.sku }}</td>
+              <td class="text-right" data-label="{{ 'customer.order.price' | t }}">
+                {%- if line_item.original_price != line_item.final_price -%}
+                  <span class="visually-hidden">{{ 'products.general.regular_price' | t }}</span>
+                  <del>{{ line_item.original_price | money }}</del>
+                  <span class="visually-hidden">{{ 'products.general.sale_price' | t }}</span>
+                  <span class="order-discount">{{ line_item.final_price | money }}</span>
+                {%- else -%}
+                  {{ line_item.original_price | money }}
+                {%- endif -%}
+              </td>
+              <td class="text-right" data-label="{{ 'customer.order.quantity' | t }}">{{ line_item.quantity }}</td>
+              <td class="text-right" data-label="{{ 'customer.order.total' | t }}">
+                {%- if line_item.original_line_price != line_item.final_line_price -%}
+                  <span class="visually-hidden">{{ 'products.general.regular_price' | t }}</span>
+                  <del>{{ line_item.original_line_price | money }}</del>
+                  <span class="visually-hidden">{{ 'products.general.sale_price' | t }}</span>
+                  <span class="order-discount">{{ line_item.final_line_price | money }}</span>
+                {%- else -%}
+                  {{ line_item.original_line_price | money }}
+                {%- endif -%}
+              </td>
+            </tr>
+          {%- endfor -%}
+        </tbody>
+        <tfoot>
+          <tr>
+            <th class="table--small-hide" scope="row" colspan="4">{{ 'customer.order.subtotal' | t }}</th>
+            <td class="text-right" data-label="{{ 'customer.order.subtotal' | t }}">{{ order.line_items_subtotal_price | money }}</td>
+          </tr>
+
+          {%- if order.cart_level_discount_applications != blank -%}
+            <tr>
+              {%- for discount_application in order.cart_level_discount_applications -%}
+                <th scope="row" colspan="4" class="small--hide">
+                  {{ 'customer.order.discount' | t }}
+                  <span class="order-discount order-discount--title">
+                    <span class="icon icon-saletag" aria-hidden="true"></span>{{- discount_application.title -}}
+                  </span>
+                </th>
+                <td class="text-right" data-label="{{ 'customer.order.discount' | t }}">
+                  <div class="order-discount-wrapper">
+                    <span class="order-discount order-discount--title text-left medium--hide large--hide">
+                      <span class="icon icon-saletag" aria-hidden="true"></span>{{- discount_application.title -}}
+                    </span>
+                    <span class="order-discount">-{{ discount_application.total_allocated_amount | money }}</span>
+                  </div>
+                </td>
+              {%- endfor -%}
+            </tr>
+          {%- endif -%}
+
+          {%- for shipping_method in order.shipping_methods -%}
+          <tr>
+            <th class="table--small-hide" scope="row" colspan="4">{{ 'customer.order.shipping' | t }} ({{ shipping_method.title }})</th>
+            <td class="text-right" data-label="{{ 'customer.order.shipping' | t }} ({{ shipping_method.title }})" >{{ shipping_method.price | money }}</td>
+          </tr>
+          {%- endfor -%}
+
+          {%- for tax_line in order.tax_lines -%}
+            <tr>
+              <th class="table--small-hide" scope="row" colspan="4">{{ 'customer.order.tax' | t }} ({{ tax_line.title }} {{ tax_line.rate | times: 100 }}%)</th>
+              <td class="text-right" data-label="{{ 'customer.order.tax' | t }} ({{ tax_line.title }} {{ tax_line.rate | times: 100 }}%)" class="text-right">{{ tax_line.price | money }}</td>
+            </tr>
+          {%- endfor -%}
+
+          <tr>
+            <th class="table--small-hide" scope="row" colspan="4">{{ 'customer.order.total' | t }}</th>
+            <td class="text-right" data-label="{{ 'customer.order.total' | t }}">{{ order.total_price | money }} {{ order.currency }}</td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+
+    <hr class="hr--small hr--clear">
+
+  </div>
+
+  <div class="grid__item one-whole xlarge--one-third">
+
+    <h3>{{ 'customer.order.billing_address' | t }}</h3>
+
+    <p><strong>{{ 'customer.order.payment_status' | t }}:</strong> {{ order.financial_status_label }}</p>
+
+    {{ order.billing_address | format_address }}
+
+    <hr class="hr--medium">
+
+    <h3>{{ 'customer.order.shipping_address' | t }}</h3>
+
+    <p><strong>{{ 'customer.order.fulfillment_status' | t }}:</strong> {{ order.fulfillment_status_label }}</p>
+
+    {{ order.shipping_address | format_address }}
+
+  </div>
+
+</div>
+
+  
+{% endcomment %}
+{% assign reorder_url = "" %}
+    {% for line_item in order.line_items %}
+      {% capture reorder_url %}{{ reorder_url | append: line_item.variant_id | append: ':' | append: line_item.quantity | append: ',' }}{% endcapture %}
+  {% endfor %}
+
+<div class="jc-account-page-wrapper">
+  <div class="jc-container-large">
+    <div class="jc-account-order-section-heading-wrapper">
+      <h1 class="jc-section-heading">My Account</h1>
+
+    </div>
+    <div class="jc-account-order-section">
+
+    
+        <h2 class="jc-account-order-section-heading">Order {{ order.name }}</h2>
+        <div class="jc-account-order-top-btn-wrapper">
+          <a href="{{ '/cart/' | append: reorder_url }}" class="btn-main-purple max-w-200 w-button">Reorder</a>
+        </div>
+     
+      <div class="jc-order-page-content-wrapper">
+        <div class="jc-order-page-flex-row jc-order-page-flex-row-heading">
+          <div class="jc-order-page-flex-col jc-order-page-flex-col-expand">
+            <div class="order-heading-text-account">Product</div>
+          </div>
+          <div class="jc-order-page-flex-col">
+            <div class="order-heading-text-account">Price</div>
+          </div>
+          <div class="jc-order-page-flex-col">
+            <div class="order-heading-text-account">Quantity</div>
+          </div>
+          <div class="jc-order-page-flex-col">
+            <div class="order-heading-text-account">Total Price</div>
+          </div>
+        </div>
+
+        {%- for line_item in order.line_items -%}
+        <div class="jc-order-page-flex-row">
+          <div class="jc-order-page-flex-col jc-order-page-flex-col-expand">
+            <div class="jc-order-page-flex-row-image">
+              
+              
+              {{ line_item.image | img_url: '30px' | img_tag: '' , 'jc-order-page-flex-col-img' }}
+             
+              <div class="jc-order-page-flex-col-text">
+                <a href="{{line_item.product.url}}" class="jc-order-page-flex-col-text-link">
+                  {% unless line_item.variant.title == 'Default Title' %}
+                    {{ line_item.variant.title }}&nbsp;&#8208;&nbsp;
+                  {% endunless %}
+                   {{ line_item.product.title }}
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="jc-order-page-flex-col">
+            <div class="jc-order-page-flex-col-text">{{ line_item.final_price | money }}</div>
+          </div>
+          <div class="jc-order-page-flex-col">
+            <div class="jc-order-page-flex-col-text">{{line_item.quantity}}</div>
+          </div>
+          <div class="jc-order-page-flex-col">
+            <div class="jc-order-page-flex-col-text">{{line_item.final_line_price | money }}</div>
+          </div>
+        </div>
+        {% endfor %}
+
+        <div class="jc-order-page-flex-row-bottom jc-order-page-flex-row-bottom-border">
+          <div class="jc-order-page-flex-col-bottom">
+            <div class="jc-order-page-flex-col-bottom-heading-text">Subtotal</div>
+          </div>
+
+          <div class="jc-order-page-flex-col-bottom jc-order-page-flex-col-bottom-content">
+            <div class="jc-order-page-flex-col-bottom-heading-text">&nbsp;</div>
+          </div>
+          <div class="jc-order-page-flex-col-bottom jc-order-page-flex-col-bottom-content">
+            <div class="jc-order-page-flex-col-bottom-heading-text">&nbsp;</div>
+          </div>
+
+          <div class="jc-order-page-flex-col-bottom jc-order-page-flex-col-bottom-content">
+            <div class="jc-order-page-flex-col-text">{{ order.line_items_subtotal_price | money }}</div>
+          </div>
+        </div>
+
+
+        {%- for tax_line in order.tax_lines -%}
+
+          <div class="jc-order-page-flex-row-bottom">
+            <div class="jc-order-page-flex-col-bottom">
+              <div class="jc-order-page-flex-col-bottom-heading-text">Tax ({{ tax_line.title }} {{ tax_line.rate | times: 100 }}%)</div>
+            </div>
+
+            <div class="jc-order-page-flex-col-bottom jc-order-page-flex-col-bottom-content">
+              <div class="jc-order-page-flex-col-bottom-heading-text">&nbsp;</div>
+            </div>
+            <div class="jc-order-page-flex-col-bottom jc-order-page-flex-col-bottom-content">
+              <div class="jc-order-page-flex-col-bottom-heading-tex">&nbsp;</div>
+            </div>
+
+            <div class="jc-order-page-flex-col-bottom jc-order-page-flex-col-bottom-content">
+              <div class="jc-order-page-flex-col-text">{{ tax_line.price | money }}</div>
+            </div>
+          </div>
+
+
+        {%- endfor -%}
+
+        <div class="jc-order-page-flex-row-total">
+          <div class="jc-order-page-flex-col-bottom">
+            <div class="jc-order-page-flex-col-total-heading">Total</div>
+          </div>
+
+          <div class="jc-order-page-flex-col-bottom jc-order-page-flex-col-bottom-content">
+            <div class="jc-order-page-flex-col-bottom-heading-text">&nbsp;</div>
+          </div>
+          <div class="jc-order-page-flex-col-bottom jc-order-page-flex-col-bottom-content">
+            <div class="jc-order-page-flex-col-bottom-heading-text">&nbsp;</div>
+          </div>
+
+          <div class="jc-order-page-flex-col-bottom jc-order-page-flex-col-bottom-content">
+            <div class="jc-order-page-flex-col-total-heading">{{ order.total_price | money }} {{ order.currency }}</div>
+          </div>
+        </div>
+      </div>
+
+      
+
+      <div class="jc-order-page-tracking-wrapper">
+        <div class="jc-order-page-tracking-text">Tracking URL: </div>
+
+        {% assign tracking_set = false %}
+
+        {%- for line_item in order.line_items -%}
+          {%- if line_item.fulfillment.tracking_url and tracking_set == false -%}
+
+            <div class="jc-order-page-tracking-text"><a href="{{ line_item.fulfillment.tracking_url }}" class="jc-order-page-tracking-text-link" target="_blank">{{ line_item.fulfillment.tracking_url }}</a></div>
+            {% assign tracking_set = true %}
+            
+
+          {%- endif -%}
+        {% endfor %}
+
+        {% if tracking_set == false %}
+          <div class="jc-order-page-tracking-text"><span class="jc-order-page-tracking-text-alt"><em>Tracking number not yet available</em></span></div>
+        {% endif %}
+
+        
+      </div>
+
+      
+
+
+      <div class="jc-order-page-meta-wrapper">
+        <div class="jc-order-page-meta-row w-row">
+          <div class="jc-order-page-meta-col w-col w-col-6">
+            <div class="jc-order-page-meta-col-inner">
+              <div class="jc-order-page-meta-col-heading-wrapper">
+                <h3 class="jc-order-page-meta-col-heading">Shipping Address</h3>
+
+              </div>
+              <div class="jc-order-page-meta-col-text">{{ order.shipping_address | format_address }}</div>
+            </div>
+          </div>
+          <div class="jc-order-page-meta-col w-col w-col-6">
+            <div class="jc-order-page-meta-col-inner">
+              <div class="jc-order-page-meta-col-heading-wrapper">
+                <h3 class="jc-order-page-meta-col-heading">Billing Address</h3>
+
+              </div>
+              <div class="jc-order-page-meta-col-text">
+                
+              {{ order.billing_address | format_address }}
+                {% comment %}
+              <p>Justin Sidekick<br>Sidekick Web Studio<br>123 Main Street<br>Denver CO 80205<br>United States</p>
+              {% endcomment %}
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="jc-order-page-btn-wrapper"><a href="/account" class="btn-main-purple max-w-200 w-button">Back to Account</a></div>
+
+    </div> <!-- /jc-account-order-section -->
+  </div> <!-- /jc-container-large -->
+</div> <!-- / jc-account-page-wrapper-->
+
+
+
+
+

@@ -1,0 +1,172 @@
+
+
+{%- assign current_variant = product.selected_or_first_available_variant -%}
+{%- assign compare_at_price = current_variant.compare_at_price -%}
+{%- assign price = current_variant.price -%}
+
+{% assign current_variant_img = current_variant.image | img_url: '800x' %}
+
+{% assign is_available = current_variant.available %}
+{% if is_available == true %}
+  {% assign cart_btn_text = 'Add to Cart' %}
+  {% assign cart_disabled = '' %}
+  {% else %}
+  {% assign cart_btn_text = 'Sold Out' %}
+  {% assign cart_disabled = 'disabled="disabled"' %}
+{% endif %}
+
+{% if product.type == 'Gift Card' or product.images.size < 2 %}
+  {% assign jc_arrow_visibility = 'product-page-slider-arrow-hide' %}
+{% endif %}
+
+
+{% assign jc_show_tag = false %}
+{% for tag in product.tags %}
+    {% assign tag_down = tag | downcase  %}
+
+    {% if tag_down == 'coming soon!' %}
+        {% assign jc_show_tag = true %}
+        {% assign jc_tag = 'Coming Soon!' %}       
+    {% endif %} 
+
+    {% if tag_down == 'new' %}
+        {% assign jc_show_tag = true %}
+        {% assign jc_tag = 'New' %}       
+    {% endif %} 
+{% endfor %}
+
+
+{% for collection in product.collections %}
+  {% unless collection.handle == 'all' %}
+      <a href="{{collection.url}}">{{collection.title}}</a>
+      <div class="breadcrumb-breaker-product"> / </div>
+  {% endunless %}
+{% endfor %}
+
+
+{% comment %} Product Image Tabs - Default No Swatch {% endcomment %}
+
+<div class="tabs-menu-product w-tab-menu">
+  {% for image in product.images %}
+
+    {% assign image_url = image | img_url: '800x' %}
+
+    {% for variant in product.variants %}
+
+      {% assign jc_is_current_variant = false %}
+
+      {% if image_url == current_variant_img %}
+        {% assign jc_is_current_variant = true  %}
+      {% endif %}
+
+    {% endfor %}
+
+    <a data-w-tab="Tab {{ forloop.index }}" class="tab-menu-link-product w-inline-block w-tab-link {% if jc_is_current_variant == true %}w--current{% endif %}" jc-variant-id="{{ image | img_url: '800x' }}">
+      <div class="tab-menu-link-img-wrapper-product"><img src="{{ image | img_url: '800x' }}" loading="lazy" alt="{{product.title}}" class="tab-menu-link-img-product"></div>
+    </a>
+
+  {% endfor %}
+ 
+</div>
+
+<div class="w-tab-content">
+
+  {% for image in product.images %}
+
+  {% assign image_url = image | img_url: '800x' %}
+
+  {% for variant in product.variants %}
+
+    {% assign jc_is_current_variant = false %}
+
+    {% if image_url == current_variant_img %}
+      {% assign jc_is_current_variant = true  %}
+    {% endif %}
+
+  {% endfor %}
+
+    <div data-w-tab="Tab {{ forloop.index }}" class="w-tab-pane {% if jc_is_current_variant == true %}w--tab-active{% endif %}">
+      <div class="tab-inner-product">
+        <div class="tab-img-wrapper-product"><img src="{{ image | img_url: '1000x' }}" loading="default" alt="{{image.alt}}" class="tab-img-product"></div>
+      </div>
+    </div>
+  {% endfor %}
+  
+
+</div>
+
+
+{% comment %} ////////////////////// image stuff ////////////////////// {% endcomment %}
+{% for image in product.images %}
+
+{% endfor %}
+
+<!-- change to show variant image only -->
+<div class="product-page-variant-img-holder">
+  <img src="" class="product-page-variant-img">
+</div>
+
+
+{% comment %} ////////////////////// image background stuff ////////////////////// {% endcomment %}
+  <div class="" {% if product.featured_image %}style="background-image: url({{ product.featured_image | img_url: '800x' }});"{% endif %}></div>
+
+
+{% comment %} ////////////////////// similar product stuff ////////////////////// {% endcomment %}
+{% for collection in product.collections %}
+    {% if collection.id != 123456 and collection.id != 123456%}
+      {% assign same_collection = collection %}
+      {% for product in same_collection.products limit:4 %}
+        
+      {% endfor %}
+      {% break %}
+    {% endif %}
+{% endfor %}
+
+
+
+
+ {% comment %} //////////////////////  price stuff ////////////////////// {% endcomment %}
+ {% if is_available == true %}
+   {% if compare_at_price > price  %}
+    <div class="price-text-product">
+     <span style="text-decoration: line-through">{{compare_at_price | money }}</span> <span id="price">{{current_variant.price | money }}</span>
+    </div>
+    {% else %}
+   <div class="price-text-product" id="price">
+  {{current_variant.price | money }}
+   </div>
+   {% endif %}
+{% else %}
+  <div class="product-page-price-text"><span id="price" style="text-decoration: line-through;">{{product.price | money }}</span> Sold Out</div>
+{% endif %}
+
+
+  {% unless product.has_only_default_variant %}
+    {% for product_option in product.options_with_values %}
+      <div class="">
+          <label for="select-{{forloop.index}}" class="product-options-label">{{ product_option.name }}</label> 
+          <select id="select-{{forloop.index}}" class="form-text-field color w-select product-page-select">
+          {% for value in product_option.values %}
+            <option jc-option-id="{{option.id}}" {% if product_option.selected_value == value %}selected{% endif %}>{{value}}</option>
+          {% endfor %}
+          </select>
+      </div>
+    {% endfor %}
+  {% endunless %} 
+
+    <select name="id" data-productid="{{ product.id }}" id="product-select" class="jc-product-select product-form__variants no-js">
+      {% for variant in product.variants %}
+        {% if variant.available %}
+          <option jc-price="{{variant.price | money}}" {% if variant == product.selected_or_first_available_variant %} selected="selected" {% endif %} value="{{ variant.id }}">
+            {{ variant.title }}
+          </option>
+        {% else %}
+          <option jc-price="Sold Out" disabled="disabled">{{ variant.title }} - {{ 'products.product.sold_out' | t }}</option>
+        {% endif %}
+      {% endfor %}
+    </select>
+
+
+    <input type="number" class="form-text-field services-ind-quantity w-input" maxlength="256" name="quantity" value="1" min="1" pattern="[0-9]*" id="Quantity" required="">
+
+    <input type="submit" value="{{cart_btn_text}}" data-wait="Please wait..." class=" w-button" {{cart_disabled}}>

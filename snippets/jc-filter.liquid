@@ -1,0 +1,24 @@
+
+
+
+<script type="text/javascript">
+
+		$('#collection-sort').on('change', function() {
+		  var current_value = this.value;
+		  if (current_value == 'blank') {
+		    var shop_url = '{{shop.url}}';
+		    var collection_url = '{{collection.url}}';
+		    var full_url = shop_url + collection_url + '#main-content';
+		    window.location.href = full_url;
+		  } 
+		  else {
+		    var shop_url = '{{shop.url}}';
+		    var collection_url = '{{collection.url}}';
+		    var param_url = current_value;
+		    
+		    var full_url = shop_url + collection_url + '/' + param_url + '#main-content';
+		    window.location.href = full_url;
+		  }
+
+		});
+	</script>

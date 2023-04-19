@@ -1,0 +1,166 @@
+
+{% assign main_article_id = article.id %}
+
+{% assign article_tag = '' %}
+
+{% for tag in article.tags %}
+  {% assign tag_down = tag | downcase %}
+
+  {% if tag_down == 'delta-8' %}
+      {% assign article_tag = 'Delta-8' %}
+    {% elsif tag_down == 'delta-9'  %}
+      {% assign article_tag = 'Delta-9' %} 
+  {% endif %}
+
+{% endfor %}
+
+
+<div class="hero-wrapper-article">
+  <div class="hero-container-article">
+    <div class="flex-row-outer-blog">
+      <div class="flex-col-outer-blog-1" data-ix="fadeinright">
+        <p class="filter-heading-blog">TOPICS</p>
+        <div class="filter-menu-section-blog">
+          <div class="filter-link-wrapper-blog">
+            <a href="{{blog.url}}" class="filter-link-blog w-inline-block">
+              <div>LATEST</div>
+            </a>
+          </div>
+
+          <div class="filter-link-wrapper-blog">
+            <a href="{{blog.url}}/tagged/delta-9" class="filter-link-blog w-inline-block">
+              <div>DELTA-9</div>
+            </a>
+          </div>
+
+          <div class="filter-link-wrapper-blog">
+            <a href="{{blog.url}}/tagged/HHC" class="filter-link-blog w-inline-block">
+              <div>HHC</div>
+            </a>
+          </div>
+
+          <div class="filter-link-wrapper-blog">
+            <a href="{{blog.url}}/tagged/delta-8" class="filter-link-blog w-inline-block">
+              <div>DELTA-8</div>
+            </a>
+          </div>
+
+        </div>
+      </div>
+      <div class="flex-col-outer-blog-2">
+        <div class="top-section-article">
+          <div class="heading-flex-row-blog" data-ix="fadeindown">
+            <div class="date-article">{{ article.published_at | time_tag: format: 'date' }}</div>
+            {% unless article_tag == blank %}
+                <div class="heading-flex-breaker-blog"></div>
+                <div class="heading-flex-text-article">{{article_tag}}</div>
+             {% endunless %}
+          </div>
+          <div class="main-heading-wrapper-article">
+            <h1 class="main-heading-article" data-ix="fadeinright">{{article.title}}</h1>
+          </div>
+          <div class="main-img-block-article" {% if article.image %}style="background-image: url({{ article.image | img_url: '1600x' }});"{% endif %}></div>
+          <div class="meta-flex-row-article">
+            <div class="social-section-article">
+              <div class="social-heading-article">Share</div>
+              <a href="//twitter.com/share?text={{ share_title | url_param_escape }}&amp;url={{ shop.url | append: share_permalink }}" class="social-link-block-article w-inline-block" target="_blank"><img src="https://cdn.shopify.com/s/files/1/0636/9355/3922/files/Social-Share-Twitter-min-p-130x130.png?v=1677613064" loading="lazy" alt="Twitter" class="social-img-article"></a>
+              <a href="//www.facebook.com/sharer.php?u={{ shop.url | append: share_permalink }}" class="social-link-block-article w-inline-block" target="_blank"><img src="https://cdn.shopify.com/s/files/1/0636/9355/3922/files/Social-Share-Facebook-min-p-130x130.png?v=1677613064" loading="lazy" alt="Facebook" class="social-img-article"></a>
+              <a href="//pinterest.com/pin/create/button/?url={{ shop.url | append: share_permalink }}&amp;media={{ share_image | img_url: '1024x1024' }}&amp;description={{ share_title | url_param_escape }}" class="social-link-block-article w-inline-block" target="_blank"><img src="https://cdn.shopify.com/s/files/1/0636/9355/3922/files/Social-Share-Pinterest-min-p-130x130.png?v=1677613064" loading="lazy" alt="Pinterest" class="social-img-article" ></a>
+              <a href="mailto:?body={{article.url}}" class="social-link-block-article w-inline-block"><img src="https://cdn.shopify.com/s/files/1/0636/9355/3922/files/Social-Share-Email-min-p-130x130.png?v=1677613064" loading="lazy" alt="Email" class="social-img-article"></a>
+            </div>
+                <div class="author-text-article">Author: Olivia Evans</div>
+          </div>
+        </div>
+        <div class="rte-wrapper-article">
+          <div class="rte-article w-richtext">
+            {{ article.content }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="bottom-section-article">
+  <div class="bottom-container-article">
+
+    <div class="flex-row-blog">
+
+    	{% assign sk_counter = 0 %}
+
+    	{% for article in blog.articles %}
+
+    		{% assign article_tag = '' %}
+
+    		{% for tag in article.tags %}
+    		  {% assign tag_down = tag | downcase %}
+
+    		  {% if tag_down == 'delta-8' %}
+    		      {% assign article_tag = 'Delta-8' %}
+    		    {% elsif tag_down == 'delta-9'  %}
+    		      {% assign article_tag = 'Delta-9' %}
+    		    {% elsif tag_down == 'lecal'  %}
+    		      {% assign article_tag = 'Lecal' %}  
+    		  {% endif %}
+
+    		{% endfor %}
+
+    		{% if sk_counter > 3 %}
+    		  {% break %} 
+    		{% endif %}
+
+    		{% unless article.id == main_article_id %}
+    			<div class="flex-col-blog">
+    			  <div class="flex-col-inner-blog">
+    			    <div class="flex-col-img-block-blog flex-col-img-block-blog-alt" {% if article.image %}style="background-image: url({{ article.image | img_url: '800x' }});"{% endif %}>
+    			      <a href="{{article.url}}" class="featured-overlay-link-blog w-inline-block"></a>
+    			    </div>
+    			    <div class="heading-flex-row-blog">
+    			      <div class="date-blog">{{ article.published_at | time_tag: format: 'date' }}</div>
+    			      {% unless article_tag == blank %}
+    			      	<div class="heading-flex-breaker-blog"></div>
+    			      	<div class="heading-flex-text-blog">{{article_tag}}</div>
+    			      {% endunless %}
+    			     
+    			    </div>
+
+    			    <div class="col-heading-wrapper-blog">
+    			      <a href="{{article.url}}" class="featured-heading-link-blog w-inline-block">
+    			        <h3 class="flex-col-heading-blog">{{article.title}}</h3>
+    			      </a>
+    			    </div>
+    			    {% unless article.excerpt == blank %}
+    			    	<div class="col-rte-wrapper-blog">
+    			    	  <div class="w-richtext">
+    			    	    {{article.excerpt}}
+    			    	  </div>
+    			    	</div>
+    			    {% endunless %}
+    			    <div class="col-link-wrapper-blog">
+    			      <a href="{{article.url}}" class="col-link-blog w-inline-block">
+    			        <div>Read More</div>
+    			      </a>
+    			    </div>
+    			  </div>
+    			</div>
+    			{% assign jc_counter = jc_counter | plus: 1 %}
+    		{% endunless %}
+
+    	{% endfor %}
+
+     
+
+   
+
+    </div>
+  </div>
+</div>
+
+
+
+{% schema %}
+{
+  "name": "Article Page"
+}
+{% endschema %}
+

@@ -1,0 +1,128 @@
+
+
+{% section 'jc-order-page' %}
+
+{% comment %}
+<div>
+Order {{ order.name }}
+</div>
+
+<div class="heading-flex-row-account-page">
+  <div class="flex-col-order-page-1">
+    <div class="heading-flex-text-account-page">Product</div>
+  </div>
+  <div class="flex-col-order-page-2">
+    <div class="heading-flex-text-account-page">Price</div>
+  </div>
+  <div class="flex-col-order-page-3">
+    <div class="heading-flex-text-account-page">Quantity</div>
+  </div>
+  <div class="flex-col-order-page-4">
+    <div class="heading-flex-text-account-page">Total Price</div>
+  </div>
+</div>
+
+{%- for line_item in order.line_items -%}
+  <div class="flex-row-account-page">
+    <div class="flex-col-order-page-1">
+      <a href="{{line_item.product.url}}" class="flex-col-link-block-account-page w-inline-block">
+        <div>{{ line_item.product.title }}</div>
+      </a>
+    </div>
+    <div class="flex-col-order-page-2">
+      <div class="flex-col-text-account-page">{{ line_item.final_price | money }}</div>
+    </div>
+    <div class="flex-col-order-page-3">
+      <div class="flex-col-text-account-page">{{line_item.quantity}}</div>
+    </div>
+    <div class="flex-col-order-page-4">
+      <div class="flex-col-text-account-page">{{line_item.final_line_price | money }}</div>
+    </div>
+  </div>
+{% endfor %}
+
+<div class="total-flex-row-order-page">
+  <div class="flex-col-total-holder-order-page">
+    <div class="heading-flex-text-account-page">Sub Total:</div>
+  </div>
+  <div class="flex-col-order-page-4">
+    <div class="heading-flex-text-account-page">{{ order.line_items_subtotal_price | money }}</div>
+  </div>
+</div>
+
+{% unless order.tax_price == 0 %}
+    <div class="total-flex-row-order-page">
+      <div class="flex-col-total-holder-order-page">
+        <div class="heading-flex-text-account-page">Taxes:</div>
+      </div>
+      <div class="flex-col-order-page-4">
+        <div class="heading-flex-text-account-page">
+          {%- for tax_line in order.tax_lines -%}
+             Tax ({{ tax_line.title }} {{ tax_line.rate | times: 100 }}%)
+             {{ tax_line.price | money }}
+          {%- endfor -%}
+        </div>
+      </div>
+    </div>
+{% endunless %}
+
+{% unless order.shipping_price == 0 %}
+    <div class="total-flex-row-order-page">
+      <div class="flex-col-total-holder-order-page">
+        <div class="heading-flex-text-account-page">Shipping:</div>
+      </div>
+      <div class="flex-col-order-page-4">
+        <div class="heading-flex-text-account-page">{{ order.shipping_method.price | money }}</div>
+      </div>
+    </div>
+{% endunless %}
+
+<div class="total-flex-row-order-page">
+  <div class="flex-col-total-holder-order-page">
+    <div class="heading-flex-text-account-page">Total:</div>
+  </div>
+  <div class="flex-col-order-page-4">
+    <div class="heading-flex-text-account-page">{{ order.total_price | money }} {{ order.currency }}</div>
+  </div>
+</div>
+
+<div class="mid-btn-wrapper-order-page">
+  <a href="/account" class="mid-btn-order-page w-button">« Back to Account</a>
+</div>
+
+{%- for line_item in order.line_items -%}
+  
+  {{ line_item.image | img_url: '30px' | img_tag: '' , 'jc-order-page-flex-col-img' }}
+  {{line_item.product.url}}
+  {% unless line_item.variant.title == 'Default Title' %}
+    {{ line_item.variant.title }}&nbsp;&#8208;&nbsp;
+  {% endunless %}
+   {{ line_item.product.title }}
+   {{ line_item.final_price | money }}
+   {{line_item.quantity}}
+   {{line_item.final_line_price | money }}
+   {{ order.line_items_subtotal_price | money }}
+
+   {%- for tax_line in order.tax_lines -%}
+      Tax ({{ tax_line.title }} {{ tax_line.rate | times: 100 }}%)
+      {{ tax_line.price | money }}
+
+   {%- endfor -%}
+  {% endfor %} 
+
+
+  {{ order.total_price | money }} {{ order.currency }}
+
+  {%- if line_item.fulfillment.tracking_url -%}
+    {{ line_item.fulfillment.tracking_url }}
+    {% else %}
+    <div class="jc-order-page-tracking-text"><span class="jc-order-page-tracking-text-alt"><em>Tracking number not yet available</em></span></div>
+  {%- endif -%}
+
+  {{ order.shipping_address | format_address }}
+  {{ order.billing_address | format_address }}
+
+  
+  {% endcomment %}
+
+

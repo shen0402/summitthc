@@ -1,0 +1,10 @@
+{% form 'customer' %}
+	{% if form.posted_successfully? %}
+	  <div class="jc-form-done">
+	    <div>Thank you! Your subscription has been confirmed!</div>
+	  </div>
+	{% else %}
+		<input type="hidden" name="contact[accepts_marketing]" value="true">
+		<input type="email" class="cta-modal-input w-input" maxlength="256" name="contact[email]" data-name="Email 3" placeholder="Your Email Address*" id="email" required=""><input type="submit" value="Subscribe" data-wait="Please wait..." class="cta-modal-btn w-button">
+	{% endif %}
+{% endform %}

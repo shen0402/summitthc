@@ -242,11 +242,7 @@
 
               </div>
               <div class="cart-flyout-table-heading-wrapper {% if hasSub  %} hidden-discountbox{% endif %}">
-                <div class="cart-flyout-table-text purple bot">DISCOUNTS</div>
-                {%comment%}
-                <div class="cart-flyout-table-text">Product Total (<span class="table-cart-qty-flag">{{cart.item_count}}</span>)</div>
-                {%endcomment%}
-                <div class="cart-flyout-table-text discountTotaldispaly  "><span class="jc-subtotal-flag csapps-cart-original-total">{{ cart.total_price | money }}</span></div>
+                {% render 'snippet-gf-discount-code-cart-fly' %}
               </div>
               {%comment%}
               <div class="cart-flyout-table-heading-wrapper cart-flyout-table-heading-wrapper-alt">
@@ -261,11 +257,14 @@
               {%endcomment%}
               <div class="cart-flyout-table-heading-wrapper cart-flyout-table-heading-wrapper-alt beforediscountOuter">
                 <div class="cart-flyout-table-text cart-flyout-table-text-b">Total Before Discounts</div>
-                <div class="cart-flyout-table-text cart-flyout-table-text-b beforediscountTotal"><span class="cart-total-plus-shipping-flag csapps-cart-original-total">{{ cart.total_price | money }}.</span></div>
+                <div class="cart-flyout-table-text cart-flyout-table-text-b beforediscountTotal">
+                  <span class="cart-total-plus-shipping-flag csapps-cart-original-total">{{ cart.total_price | money }}.</span>
+                  <div class="cart-price-saving"></div>
+                </div>
               </div>
               <div class="cart-flyout-table-heading-wrapper cart-flyout-table-heading-wrapper-alt estimatedOuter">
                 <div class="cart-flyout-table-text cart-flyout-table-text-b">ESTIMATED TOTAL</div>
-                <div class="cart-flyout-table-text cart-flyout-table-text-b estimateTotal"><span class="cart-total-plus-shipping-flag csapps-cart-original-total">{{ cart.total_price | money }}.</span></div>
+                <div class="cart-flyout-table-text cart-flyout-table-text-b estimateTotal"><span class="cart-total-plus-shipping-flag csapps-cart-original-total cart-original-total-new">{{ cart.total_price | money }}.</span></div>
               </div>
             </div>
             {% comment %}
@@ -332,7 +331,71 @@
 </div>
 
 
+<script>
+  let applyBtn = document.querySelector("#apply-discount-btn");
+  let discountCodeStatus = document.querySelector("#discount-code-status");
+  let checkoutContainer = document.createElement('div');
+  let discountCode = document.querySelector(".discount-code .discount-code-value");
+  let discountCodeInput = document.querySelector("#discount-code");
+  checkoutContainer.id = "checkout-container";
+  document.body.appendChild(checkoutContainer); 
+  if (localStorage.discountCode) applyDiscount(localStorage.discountCode, "a");
+  applyBtn.addEventListener("click", function(e){ 
+    e.preventDefault();
+      applyDiscount(discountCodeInput.value, "m");
+      applyBtn.innerHTML += "<div class='loader'></div>";
+      applyBtn.style.pointerEvents = "none";
+  });
+  discountCode.addEventListener("click", function(e){
+    e.preventDefault();
+    removeDiscount(this.querySelector('small').textContent, "m");
+  });
+  discountCodeInput.addEventListener('keyup', function(e){
+    if(!this.value) applyBtn.setAttribute('disabled', 'disabled');
+    else applyBtn.removeAttribute('disabled');
+  });
+  function applyDiscount(code, action) {
+    let discountApplyUrl = "https://summitthc.com/cart/checkout?discount="+code+"&t="+Date.now();
+    fetch(discountApplyUrl)
+    .then(function(response) {
+      return response.text();
+    }).then(function(data) {
+      let totalCart = document.querySelector(".cart-original-total-new"); // Total Cart Selector to update the total ammount. 
+      let totalDiscount = document.querySelector(".cart-price-saving");
+      let discountError = data.match('id="error-for-reduction_code"');
+      checkoutContainer.innerHTML = data;
+      let summary = checkoutContainer.querySelector(".sidebar");
+      let total = checkoutContainer.querySelector(".payment-due__price").textContent.trim();
+      if(discountError){
+        let discountErrorMsg = summary.querySelector(".field__message.field__message--error").textContent.replace(" or gift card", ".");
+        console.log(discountErrorMsg);
+        discountCodeStatus.innerHTML = "<small class='discount-error-msg'>" + discountErrorMsg + "</small>";
+        discountCodeInput.style.border = "1px solid red";
+      }else{
+        discountCodeInput.style.border = "";
+        discountCode.innerHTML = ": <small>" + code.trim() + "</small>";
+        localStorage.setItem("discountCode", code.trim());
+        discountCodeStatus.innerHTML = ""
+      }
+      applyBtn.style.pointerEvents = "auto";
+      totalCart.textContent = total;
 
+      function parsePrice(price) {
+        return parseFloat(price.replace(/[^\d.-]/g, ''));
+    }
+      // Replace the problematic line with the following:
+      let originalTotalPrice = checkoutContainer.querySelector("[data-checkout-subtotal-price-target]").textContent.trim();
+      let discountValue = checkoutContainer.querySelector("[data-checkout-discount-amount-target]").textContent.trim();
+      totalDiscount.innerHTML = 'DISCOUNT: ' + discountValue; // Display the discount value with a dollar sign
+      document.querySelector('.beforediscountTotal .cart-total-plus-shipping-flag').textContent = originalTotalPrice
+      checkoutContainer.innerHTML = "";
+      applyBtn.innerHTML = "APPLY";
+    });
+  }
+
+  function removeDiscount(code, action) {
+  }
+</script>
 
 
 <script type="text/javascript">
@@ -347,6 +410,7 @@
          .done(function(data){
            var newCount = data.item_count;
            var count_string = data.item_count.toString();
+           originalTotalPrice = data.original_total_price / 100;
           // console.log(data.items.length);
          // $('.nav-meta-cart-text').text(count_string);
          /*$('.nav-cart-quantity-text').each(function(i, obj) {
@@ -705,7 +769,7 @@
  
          $('.cart-flyout-table-radio-btn-standard').attr('checked','checked');
          
-          
+         if (localStorage.discountCode) applyDiscount(localStorage.discountCode, "a");
            
          });
          
